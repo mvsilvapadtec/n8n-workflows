@@ -1,0 +1,771 @@
+{
+  "active": true,
+  "connections": {
+    "EditTicketFields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Conversation by noco id": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation by noco id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zendesk Trigger": {
+      "main": [
+        [
+          {
+            "node": "If Created by Integration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Created by Integration": {
+      "main": [
+        [
+          {
+            "node": "EditTicketFields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save TicketId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Close conversation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Close conversation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-06-20T20:23:34.542Z",
+  "id": "kFEIz9eUIIo2SMcS",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Testes] Zendesk Events",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07fded3a-e258-419e-b987-9e1d2bf20974",
+              "name": "ticketId",
+              "value": "={{ $json['ticket.id'] }}",
+              "type": "string"
+            },
+            {
+              "id": "e4dc1929-2183-4831-a9cb-c53739d8fa28",
+              "name": "userExternalId",
+              "value": "={{ $json['ticket.requester.external_id'] }}",
+              "type": "string"
+            },
+            {
+              "id": "8c5ef870-630b-4db3-a58d-6f6c3ddc9186",
+              "name": "tags",
+              "value": "={{ $json['ticket.tags'] }}",
+              "type": "string"
+            },
+            {
+              "id": "2c7a2c4f-ea97-4cbf-8091-b705740fffe5",
+              "name": "number",
+              "value": "={{ $json['ticket.requester.external_id'].split('_')[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "d46c6dc3-7ea8-4b95-b022-7ac1135aed2b",
+              "name": "nocoId",
+              "value": "={{ $json['ticket.requester.external_id'].split('_')[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "e2aa2884-9611-4724-87ed-1d491ddd8d92",
+              "name": "count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "5867581e-42aa-4b1f-8d8c-86976156394d",
+              "name": "ticketStatus",
+              "value": "={{ $json['ticket.status'] }}",
+              "type": "string"
+            },
+            {
+              "id": "a45dfd9c-f606-479c-9225-bb34dcdcc515",
+              "name": "subdomain",
+              "value": "padtecsupport1715188965",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8b115a5c-fa91-4b80-b7d8-484d793a86d2",
+      "name": "EditTicketFields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        240,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "limit": 1,
+        "options": {
+          "where": "=(conversationId,eq,{{ $json.conversationId }})"
+        }
+      },
+      "id": "26e7e6c4-33db-4336-830b-3f47e3f7dfa7",
+      "name": "Get Conversation by noco id",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        540
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $json.Id }}"
+            },
+            {
+              "fieldName": "ticketId",
+              "fieldValue": "={{ $('EditTicketFields').item.json.ticketId }}"
+            }
+          ]
+        }
+      },
+      "id": "34d7f0ee-f218-4741-bb72-d3c8b150dca7",
+      "name": "Save TicketId",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1460,
+        640
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## Zendes Flow\n",
+        "height": 858.024528085766,
+        "width": 1853.3609424452043
+      },
+      "id": "28b762cf-78e2-4ec3-84be-3112f288702c",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://{{ $json.subdomain }}.zendesk.com/api/v2/tickets/{{ $json.ticketId }}/audits",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zendeskOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "ef591b63-4af1-49a3-91f4-4297624a5955",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        540
+      ],
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let conversationId = null;\nfor (const item of $input.all()) {\n  const adts = item.json.audits;\n  for (let adt of adts) {\n    const evs = adt.events;\n    for (const ev of evs) {\n      if(ev.type == 'ChatStartedEvent' &&  ev.value && ev.value.conversation_id) {\n        conversationId = ev.value.conversation_id;\n        break;\n      }\n    }\n  }\n}\n\nreturn {conversationId: conversationId}"
+      },
+      "id": "4f1fcb46-c0c8-4424-89f2-ff170ab3f9dd",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "options": {
+          "fields": [
+            "ticket.title",
+            "ticket.description",
+            "ticket.id",
+            "ticket.external_id",
+            "ticket.via",
+            "ticket.status",
+            "ticket.ticket_type",
+            "ticket.requester.external_id",
+            "ticket.requester.requester_field",
+            "ticket.requester.details",
+            "ticket.organization.name",
+            "ticket.tags",
+            "ticket.account",
+            "ticket.ticket_field_26566119129613"
+          ]
+        },
+        "conditions": {
+          "any": [
+            {
+              "operation": "changed"
+            }
+          ]
+        }
+      },
+      "id": "d429941b-6f5e-49d9-9023-c7623e6aba38",
+      "name": "Zendesk Trigger",
+      "type": "n8n-nodes-base.zendeskTrigger",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        540
+      ],
+      "webhookId": "4a2cefa5-4686-4911-9e83-b4525e1ab6de",
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "04edb547-1433-4eda-86dc-2a4ff2e3e828",
+              "leftValue": "={{ $json['ticket.id'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e211aa76-8191-484d-b80e-47bb74ed8219",
+              "leftValue": "={{ $json['ticket.via'] }}",
+              "rightValue": "Mensagens",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "82d57256-c04e-42be-aa7a-77feecd8a9d0",
+              "leftValue": "={{ $json['ticket.tags'] }}",
+              "rightValue": "opened_by_integration_message",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2483b8a8-214c-4373-bbd7-b93504a45c10",
+      "name": "If Created by Integration",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        0,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "d2087604-e4e6-4538-b62d-27a6d1ea26b1",
+              "leftValue": "={{ $json.ticketStatus }}",
+              "rightValue": "Novo",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "01548061-bb62-4352-862f-8a3e6992e55f",
+              "leftValue": "={{ $json.ticketStatus }}",
+              "rightValue": "Fechado",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {
+          "ignoreCase": true,
+          "looseTypeValidation": true
+        }
+      },
+      "id": "af09e53b-f154-484d-9854-e05a4a107270",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        460,
+        420
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $json.Id }}"
+            },
+            {
+              "fieldName": "ticketId",
+              "fieldValue": "={{ $('EditTicketFields').item.json.ticketId }}"
+            },
+            {
+              "fieldName": "status",
+              "fieldValue": "close"
+            }
+          ]
+        }
+      },
+      "id": "a74f4608-49fe-4f05-87e0-adcf26bcef52",
+      "name": "Close conversation",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        460,
+        900
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "b13aa695-a837-40a9-8aa5-26e6eaaf2e08",
+              "leftValue": "={{ $json.Id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b9c428de-1e5c-4154-a4cc-2ca896b74356",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "Novo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Novo"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "3ed6ab52-38c6-4117-8d5b-a891dfca7c9a",
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "Fechado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Fechado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "e1cd3cee-082e-4206-bb55-e85900f399cd",
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "Resolvido",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Resolvido"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "9cbc5488-97e7-4eae-ac0a-47304f91d621",
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "/Fechado|Resolvido/i",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notRegex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "7cf31be2-f371-44cd-a9ba-2da53e832baa",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -160,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $json.Id }}"
+            },
+            {
+              "fieldName": "ticketId",
+              "fieldValue": "={{ $('EditTicketFields').item.json.ticketId }}"
+            },
+            {
+              "fieldName": "status",
+              "fieldValue": "open"
+            }
+          ]
+        }
+      },
+      "id": "960e7a73-3ea7-4a9e-b90c-09a4660ee74d",
+      "name": "Close conversation1",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        460,
+        1080
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "disabled": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.number }}",
+        "textBody": "=Foi aberto o Ticket {{ $('EditTicketFields').item.json.ticketId }}!",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "58fbe2c6-eabe-4745-bc52-13bc87eeaabb",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        460,
+        700
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-06-20T20:23:34.542Z",
+      "updatedAt": "2024-06-20T20:23:34.542Z",
+      "role": "workflow:owner",
+      "workflowId": "kFEIz9eUIIo2SMcS",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "userActivated": true,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "isOnboarded": true
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": {
+    "node:Zendesk Trigger": {
+      "webhookId": 27959214972301,
+      "targetId": "01J1DXMH4AYACC8JNQCK367X2E"
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-06-27T22:39:10.396Z",
+  "versionId": "3cc36723-c312-4586-ac4b-9f6e0589094e"
+}
