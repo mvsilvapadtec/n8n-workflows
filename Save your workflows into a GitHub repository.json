@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "new": {
       "main": [
@@ -218,7 +218,7 @@
       "name": "GitHub",
       "type": "n8n-nodes-base.github",
       "position": [
-        1260,
+        1300,
         220
       ],
       "typeVersion": 1,
@@ -566,7 +566,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-06-28T18:02:24.575Z",
-  "versionId": "21bb7683-eab9-4b3a-8ded-43a57b142f7c"
+  "triggerCount": 1,
+  "updatedAt": "2024-06-28T18:22:28.852Z",
+  "versionId": "462b25bb-efd0-416c-a760-0587fb9264c7"
 }
