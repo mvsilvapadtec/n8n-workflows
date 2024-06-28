@@ -1,0 +1,253 @@
+{
+  "active": false,
+  "connections": {
+    "Is message?": {
+      "main": [
+        [
+          {
+            "node": "Echo the message back",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond": {
+      "main": [
+        [
+          {
+            "node": "Is message?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-06-05T13:55:34.962Z",
+  "id": "aY562ZaJdMBUvfiH",
+  "meta": {
+    "templateId": "2162",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "WhatsApp Starter Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "id": "676efc61-c875-4675-a843-20f98ef1a642",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        640,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.body.entry[0].changes[0].value.messages[0].from }}",
+        "textBody": "=Echo back: {{ $json.body.entry[0].changes[0].value.messages[0].text.body }}",
+        "additionalFields": {}
+      },
+      "id": "8dd6d094-415c-40d7-ad2b-4ed9f2d23232",
+      "name": "Echo the message back",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        860,
+        720
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "hlU42ZiYM8El5bf2",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "8a765e57-8e39-4547-a99a-0458df2b75f4",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.body.entry[0].changes[0].value.messages[0] }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "cd9e2cfd-9589-4390-95fd-f0bc3960d60c",
+      "name": "Is message?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        640,
+        734
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "## Verify Webhook\n* Go to your [Meta for Developers App page](https://developers.facebook.com/apps/), navigate to the App settings\n* Add a **production webhook URL** as a new Callback URL\n* *Verify* webhook receives a GET Request and sends back a verification code\n",
+        "height": 272,
+        "width": 618
+      },
+      "id": "20939289-3c4f-467a-b0e9-bf7e6d42cc18",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Main flow\n* *Respond* webhook receives various POST Requests from Meta regarding WhatsApp messages (user messages + status notifications)\n* Check if the incoming JSON contains user message\n* Echo back the text message to the user. This is a custom message, not a WhatsApp Business template message",
+        "height": 343,
+        "width": 619
+      },
+      "id": "36ffeb5b-165a-4723-8250-a4feb9123140",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        380,
+        554
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Important!\n### Configure the webhook nodes this way:\n* Make sure that both *Verify* and *Respond* have the same URL\n* *Verify* should have GET HTTP Method\n* *Respond* should have POST HTTP Method",
+        "height": 177,
+        "width": 405,
+        "color": 3
+      },
+      "id": "aa234bca-c8db-43c6-9aeb-02aef6a084e5",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -40,
+        454
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "path": "wpp_offical_webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9b385dfe-fa67-4c2c-83df-e3e02c0ff796",
+      "name": "Verify",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        420,
+        360
+      ],
+      "webhookId": "793f285b-9da7-4a5e-97ce-f0976c113db5",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wpp_offical_webhook",
+        "options": {}
+      },
+      "id": "2370b81a-0721-42fd-8893-e3ee02e20278",
+      "name": "Respond",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        420,
+        734
+      ],
+      "webhookId": "c4cbc1c4-e1f5-4ea5-bd9a-c5f697493985",
+      "typeVersion": 1.1
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "shared": [
+    {
+      "createdAt": "2024-06-05T13:55:34.962Z",
+      "updatedAt": "2024-06-05T13:55:34.962Z",
+      "role": "workflow:owner",
+      "workflowId": "aY562ZaJdMBUvfiH",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "userActivated": true,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "isOnboarded": true
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2024-06-05T14:13:20.176Z",
+  "versionId": "da96aa3c-03f0-4dbb-94c5-42f332d9c805"
+}
