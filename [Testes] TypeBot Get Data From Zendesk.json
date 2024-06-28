@@ -1,0 +1,1390 @@
+{
+  "active": true,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get User By Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Req] If Has email": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Get User] If Has value": {
+      "main": [
+        [
+          {
+            "node": "Success Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Req] If Has user Id": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Get User Organizations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Success Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Req] If Has email and name": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Get User] If Has value1": {
+      "main": [
+        [
+          {
+            "node": "Success Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Create User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Req] If Has user Id and org": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create User": {
+      "main": [
+        [
+          {
+            "node": "[Get User] If Has value1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Organizations": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User By Email": {
+      "main": [
+        [
+          {
+            "node": "[Get User] If Has value",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Req] If Has email and name1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Zendesk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zendesk1": {
+      "main": [
+        [
+          {
+            "node": "[Get Ticket] If Has value",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Request Type": {
+      "main": [
+        [
+          {
+            "node": "[Req] If Has email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[Req] If Has user Id",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[Req] If Has user Id and org",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[Req] If Has email and name",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[Req] If Has email and name1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set Config Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[Get Ticket] If Has value": {
+      "main": [
+        [
+          {
+            "node": "Get Custom Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Ticket and Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Organization",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Config Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch Request Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Ticket and Status": {
+      "main": [
+        [
+          {
+            "node": "If check org exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Ticket and Status1": {
+      "main": [
+        [
+          {
+            "node": "Merge Ticket and Status",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Custom Status": {
+      "main": [
+        [
+          {
+            "node": "Merge Ticket and Status1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Organization": {
+      "main": [
+        [
+          {
+            "node": "Get User|ticket Org",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User|ticket Org": {
+      "main": [
+        [
+          {
+            "node": "Merge Ticket and Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If check org exists": {
+      "main": [
+        [
+          {
+            "node": "Success Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-06-20T17:16:46.059Z",
+  "id": "hEKyO249bmBY4P5a",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Testes] TypeBot Get Data From Zendesk",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e721d9df-78d5-419e-a749-763ab43628c1",
+              "name": "email",
+              "value": "={{ $json.body.params.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2229e8ae-61de-4c61-954d-0ad09772a5d6",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1740,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "08611e4f-3617-4566-8c48-1b5cba7bdbd0",
+      "name": "Success Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2820,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"error\": true\n}",
+        "options": {}
+      },
+      "id": "50247c0a-abd5-491b-a516-d8f196661e4d",
+      "name": "Error Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2860,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f8d55a26-7901-4d23-aa46-aaacb70b7caa",
+              "leftValue": "={{ $json.body.params.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "925e4990-fd10-41d6-bff5-307d1681e433",
+      "name": "[Req] If Has email",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "14a4dbd4-addd-4dce-8e9f-9677acad65d0",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b4f210f7-a8ed-427d-97b1-b46edf7d09c2",
+      "name": "[Get User] If Has value",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "f8d55a26-7901-4d23-aa46-aaacb70b7caa",
+              "leftValue": "={{ $json.body.params.user_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "fc4f054d-1c3d-4249-bcc5-7ff05012faa4",
+      "name": "[Req] If Has user Id",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e721d9df-78d5-419e-a749-763ab43628c1",
+              "name": "userId",
+              "value": "={{ $json.body.params.user_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6debec44-a755-430c-841b-1dcdaaefdcc3",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1740,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nconst orgs = [];\nlet ct = 0;\nfor (const item of $input.all()) {\n  orgs.push({\n    ind: ++ct,\n    id: item.json.id,\n    name: item.json.name\n  })\n}\n\nreturn orgs;"
+      },
+      "id": "8404525d-cd0c-4008-b623-e0fc62d04e1d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Get data flow",
+        "height": 1845.1096891090428,
+        "width": 2406.6748691785992
+      },
+      "id": "965a2941-0433-4aab-b144-9d9c0844fae3",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "f8d55a26-7901-4d23-aa46-aaacb70b7caa",
+              "leftValue": "={{ $json.body.params.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b3df3db5-566e-467c-a776-f67db5c5a8ca",
+              "leftValue": "={{ $json.body.params.name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "040890c9-097f-49c6-a589-730ce6be0463",
+              "leftValue": "={{ $json.body.params.number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "a648e026-c209-4e5b-ba5a-de7f30eec621",
+      "name": "[Req] If Has email and name",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e721d9df-78d5-419e-a749-763ab43628c1",
+              "name": "userId",
+              "value": "={{ $json.body.params.user_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8f35227b-a162-45f9-817d-a918ac91f567",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1740,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e721d9df-78d5-419e-a749-763ab43628c1",
+              "name": "email",
+              "value": "={{ $json.body.params.email }}",
+              "type": "string"
+            },
+            {
+              "id": "a9e599ad-ab9b-4568-9cdf-135c7c94c5f8",
+              "name": "name",
+              "value": "={{ $json.body.params[0].name }}",
+              "type": "string"
+            },
+            {
+              "id": "4ee30f00-2fcf-4569-baab-8eacde87fb09",
+              "name": "number",
+              "value": "={{ $json.body.params.number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3e95ee3b-f48e-44f9-865b-a525d21bab69",
+      "name": "Edit Fields3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1740,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "14a4dbd4-addd-4dce-8e9f-9677acad65d0",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e9691ff7-c304-404a-943a-390d6d32d869",
+      "name": "[Get User] If Has value1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "f8d55a26-7901-4d23-aa46-aaacb70b7caa",
+              "leftValue": "={{ $json.body.params.user_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b3df3db5-566e-467c-a776-f67db5c5a8ca",
+              "leftValue": "={{ $json.body.params.organization}}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "9bb7b9cd-8804-401d-bb30-b8599d836896",
+      "name": "[Req] If Has user Id and org",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "user",
+        "operation": "getAll",
+        "filters": {}
+      },
+      "id": "bd0737f2-619d-4aee-a3ec-8b2b6298bb2e",
+      "name": "Zendesk",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        760
+      ],
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "user",
+        "name": "={{ $json.name }}",
+        "additionalFields": {
+          "email": "={{ $json.email }}",
+          "phone": "=+{{ $json.number }}"
+        }
+      },
+      "id": "fc919fd7-d6d8-4f1e-b1a1-fea19106b4a4",
+      "name": "Create User",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        1040
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "user",
+        "operation": "getOrganizations",
+        "id": "={{ $json.userId }}"
+      },
+      "id": "b7f93513-5be9-4e34-bdfa-83c301a258ff",
+      "name": "Get User Organizations",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        580
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "user",
+        "operation": "search",
+        "limit": 1,
+        "filters": {
+          "query": "=\"{{ $json.email }}\""
+        }
+      },
+      "id": "3fe48a20-e87f-4db4-8ebf-e7c32b0c42fc",
+      "name": "Get User By Email",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        340
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "f8d55a26-7901-4d23-aa46-aaacb70b7caa",
+              "leftValue": "={{ $json.body.params.ticketId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b3df3db5-566e-467c-a776-f67db5c5a8ca",
+              "leftValue": "={{ $json.body.params.userId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "a4f462a8-c4cc-4680-b050-89766c07db75",
+      "name": "[Req] If Has email and name1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e721d9df-78d5-419e-a749-763ab43628c1",
+              "name": "ticketId",
+              "value": "={{ $json.body.params.ticketId }}",
+              "type": "string"
+            },
+            {
+              "id": "a9e599ad-ab9b-4568-9cdf-135c7c94c5f8",
+              "name": "userId",
+              "value": "={{ $json.body.params.userId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1b0ee5da-634a-486c-9ca2-31479fda537e",
+      "name": "Edit Fields4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1740,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "get",
+        "id": "={{ $json.ticketId }}"
+      },
+      "id": "c3b7a8f0-48b2-4e3a-b537-e6b63aafcdf0",
+      "name": "Zendesk1",
+      "type": "n8n-nodes-base.zendesk",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        1280
+      ],
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "14a4dbd4-addd-4dce-8e9f-9677acad65d0",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "74a5ff5f-2308-44d4-983b-89e3c53cb6cb",
+      "name": "[Get Ticket] If Has value",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.request }}",
+                    "rightValue": "get_user_by_email",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "0cc9c97f-af3a-43f4-8a4a-e1ed6abac0e9",
+                    "leftValue": "={{ $json.body.request }}",
+                    "rightValue": "get_organizations_by_user",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "31e0108e-b03d-4354-8421-ebffe76006d8",
+                    "leftValue": "={{ $json.body.request }}",
+                    "rightValue": "get_tickets_by_organization",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "bec14e81-a214-45fa-bbf1-2a0d7cb7f9b6",
+                    "leftValue": "={{ $json.body.request }}",
+                    "rightValue": "create_zd_user",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "076d502e-ea92-4d2d-a8f1-f56d2dcd3255",
+                    "leftValue": "={{ $json.body.request }}",
+                    "rightValue": "get_ticket_by_id",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "9f62f3f9-2026-4779-adee-2d08149fb1d3",
+      "name": "Switch Request Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        1260,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "typebot_zd_data",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "ce25d35a-b540-40c7-9b65-b27dfb406f6f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        820,
+        700
+      ],
+      "webhookId": "4cdc57bd-f7c4-4c77-8990-cdb6e86ba486"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f04ced7c-3f03-4a9b-9a7a-0613e78ad0c7",
+              "name": "subDomain",
+              "value": "padtecsupport1715188965",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "eec10d45-6fcd-4b86-9f27-d0c936765357",
+      "name": "Set Config Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1040,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "id": "cdb28492-2205-472f-a276-74e74600b84e",
+      "name": "Merge Ticket and Status",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2900,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "id": "9d48d1c6-6a85-4c4a-a565-e75fc68c8691",
+      "name": "Merge Ticket and Status1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2800,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://{{$('Set Config Fields').item.json.subDomain }}.zendesk.com/api/v2/custom_statuses/{{ $json.custom_status_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zendeskOAuth2Api",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "3e642b0f-e4ff-4e3c-94e1-a3429f971769",
+      "name": "Get Custom Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2360,
+        1540
+      ],
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://{{$('Set Config Fields').item.json.subDomain }}.zendesk.com/api/v2/users/{{ $('Edit Fields4').item.json.userId }}/organizations?page[size]=100",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zendeskOAuth2Api",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "5c8534ed-baff-4367-a3ef-e995226293c6",
+      "name": "Get Organization",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2360,
+        1340
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Add a new field called 'myNewField' to the JSON of the item\nconst orgs = $input.item.json.organizations;\nlet tkOrg = {}\nfor (let org of orgs) {\n  if(org.id == $('[Get Ticket] If Has value').item.json.organization_id) {\n    tkOrg = org;\n    break;\n  }\n}\n\nreturn {organization: tkOrg};"
+      },
+      "id": "1b6d3e33-1f32-44df-a774-40e2004aab5d",
+      "name": "Get User|ticket Org",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2580,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "4e4026a4-58e3-42fc-939a-24774dfc9c86",
+              "leftValue": "={{ $json.organization }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ec1d49ee-457c-4bdb-a814-6c4788905c7e",
+      "name": "If check org exists",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        1080
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-06-20T17:16:46.059Z",
+      "updatedAt": "2024-06-20T17:16:46.059Z",
+      "role": "workflow:owner",
+      "workflowId": "hEKyO249bmBY4P5a",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "userActivated": true,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "isOnboarded": true
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-06-27T20:55:27.985Z",
+  "versionId": "941b9459-ea83-481d-9f9d-e68f2cd951dd"
+}
