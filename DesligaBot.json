@@ -1,0 +1,273 @@
+{
+  "active": false,
+  "connections": {
+    "Info": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Pausa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Inicia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-06-04T14:38:21.219Z",
+  "id": "0okyplQWyIJCnQvp",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "DesligaBot",
+  "nodes": [
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "statustypebot",
+              "value": "={{ $('Webhook').item.json[\"body\"][\"custom_attributes\"][\"status_typebot\"] }}"
+            },
+            {
+              "name": "numerowhats",
+              "value": "={{ $('Webhook').item.json[\"body\"][\"identifier\"] }}"
+            },
+            {
+              "name": "urlapievolution",
+              "value": "https://evolution.mvsdevs.uk/"
+            },
+            {
+              "name": "keyevolution",
+              "value": "a057507e7915d0b0e4fff3d3a4afc2e0e60730a6"
+            },
+            {
+              "name": "sessaoevolution",
+              "value": "teste"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2f388bbd-fa44-4e22-8881-5fe5ec35fa61",
+      "name": "Info",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        20,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $('Webhook').item.json[\"body\"][\"custom_attributes\"][\"status_typebot\"] }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "Desligado"
+            },
+            {
+              "value2": "Ligado",
+              "output": 1
+            }
+          ]
+        }
+      },
+      "id": "d3f59156-f621-4b9d-bb98-0aec77994b87",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        200,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info').item.json[\"urlapievolution\"] }}/typebot/changeStatus/{{ $('Info').item.json[\"sessaoevolution\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Info').item.json[\"keyevolution\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"remoteJid\": \"{{ $('Info').item.json[\"numerowhats\"] }}\",\n    \"status\": \"paused\"\n}",
+        "options": {}
+      },
+      "id": "d2c1ff0c-182b-4587-8599-ddeabc934f6b",
+      "name": "Pausa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info').item.json[\"urlapievolution\"] }}/typebot/changeStatus/{{ $('Info').item.json[\"sessaoevolution\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Info').item.json[\"keyevolution\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"remoteJid\": \"{{ $('Info').item.json[\"numerowhats\"] }}\",\n    \"status\": \"closed\"\n}",
+        "options": {}
+      },
+      "id": "3d7654bc-c74a-4702-9f12-4b4fdbfe3a6c",
+      "name": "Inicia",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        460,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.changed_attributes[1].custom_attributes }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "7d91cef4-a0bb-4d7e-a56e-778344b21dbb",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ligaedesliga2",
+        "options": {}
+      },
+      "id": "8959f278-9504-4870-9926-a727cea3d9a7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        620
+      ],
+      "webhookId": "4f380820-a763-4131-84c8-2944868f6219"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-06-04T14:38:21.219Z",
+      "updatedAt": "2024-06-04T14:38:21.219Z",
+      "role": "workflow:owner",
+      "workflowId": "0okyplQWyIJCnQvp",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "userActivated": true,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "isOnboarded": true
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-06-04T14:44:08.814Z",
+  "versionId": "36e042ea-4082-4327-b290-07311a5ca684"
+}
