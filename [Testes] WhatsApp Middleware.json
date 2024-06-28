@@ -288,7 +288,7 @@
       "main": [
         [
           {
-            "node": "[ZD] Send Sunshine Message",
+            "node": "If6",
             "type": "main",
             "index": 0
           }
@@ -772,7 +772,7 @@
         ],
         [
           {
-            "node": "If Changes Status in WPP Message",
+            "node": "Response message type",
             "type": "main",
             "index": 0
           }
@@ -784,6 +784,79 @@
         [
           {
             "node": "Edit whatsapp fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "Mount Text Content",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Media": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Text Content": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Send Sunshine Message1": {
+      "main": [
+        [
+          {
+            "node": "Mount Media data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Media data": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Message",
             "type": "main",
             "index": 0
           }
@@ -892,7 +965,7 @@
     {
       "parameters": {
         "content": "## Zendesk Flow",
-        "height": 802.9356139037222,
+        "height": 1336.5650189625526,
         "width": 2233.878307893487
       },
       "id": "a805c862-de4c-4f4f-a68a-085225da2bd7",
@@ -915,8 +988,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1500,
-        2060
+        -1000,
+        1300
       ]
     },
     {
@@ -968,10 +1041,9 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        440,
+        480,
         1300
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -1012,8 +1084,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1280,
-        1680
+        1140,
+        2000
       ]
     },
     {
@@ -1098,19 +1170,19 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        860,
+        900,
         1240
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $json.conversation.id }}/messages ",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {\n        \"type\": \"text\",\n        \"text\": \"{{ $('Edit Fields').item.json.message }}\",\n        \"payload\": \"{{ $('Edit Fields').item.json.messagePayload }}\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {{ $json.content }},\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -1122,8 +1194,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1340,
-        1240
+        2040,
+        1460
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -1201,8 +1273,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1700,
-        2480
+        -800,
+        1640
       ]
     },
     {
@@ -1219,8 +1291,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1760,
-        2300
+        -740,
+        1460
       ]
     },
     {
@@ -1238,8 +1310,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2240,
-        2420
+        -260,
+        1580
       ],
       "credentials": {
         "whatsAppApi": {
@@ -1259,8 +1331,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1960,
-        2220
+        -540,
+        1380
       ]
     },
     {
@@ -1273,8 +1345,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2200,
-        2200
+        -300,
+        1360
       ]
     },
     {
@@ -1357,8 +1429,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1540,
-        2300
+        -960,
+        1460
       ]
     },
     {
@@ -1399,6 +1471,12 @@
               "id": "92ed64a2-7930-4392-bc2f-b3aa5ba14f58",
               "name": "messagePayload",
               "value": "={{ $json.messagePayload }}",
+              "type": "string"
+            },
+            {
+              "id": "ea1ba22a-f67c-4d32-9c7b-ab1795b7d42e",
+              "name": "messageType",
+              "value": "={{ $json.type }}",
               "type": "string"
             }
           ]
@@ -1562,7 +1640,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        1140,
+        1120,
         1240
       ]
     },
@@ -1576,8 +1654,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2180,
-        2600
+        -320,
+        1760
       ]
     },
     {
@@ -1628,8 +1706,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1680,
-        1600
+        1760,
+        1920
       ]
     },
     {
@@ -1671,8 +1749,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2120,
-        1720
+        2200,
+        2040
       ]
     },
     {
@@ -1699,8 +1777,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1460,
-        1500
+        1320,
+        1820
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1735,8 +1813,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1960,
-        2480
+        -540,
+        1640
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -1769,8 +1847,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1040,
-        1680
+        900,
+        2000
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -1798,8 +1876,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1040,
-        1500
+        900,
+        1820
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -1861,8 +1939,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1280,
-        1480
+        1140,
+        1800
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -1893,8 +1971,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1820,
-        1460
+        1900,
+        1780
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -2137,6 +2215,12 @@
               "name": "messagePayload",
               "value": "",
               "type": "string"
+            },
+            {
+              "id": "16a1e50a-9958-4539-9dad-64a8a2e5c8de",
+              "name": "messageType",
+              "value": "text",
+              "type": "string"
             }
           ]
         },
@@ -2171,8 +2255,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2380,
-        1740
+        2460,
+        2060
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -2238,6 +2322,12 @@
               "name": "messagePayload",
               "value": "={{ $('Union Data').item.json.messagePayload }}",
               "type": "string"
+            },
+            {
+              "id": "aa9c80b2-243a-410d-8250-4718a6a5ee7a",
+              "name": "messageType",
+              "value": "={{ $('Union Data').item.json.messageType }}",
+              "type": "string"
             }
           ]
         },
@@ -2277,8 +2367,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1540,
-        1700
+        1400,
+        2020
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -2527,8 +2617,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2000,
-        1460
+        2080,
+        1780
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -2554,8 +2644,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2420,
-        1460
+        2500,
+        1780
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2608,8 +2698,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2180,
-        1460
+        2260,
+        1780
       ]
     },
     {
@@ -2628,8 +2718,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        1880,
-        1760
+        1960,
+        2080
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -3273,6 +3363,36 @@
                 "operation": "equals",
                 "name": "filter.operator.equals"
               }
+            },
+            {
+              "id": "72bcbb19-94c8-417f-a465-d4a98be9647f",
+              "leftValue": "={{ $json.entry.changes[0].value.messages[0].type }}",
+              "rightValue": "image",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "1edef6a3-bd6d-4123-a95d-9db7fc6c1df3",
+              "leftValue": "={{ $json.entry.changes[0].value.messages[0].type }}",
+              "rightValue": "audio",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "44c70f61-ffef-4e72-8630-34337edc12b3",
+              "leftValue": "={{ $json.entry.changes[0].value.messages[0].type }}",
+              "rightValue": "document",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
             }
           ],
           "combinator": "or"
@@ -3294,7 +3414,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id.replace(/\\\"/g, '\\\\\"')\n}\n\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  messagePayload:messagePayload\n};"
+        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id.replace(/\\\"/g, '\\\\\"')\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  message = $input.item.json.entry.changes[0].value.messages[0][type].id;\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  messagePayload:messagePayload\n};"
       },
       "id": "e2467680-e908-40b0-994a-23cfd258345e",
       "name": "Code1",
@@ -3303,6 +3423,205 @@
       "position": [
         900,
         500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.entry.changes[0].value.messages[0].from }}",
+        "textBody": "Não consigo processar este tipo de mensagem!",
+        "additionalFields": {}
+      },
+      "id": "68502414-db6c-43ba-bdad-4c4d97e644aa",
+      "name": "Response message type",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        900
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('Edit Fields').item.json.message }}"
+      },
+      "id": "1fc052d0-62d0-40ac-be9d-5eae82788adc",
+      "name": "Get Media",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        980,
+        1500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "085eb716-5891-44af-a268-8344485512b3",
+              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "76d24ae8-dbd7-470f-a2a5-a37465693e91",
+              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "rightValue": "interactive",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "bc208b84-bcfc-4f08-9fe9-52aeebf58917",
+      "name": "If6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "7c467304-e32f-421d-a6c2-10587ba8f476",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        1500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/attachments/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access",
+              "value": "public"
+            },
+            {
+              "name": "for",
+              "value": "message"
+            },
+            {
+              "name": "conversationId",
+              "value": "={{ $('Union Conversation Sunshine').item.json.conversation.id }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "source",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "f98de0e0-ed48-409d-a68b-54083739204f",
+      "name": "[ZD] Send Sunshine Message1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1400,
+        1500
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return {content: JSON.stringify({\n  type: \"text\",\n  text: $('Edit Fields').item.json.message,\n  payload: $('Edit Fields').item.json.messagePayload\n})\n       }"
+      },
+      "id": "28135bb0-91f2-4caa-975b-8026819f86e4",
+      "name": "Mount Text Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let type = $('Edit Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nreturn {content: JSON.stringify({\n  type: type,\n  text: $('Edit Fields').item.json.message,\n  payload: $('Edit Fields').item.json.messagePayload,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n})\n       }"
+      },
+      "id": "9a3644af-176f-4f2e-bfe7-cf81503ff160",
+      "name": "Mount Media data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        1560
       ]
     }
   ],
@@ -3367,6 +3686,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-06-28T13:24:23.204Z",
-  "versionId": "6ffcf2cb-3bb5-43d6-b1e9-d59e4e3c4063"
+  "updatedAt": "2024-06-28T21:28:08.231Z",
+  "versionId": "b43d31b8-cb04-4f11-9e6b-e581499b39a7"
 }
