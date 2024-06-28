@@ -1,0 +1,2310 @@
+{
+  "active": false,
+  "connections": {
+    "MultiplieEntrys": {
+      "main": [
+        [
+          {
+            "node": "Split Out2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Get Sunshine User": {
+      "main": [
+        [
+          {
+            "node": "If Check UserSunshine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Create Sunshine  User": {
+      "main": [
+        [
+          {
+            "node": "If Check UserSunshine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Conversation": {
+      "main": [
+        [
+          {
+            "node": "SW Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Check UserSunshine": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Create Sunshine  Conversation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save UserConversationId",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[ZD] Create Sunshine  User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Check Exist Conversations": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Get Sunshine  Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[ZD] Get Sunshine User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Get Sunshine  Conversation": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Check Entry": {
+      "main": [
+        [
+          {
+            "node": "MultiplieEntrys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Create Sunshine  Conversation": {
+      "main": [
+        [
+          {
+            "node": "Save ConversationId",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Union Conversation Sunshine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Union Conversation Sunshine",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[ZD] Get Sunshine User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Check Entrys": {
+      "main": [
+        [
+          {
+            "node": "Edit whatsapp fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If session typebot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TB] Start Chat": {
+      "main": [
+        [
+          {
+            "node": "Save SessionTypeBot",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TB] Continue Chat": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out2": {
+      "main": [
+        [
+          {
+            "node": "If Check Entrys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Conversation": {
+      "main": [
+        [
+          {
+            "node": "SW Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SW Conversation": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If sessionId typebot": {
+      "main": [
+        [
+          {
+            "node": "[TB] Continue Chat",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[TB] Start Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit whatsapp fields": {
+      "main": [
+        [
+          {
+            "node": "Union Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If session typebot": {
+      "main": [
+        [
+          {
+            "node": "Send Request to webhook Typebot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If Check Exist Conversations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Union Data": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit typebot fields": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Conversation 2": {
+      "main": [
+        [
+          {
+            "node": "If ConversationExist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If ConversationExist": {
+      "main": [
+        [
+          {
+            "node": "Save HumamConversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save HumamConversation": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Union Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Send Sunshine Message": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Transfer to Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Update Sunshine  User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook transfer to human": {
+      "main": [
+        [
+          {
+            "node": "Edit typebot fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Union Conversation Sunshine": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Split Out3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out3": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Conversation1": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond": {
+      "main": [
+        [
+          {
+            "node": "If Check Entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-06-13T19:01:36.260Z",
+  "id": "8XMfDthL3AQJc77T",
+  "meta": {
+    "templateId": "2162",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[dev] WhatsApp Starter Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Verify Webhook\n",
+        "height": 272,
+        "width": 618
+      },
+      "id": "87568113-1669-4f87-86b0-b7cab0fdcd69",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        380,
+        260
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Main flow\n",
+        "height": 597.4611285586329,
+        "width": 1023.8526476817698
+      },
+      "id": "4bc4df7d-94e5-4d4d-b293-2935f0e21074",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        380,
+        560
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "id": "98ac32dd-0352-42cb-86af-215e605431a9",
+      "name": "Respond to Webhook Validate",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        640,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Respond').item.json.body;\nconst entrys = [];\nfor (let _entry of body.entry) {\n  const changes = [];\n  \n  for (let change of _entry.changes) {\n    let entry = {\n      id: _entry.id,\n      changes: [\n        change\n      ],\n    };\n    entrys.push({\n      object: body.object,\n      entry: [\n        entry\n      ]\n    });\n  }\n\n  \n}\nreturn entrys;"
+      },
+      "id": "9468e6f6-0b52-4a30-8cc4-080d854b8dd3",
+      "name": "MultiplieEntrys",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Zendesk Flow",
+        "height": 982.0196600966588,
+        "width": 1985.1374395336813
+      },
+      "id": "81152727-e407-4505-9e5b-9eb5d07de66c",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        380,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Typebot Flow Custom",
+        "height": 824.4127839104256,
+        "width": 928.7384003801376
+      },
+      "id": "d1e4a75c-82a4-4505-8988-15f4e4650da5",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users/{{ $('Edit Fields').item.json.userId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "766bd22d-cb6f-447b-ad2a-f0937fbf24f8",
+      "name": "[ZD] Get Sunshine User",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        1500
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"externalId\": \"{{ $('Edit Fields').item.json.userId }}\",\n    \"signedUpAt\": \"{{ $('Edit Fields').item.json.time }}\",\n    \"profile\": {\n        \"givenName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"locale\": \"pt-BR\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-BR\"\n    }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "e8df7e48-5c6f-4452-8ff0-e35d9350688f",
+      "name": "[ZD] Create Sunshine  User",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        1680
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "create",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "number",
+              "fieldValue": "={{ $('Union Data').item.json.number }}"
+            },
+            {
+              "fieldName": "isBot",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "27a63691-930a-44f4-b786-298e85017208",
+      "name": "Create Conversation",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1100,
+        960
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "15f6df22-50fa-4df8-a12e-9fd5d8a8903d",
+              "leftValue": "={{ $json.number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f4123daf-56b1-42e7-983f-5eecec48c815",
+              "leftValue": "={{ $json.conversationId }} ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "d5f98825-03cb-4142-a191-712de800b168",
+              "leftValue": "={{ $json.name }} ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8712ba37-25a6-4b37-9f92-2cb654640de6",
+      "name": "If Check Exist Conversations",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        660,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "limit": 1,
+        "options": {
+          "sort": {
+            "property": [
+              {
+                "field": "UpdatedAt"
+              }
+            ]
+          },
+          "where": "=(number,eq,{{ $('Union Data').item.json.number }})~and(status,like,open)  "
+        }
+      },
+      "id": "185fa640-67dd-4480-a09e-96cd0464787a",
+      "name": "Get Conversation",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        780,
+        880
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "15f6df22-50fa-4df8-a12e-9fd5d8a8903d",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f4123daf-56b1-42e7-983f-5eecec48c815",
+              "leftValue": "={{ $json.user }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fa19ee54-3eb5-4e0f-af03-ee10897be0cc",
+      "name": "If Check UserSunshine",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        1680
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+            },
+            {
+              "fieldName": "conversationUserId",
+              "fieldValue": "={{ $json.user.id }}"
+            }
+          ]
+        }
+      },
+      "id": "e9888193-c663-47b9-98ee-717d3dcced04",
+      "name": "Save UserConversationId",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1320,
+        1800
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Edit Fields').item.json.conversationId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "1db3f81c-9114-419e-a3dd-a99cbbb6d4e6",
+      "name": "[ZD] Get Sunshine  Conversation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        860,
+        1220
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "2b267172-f913-43c7-8688-5a44863e64c5",
+              "leftValue": "={{ $json.body.object }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "6ad6d998-8314-45d8-b86d-cb67d4f96af2",
+              "leftValue": "={{ $json.body.entry }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2d96711e-f407-4ea7-96dd-5cc459cc6a56",
+              "leftValue": "={{ $json.body.entry }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGte",
+                "rightType": "number"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "97b2677c-f53b-47fb-ad88-131e9a1758b3",
+      "name": "If Check Entry",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        640,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"personal\",\n  \"participants\": [\n    {\n      \"userId\": \"{{ $json.user.id}}\",\n      \"subscribeSDKClient\": false\n    }\n  ],\n  \"displayName\": \"{{ $json.user.profile.givenName }}\",\n  \"description\": \"Conversation Started\",\n  \"metadata\": {\n    \"lang\": \"pt-BR\",\n    \"noco_id\": \"{{ $('Edit Fields').item.json.Id }}\"\n  }\n}  ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "05c5342c-b16e-4668-b1e7-9da4bc24d3df",
+      "name": "[ZD] Create Sunshine  Conversation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1020,
+        1480
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+            },
+            {
+              "fieldName": "conversationId",
+              "fieldValue": "={{ $json.conversation.id }}"
+            }
+          ]
+        }
+      },
+      "id": "a7ad2806-8443-46d1-a579-fe1a3874bdf5",
+      "name": "Save ConversationId",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1240,
+        1500
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "09ceb06b-053f-4d85-aa92-05c8e872b684",
+              "leftValue": "={{ $json.conversation.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "87c3d945-c772-4ca1-9ba7-f7948d3a8617",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $json.conversation.id }}/messages ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {\n        \"type\": \"text\",\n        \"text\": \"{{ $('Edit Fields').item.json.message }}\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "2ceefef7-5251-442b-9995-24194c76720f",
+      "name": "[ZD] Send Sunshine Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        1240
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "dd37acac-97f7-4d9b-b772-6c979b26cbb3",
+              "leftValue": "={{ $json.entry.changes }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "37a1a562-4be9-40bd-8847-66ec1896e99b",
+              "leftValue": "={{ $json.entry.changes[0].value.messages }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGte",
+                "rightType": "number"
+              }
+            },
+            {
+              "id": "98f0f3a3-d2c7-496f-918a-e24af2dd7243",
+              "leftValue": "={{ $json.entry.changes[0].field }}",
+              "rightValue": "messages",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "837e0b6f-1df7-44ae-8de9-603daa733472",
+              "leftValue": "={{ $json.entry.changes[0].value.messages[0].type }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "49f28e09-9ac9-4f76-a26a-3c83f5dd0c76",
+      "name": "If Check Entrys",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        420,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://bot.mvsdevs.uk/api/v1/typebots/teste2bot/startChat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $json.message }}\",\n  \"isStreamEnabled\": false,\n  \"resultId\": \"\",\n  \"isOnlyRegistering\": false,\n  \"prefilledVariables\": {\n    \"number\": \"{{ $json.number }}\",\n    \"pushName\": \"{{ $json.name }}\"\n  },\n  \"textBubbleContentFormat\": \"richText\"\n}",
+        "options": {}
+      },
+      "id": "5b8ac25b-cbb0-421d-bd5f-aed206d58104",
+      "name": "[TB] Start Chat",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1640,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a3d6dfd0-df47-4d73-8295-826395f930a4",
+              "name": "appId",
+              "value": "663bb50eee907e92c2d2f38f",
+              "type": "string"
+            },
+            {
+              "id": "5fbbd942-3b6f-4a8e-a611-f642c4c913d6",
+              "name": "subdomain",
+              "value": "padtecsupport1715188965",
+              "type": "string"
+            },
+            {
+              "id": "58300dd5-a883-4b34-ac89-2513cab85343",
+              "name": "name",
+              "value": "={{ $('Union Data').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "454d24e1-1efd-408c-a620-0ef70c6056b5",
+              "name": "time",
+              "value": "={{ $now.toUTC() }}",
+              "type": "string"
+            },
+            {
+              "id": "488677cb-e82e-46c9-8739-08d8bf0b7b62",
+              "name": "userId",
+              "value": "={{ $('Union Data').item.json.number }}_{{ $json.Id }} ",
+              "type": "string"
+            },
+            {
+              "id": "701c9693-c3e6-4951-bff7-012e32fef491",
+              "name": "message",
+              "value": "={{ $('Union Data').item.json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "c550d5e5-b4ed-4efc-a811-60ce767c44d6",
+              "name": "isBot",
+              "value": "={{ $json.isBot }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "3d66ed46-bd3a-4a5a-847c-c83fa7afabf3",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1240,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://bot.mvsdevs.uk/api/v1/workspaces/clwfec0d30001q7o141ogyqvf/whatsapp/emymjwta9w2sjgu7il5osjk0/webhook",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $('Respond').item.json.body }}",
+        "options": {}
+      },
+      "id": "00659bc6-2e8c-4a6d-895f-34de83431d1f",
+      "name": "Send Request to webhook Typebot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot.mvsdevs.uk/api/v1/sessions/{{ $json.typeBotSessionId }}/continueChat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $json.message }}\",\n  \"textBubbleContentFormat\": \"richText\"\n}",
+        "options": {}
+      },
+      "id": "b0a292b0-d262-4a5b-99d2-686e2d739b65",
+      "name": "[TB] Continue Chat",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $('Edit Fields').item.json.number }}",
+        "textBody": "={{ $json.text }}",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "65b38a4c-a45d-466e-a77c-591e6724220b",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "include": "=",
+        "options": {}
+      },
+      "id": "a0a7a77c-1678-4dc9-acfa-339ab326fcab",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages.content.richText",
+        "options": {}
+      },
+      "id": "53fcfe85-9b0f-404f-8785-dd5083cf7e4e",
+      "name": "Split Out1",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "entry",
+        "include": "=",
+        "options": {}
+      },
+      "id": "ee17ae9e-d7b3-4cd0-8cdf-32f4c816e1f1",
+      "name": "Split Out2",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4bddbeb6-4b84-4848-9a2d-b56e22fac0b4",
+      "name": "SW Conversation",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        940,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Others messages treatment",
+        "height": 611.1388964222541,
+        "width": 446.3229082613722,
+        "color": 3
+      },
+      "id": "2687b653-5617-4afe-bdf1-625170343792",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "782e43c6-8a11-4c0e-800b-23e6eeac4cf2",
+              "leftValue": "={{ $json.number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "cd1467c5-dfc3-4dee-800a-a99c523148a9",
+              "leftValue": "={{ $json.message}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b757de97-77bc-46eb-b95a-7a0b6124e938",
+              "leftValue": "={{ $json.typeBotSessionId}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a06ecbfd-95cd-4d7b-a2a6-d41c38c95c32",
+      "name": "If sessionId typebot",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/331922393331203/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"15556080893\",\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": \"123\"\n    },\n    \"action\": {\n      \"buttons\": [\n        {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": \"<UNIQUE_BUTTON_ID_1>\",\n            \"title\": \"<BUTTON_TITLE_1>\"\n          }\n        },\n        {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": \"<UNIQUE_BUTTON_ID_2>\",\n            \"title\": \"<BUTTON_TITLE_2>\"\n          }\n        }\n      ]\n    }\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "3b4fea04-5211-41bb-9eb7-1b6bff198d4d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1900,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d396ee8-2331-4999-8a4a-132fa9e9f863",
+              "name": "=number",
+              "value": "={{ $json.body.number }}",
+              "type": "string"
+            },
+            {
+              "id": "6c0e1148-0991-41ab-b244-972fdafa1cbe",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "743f514f-c4a1-4687-9896-e966e0a2072c",
+      "name": "Edit typebot fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        2200,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d396ee8-2331-4999-8a4a-132fa9e9f863",
+              "name": "=number",
+              "value": "={{ $json.entry.changes[0].value.messages[0].from }}",
+              "type": "string"
+            },
+            {
+              "id": "6c0e1148-0991-41ab-b244-972fdafa1cbe",
+              "name": "email",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "c2cae0f8-d232-4a0e-8495-5dc4461d8f11",
+              "name": "=message",
+              "value": "={{ $('If Check Entrys').item.json.entry.changes[0].value.messages[0].text.body }}",
+              "type": "string"
+            },
+            {
+              "id": "6e1950b6-c42f-4616-9de3-ace9d1403ea7",
+              "name": "name",
+              "value": "={{ $('If Check Entrys').item.json.entry.changes[0].value.contacts[0].profile.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4ff86314-52e8-4280-98d2-a606dc612c86",
+      "name": "Edit whatsapp fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        600,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "4931e2c7-11e1-4756-818f-18e642ff793a",
+              "leftValue": "={{ $json.isBot }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "963fd324-90bd-4253-bf6f-fa6199077e3f",
+              "leftValue": "={{ $('Union Data').item.json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "19c9ce29-ea30-4da9-b3c0-7f28ce4e3d8c",
+      "name": "If session typebot",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        960
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "542f6ec6-cfd7-43a8-b531-24168c9216fe",
+      "name": "Union Data",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        600,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $json.Id }}"
+            },
+            {
+              "fieldName": "isBot",
+              "fieldValue": "={{ false }}"
+            },
+            {
+              "fieldName": "email",
+              "fieldValue": "={{ $('Edit typebot fields').item.json.email }}"
+            }
+          ]
+        }
+      },
+      "id": "c70a617a-4b43-40b9-b67c-7aa576ec0799",
+      "name": "Save HumamConversation",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        2040,
+        1260
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "limit": 1,
+        "options": {
+          "sort": {
+            "property": [
+              {
+                "field": "UpdatedAt"
+              }
+            ]
+          },
+          "where": "=(number,eq,{{ $json.number }})~and(status,like,open)  "
+        }
+      },
+      "id": "a3b51e35-48bc-48a3-afcc-5c732de1771f",
+      "name": "Get Conversation 2",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1620,
+        1280
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "8e5e4313-e0b5-41ba-b947-8a2345c3bb57",
+              "leftValue": "={{ $json.Id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "4921984f-3c2b-42b4-a2ce-1e1009723506",
+      "name": "If ConversationExist",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1820,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d3db5f2b-f3da-4286-b2c5-5182713bf935",
+              "name": "Id",
+              "value": "={{ $json.Id }}",
+              "type": "number"
+            },
+            {
+              "id": "cceda498-833c-4dd6-95ac-9e11fead0425",
+              "name": "isBot",
+              "value": "={{ $json.isBot }}",
+              "type": "boolean"
+            },
+            {
+              "id": "5c3da872-6c3c-4db4-ba75-ba235f6a0f37",
+              "name": "number",
+              "value": "={{ $('If ConversationExist').item.json.number }}",
+              "type": "string"
+            },
+            {
+              "id": "cfaeb050-d701-42d5-853d-5be71a2d5cf1",
+              "name": "name",
+              "value": "teste",
+              "type": "string"
+            },
+            {
+              "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
+              "name": "message",
+              "value": "Iniciar atendimento",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7146865c-efb9-4c98-9cb3-9bd5064f0615",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        2260,
+        1260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "2aece4a0-a110-4b3b-9675-4d4f78f53f38",
+              "leftValue": "={{ $('Edit Fields').item.json.message }}",
+              "rightValue": "Iniciar atendimento",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "9e36ba25-5826-4c49-9e00-8c6040c114b2",
+              "leftValue": "={{ $('Edit Fields').item.json.isBot }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2aadd2d-9a78-41eb-b95a-9abf7d6b40a2",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/passControl   ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"switchboardIntegration\": \"next\",\n    \"metadata\": {\n        \"lang\": \"pt-BR\"\n    }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "6e3f61b9-8439-40eb-b676-7bb1a8bcc690",
+      "name": "[ZD] Transfer to Zendesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        1520
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "393e7950-c76a-4e61-8755-3070d99144a7",
+              "leftValue": "={{ $('Edit Fields').item.json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "b6e14c94-f5e6-4f40-a84c-ae1822f8fff3",
+              "leftValue": "{{ $('Edit Fields').item.json.email }}",
+              "rightValue": "@",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "cc9820fc-2fa8-4cb5-ab06-874743fa402d",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        1800
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"profile\": {\n        \"e-mail\": \"{{ $('Edit Fields').item.json.email }}\"\n    }\n}  ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "bf537f3c-5117-48f9-a26b-3a35fb15dd7e",
+      "name": "[ZD] Update Sunshine  User",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1740,
+        1780
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3b0d67f1-6e7a-4456-9e3d-c20602f7fac2",
+        "options": {}
+      },
+      "id": "0bd2c2c0-4dde-4e10-a9b6-e9d149ac4224",
+      "name": "Webhook transfer to human",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2020,
+        960
+      ],
+      "webhookId": "3b0d67f1-6e7a-4456-9e3d-c20602f7fac2"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.entry.changes[0].value.statuses[0].errors[0].title }}",
+                    "rightValue": "Re-engagement message",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "782f7e86-923c-474c-9fb4-46353cd82e8f",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        60,
+        680
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c24cc9ea-b4ac-400d-88d2-a580c92ed83d",
+      "name": "Union Conversation Sunshine",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function applyFormatting(element) {\nconsole.log(element)\n  let text = '';\n\n  if (element.text) {\n    text += element.text;\n  }\n\n  if (element.children && element.type !== 'a') {\n    for (const child of element.children) {\n      text += applyFormatting(child);\n    }\n  }\n\n  if (element.type === 'p' && element.type !== 'inline-variable') {\n    text = text.trim() + '\\n';\n  }\n\n  if (element.type === 'inline-variable') {\n    text = text.trim();\n  }\n\nconsole.log(text)\n  if (element.type === 'ol') {\n    text =\n      '\\n' +\n      text\n        .split('\\n')\n        .map((line, index) => (line ? `${index + 1}. ${line}` : ''))\n        .join('\\n');\n  }\n\n  if (element.type === 'li') {\n    text = text\n      .split('\\n')\n      .map((line) => (line ? `  ${line}` : ''))\n      .join('\\n');\n  }\n\n  let formats = '';\n\n  if (element.bold) {\n    formats += '*';\n  }\n\n  if (element.italic) {\n    formats += '_';\n  }\n\n  if (element.underline) {\n    formats += '~';\n  }\n\n  let formattedText = `${formats}${text}${formats.split('').reverse().join('')}`;\n\n  if (element.url) {\n    formattedText = element.children[0]?.text ? `[${formattedText}]\\n(${element.url})` : `${element.url}`;\n  }\n\nconsole.log(formattedText)\n  return formattedText;\n}\n\nlet formattedText = '';\nfor (const element of $json.children) {\n  formattedText += applyFormatting(element);\n}\nformattedText += '\\n';\nreturn { text: formattedText}"
+      },
+      "id": "b83ac2d4-d1be-40da-b5ed-182a4347ade2",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+            },
+            {
+              "fieldName": "typeBotSessionId",
+              "fieldValue": "={{ $json.sessionId }}"
+            }
+          ]
+        }
+      },
+      "id": "d7ce8f7c-9203-4995-8176-6f82f76bf91e",
+      "name": "Save SessionTypeBot",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1900,
+        740
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3e5eda9a-2b88-4356-8fc8-a80d8e8626d5",
+        "options": {}
+      },
+      "id": "f8326a06-98a7-45ad-acc7-e33d8b65b763",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        480,
+        1960
+      ],
+      "webhookId": "3e5eda9a-2b88-4356-8fc8-a80d8e8626d5"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.events",
+        "options": {}
+      },
+      "id": "86b4e1cd-3ded-4503-a037-6498b181f21c",
+      "name": "Split Out3",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        680,
+        1960
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "04bf3bd1-63eb-4eac-898c-e557a2d0f765",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "conversation:message",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "3957114f-ceee-4ef7-963b-99323cc145b8",
+              "leftValue": "={{ $json.payload.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8024f453-4976-4fc0-97a1-394d2999d58b",
+              "leftValue": "={{ $json.payload.message.content.type }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "86db1eef-5dab-4bca-93db-7412083d47cb",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        860,
+        1960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.number }}",
+        "textBody": "={{ $('If3').item.json.payload.message.content.text }}",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "79fe3658-5496-4f34-b4ab-c77bf7ef23dc",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        2000
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "limit": 1,
+        "options": {
+          "sort": {
+            "property": [
+              {
+                "field": "UpdatedAt"
+              }
+            ]
+          },
+          "where": "=(conversationId,eq,{{ $json.payload.conversation.id }})~and(status,like,open)  "
+        }
+      },
+      "id": "ca7f77eb-5c4f-423f-a97f-c34444d6bd93",
+      "name": "Get Conversation1",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1100,
+        1960
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "21157755-1ff3-45c4-871a-7eca7a849451",
+              "leftValue": "={{ $json.number }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "caee4297-412b-4d67-859f-bc9a684938af",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c7837331-a0f7-46f0-b766-7b045ff0fbad",
+              "leftValue": "={{ $json.isBot }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1145c179-02ed-4f64-ac96-5557818710d4",
+      "name": "If4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        2000
+      ]
+    },
+    {
+      "parameters": {
+        "path": "90265893-37bf-43cd-9463-79cd9412cf5b",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "264b57a4-1acf-40cb-a723-db04d0a0d95c",
+      "name": "Verify",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        420,
+        360
+      ],
+      "webhookId": "90265893-37bf-43cd-9463-79cd9412cf5b",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "79e6f299-8688-459f-9238-db5f20e34db3",
+        "options": {}
+      },
+      "id": "e0905cc5-fafb-4af6-9f62-9b432046c8a1",
+      "name": "Respond",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        420,
+        640
+      ],
+      "webhookId": "79e6f299-8688-459f-9238-db5f20e34db3",
+      "typeVersion": 1.1
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "shared": [
+    {
+      "createdAt": "2024-06-13T19:01:36.260Z",
+      "updatedAt": "2024-06-13T19:01:36.260Z",
+      "role": "workflow:owner",
+      "workflowId": "8XMfDthL3AQJc77T",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "userActivated": true,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "isOnboarded": true
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 4,
+  "updatedAt": "2024-06-13T19:06:34.825Z",
+  "versionId": "777c8e19-0fca-4d6e-a9c9-69d65f4aa6c2"
+}
