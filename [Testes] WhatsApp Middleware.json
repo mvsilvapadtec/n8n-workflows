@@ -3664,9 +3664,10 @@
                 "personalization_survey_n8n_version": "1.42.1"
               },
               "settings": {
+                "isOnboarded": true,
                 "userActivated": true,
-                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
-                "isOnboarded": true
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN"
               },
               "role": "global:owner",
               "disabled": false,
@@ -3686,6 +3687,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-06-28T21:28:08.231Z",
-  "versionId": "b43d31b8-cb04-4f11-9e6b-e581499b39a7"
+  "updatedAt": "2024-07-22T17:14:27.359Z",
+  "versionId": "395245b1-5368-4007-a375-5eeb9a5dcd43"
 }
