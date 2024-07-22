@@ -230,9 +230,10 @@
                 "personalization_survey_n8n_version": "1.42.1"
               },
               "settings": {
+                "isOnboarded": true,
                 "userActivated": true,
-                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
-                "isOnboarded": true
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN"
               },
               "role": "global:owner",
               "disabled": false,
