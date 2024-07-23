@@ -97,9 +97,20 @@
             "node": "Close conversation",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
           }
         ],
-        [],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Close conversation1",
@@ -483,7 +494,7 @@
       "typeVersion": 3,
       "position": [
         460,
-        900
+        960
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -667,7 +678,7 @@
       "typeVersion": 3,
       "position": [
         460,
-        1080
+        1180
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -697,6 +708,56 @@
       "position": [
         460,
         700
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.number }}",
+        "textBody": "=O Ticket {{ $('EditTicketFields').item.json.ticketId }} fechado!",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "60f1608f-b270-43f0-bf29-02774e224194",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        880
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.number }}",
+        "textBody": "=O Ticket {{ $('EditTicketFields').item.json.ticketId }} foi resolvido!",
+        "additionalFields": {
+          "previewUrl": false
+        }
+      },
+      "id": "845b2421-0e5b-4250-a837-32af16d9215d",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        1080
       ],
       "credentials": {
         "whatsAppApi": {
@@ -761,12 +822,12 @@
   ],
   "staticData": {
     "node:Zendesk Trigger": {
-      "webhookId": 27959214972301,
-      "targetId": "01J1DXMH4AYACC8JNQCK367X2E"
+      "webhookId": 28642541998221,
+      "targetId": "01J3FTF25ZM98TKH66PTMVA5RD"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-06-27T22:39:10.396Z",
-  "versionId": "3cc36723-c312-4586-ac4b-9f6e0589094e"
+  "updatedAt": "2024-07-23T12:53:36.514Z",
+  "versionId": "c60cb289-702b-48cf-acd2-6221e099ca2c"
 }
