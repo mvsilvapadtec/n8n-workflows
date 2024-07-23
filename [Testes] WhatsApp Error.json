@@ -1,0 +1,652 @@
+{
+  "active": false,
+  "connections": {
+    "Split Changes WPP": {
+      "main": [
+        [
+          {
+            "node": "Split Statuses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Changes Status in WPP Message": {
+      "main": [
+        [
+          {
+            "node": "Split Changes WPP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Statuses": {
+      "main": [
+        [
+          {
+            "node": "If Status Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Status Error": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Set Read Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Delivered Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Message": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Check Entrys": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If Changes Status in WPP Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If Check Entrys",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-23T13:22:39.836Z",
+  "id": "6y29VEQnSOgHKR3I",
+  "meta": {
+    "templateId": "2162",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Testes] WhatsApp Error",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Others messages treatment",
+        "height": 572.4853443499766,
+        "width": 1205.9492359426526,
+        "color": 3
+      },
+      "id": "cfbc7a92-8a68-4c89-a454-434aff791bbc",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=entry.changes",
+        "options": {}
+      },
+      "id": "36ace47a-cd1d-4ef5-9678-72107b637944",
+      "name": "Split Changes WPP",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "70bdf561-f4b8-4aeb-8b42-03b8dde22e04",
+              "leftValue": "={{ $json.entry.changes }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4fe6b33b-02db-4b03-8ddd-220a90ca2785",
+              "leftValue": "={{ $json.entry.changes }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "34498bc8-33a9-438f-8865-8dcd42262089",
+              "leftValue": "={{ $json.entry.changes[0].value.statuses[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "86a247f7-792d-486e-a83e-397f9010d6e1",
+              "leftValue": "={{ $json.entry.changes[0].field }}",
+              "rightValue": "messages",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0a9bdee0-7dd1-4eb3-ad97-b2c92f6267ca",
+      "name": "If Changes Status in WPP Message",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=value.statuses",
+        "options": {}
+      },
+      "id": "c5e1cbab-7752-43c8-b4d7-dd37a89b653f",
+      "name": "Split Statuses",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "e5760b36-4119-4fc3-9ca7-80acf1a438d4",
+              "leftValue": "={{ $json.errors }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "07f60d46-d9a6-48f7-9008-702cc00fe4e1",
+      "name": "If Status Error",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.errors[0].title }}",
+                    "rightValue": "Re-engagement message",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ff315f2f-08d2-4019-aae0-7da66fd2d3f9",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -260,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "me05vewswdk5l8g",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "messageId",
+              "fieldValue": "={{ $('If Status Error').item.json.id }}"
+            },
+            {
+              "fieldName": "read",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "94ae377a-bb82-4eed-9815-9033dfb0b6b4",
+      "name": "Set Read Message",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        100,
+        560
+      ],
+      "retryOnFail": false,
+      "waitBetweenTries": 2000,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "me05vewswdk5l8g",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "messageId",
+              "fieldValue": "={{ $('If Status Error').item.json.id }}"
+            },
+            {
+              "fieldName": "delivered",
+              "fieldValue": "=true"
+            }
+          ]
+        }
+      },
+      "id": "3b3ec69c-20c5-4cc0-ad08-2870a36d4682",
+      "name": "Set Delivered Message",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        100,
+        840
+      ],
+      "retryOnFail": false,
+      "waitBetweenTries": 2000,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('If Status Error').item.json.status }}",
+                    "rightValue": "read",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose"
+                },
+                "conditions": [
+                  {
+                    "id": "c527fb83-4fa5-41a5-a358-a9340a68fab5",
+                    "leftValue": "={{$('If Status Error').item.json.status }}",
+                    "rightValue": "delivered",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "looseTypeValidation": true
+        }
+      },
+      "id": "a5be10cd-382a-4fa3-9eab-52f55da25517",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -60,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "me05vewswdk5l8g",
+        "id": "{{ $json.id }}"
+      },
+      "id": "654863ee-82f3-43d0-b899-9b8162b45e63",
+      "name": "Get Message",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        -260,
+        700
+      ],
+      "retryOnFail": false,
+      "waitBetweenTries": 2000,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "21583f31-d195-49de-bd01-cc52713982e6",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "85d53db4-829a-4440-bb9f-b807a5f135a2",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.entry.changes[0].value.messages[0].from }}",
+        "textBody": "Não consigo processar este tipo de mensagem!",
+        "additionalFields": {}
+      },
+      "id": "4cd0fe12-019c-4ce9-aef4-f946df24e780",
+      "name": "Response message type",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        900
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "dd37acac-97f7-4d9b-b772-6c979b26cbb3",
+              "leftValue": "={{ $json.entry.changes }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "37a1a562-4be9-40bd-8847-66ec1896e99b",
+              "leftValue": "={{ $json.entry.changes[0].value.messages }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGte",
+                "rightType": "number"
+              }
+            },
+            {
+              "id": "98f0f3a3-d2c7-496f-918a-e24af2dd7243",
+              "leftValue": "={{ $json.entry.changes[0].field }}",
+              "rightValue": "messages",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ce67ec5b-4adf-4f47-8227-9015eab07355",
+      "name": "If Check Entrys",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        320
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "645f1c0a-6324-4c83-a013-fd7783b976de",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-07-23T13:22:39.836Z",
+      "updatedAt": "2024-07-23T13:22:39.836Z",
+      "role": "workflow:owner",
+      "workflowId": "6y29VEQnSOgHKR3I",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "isOnboarded": true,
+                "userActivated": true,
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN"
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": {
+    "node:Zendesk Trigger": {
+      "webhookId": 27744284080909
+    }
+  },
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2024-07-23T14:19:12.813Z",
+  "versionId": "44c3cb77-3803-4392-b364-2d57f0b8d9a8"
+}
