@@ -115,7 +115,7 @@
         ],
         [
           {
-            "node": "If Changes Status in WPP Message",
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
@@ -267,17 +267,6 @@
         [
           {
             "node": "If need edit zendesk user",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook transfer to human": {
-      "main": [
-        [
-          {
-            "node": "Edit typebot fields",
             "type": "main",
             "index": 0
           }
@@ -862,6 +851,17 @@
           }
         ]
       ]
+    },
+    "Webhook transfer to human": {
+      "main": [
+        [
+          {
+            "node": "Edit typebot fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-06-05T16:24:28.849Z",
@@ -1255,8 +1255,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        460,
-        500
+        1260,
+        260
       ]
     },
     {
@@ -1360,7 +1360,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1140,
+        1100,
         260
       ]
     },
@@ -1376,8 +1376,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -860,
-        520
+        -1780,
+        100
       ]
     },
     {
@@ -1616,22 +1616,6 @@
         1720,
         1240
       ]
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "typebot_transfer_to_human",
-        "options": {}
-      },
-      "id": "abafc2f4-2096-4380-a4c3-5073408dd188",
-      "name": "Webhook transfer to human",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        1960,
-        340
-      ],
-      "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
     },
     {
       "parameters": {},
@@ -1988,7 +1972,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://bot.mvsdevs.uk/api/v1/workspaces/clwfec0d30001q7o141ogyqvf/whatsapp/emymjwta9w2sjgu7il5osjk0/webhook",
+        "url": "https://bot.mvsdevs.uk/api/v1/workspaces/clwfec0d30001q7o141ogyqvf/whatsapp/j2irtcs3zzkrnq4cgs6h02e5/webhook",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{ $('Respond').item.json.body }}",
@@ -2753,8 +2737,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -740,
-        620
+        -1660,
+        200
       ]
     },
     {
@@ -2816,8 +2800,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -800,
-        900
+        -1720,
+        480
       ]
     },
     {
@@ -2830,8 +2814,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -600,
-        620
+        -1520,
+        200
       ]
     },
     {
@@ -2863,8 +2847,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -460,
-        620
+        -1380,
+        200
       ]
     },
     {
@@ -2900,8 +2884,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        -260,
-        520
+        -1180,
+        100
       ]
     },
     {
@@ -2928,8 +2912,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        100,
-        560
+        -820,
+        140
       ],
       "retryOnFail": false,
       "waitBetweenTries": 2000,
@@ -2966,8 +2950,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        100,
-        840
+        -820,
+        420
       ],
       "retryOnFail": false,
       "waitBetweenTries": 2000,
@@ -3037,8 +3021,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        -60,
-        700
+        -980,
+        280
       ]
     },
     {
@@ -3053,8 +3037,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        -260,
-        700
+        -1180,
+        280
       ],
       "retryOnFail": false,
       "waitBetweenTries": 2000,
@@ -3096,8 +3080,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -240,
-        900
+        -1160,
+        480
       ]
     },
     {
@@ -3407,22 +3391,22 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        680,
-        500
+        460,
+        480
       ]
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id.replace(/\\\"/g, '\\\\\"')\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  message = $input.item.json.entry.changes[0].value.messages[0][type].id;\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  messagePayload:messagePayload\n};"
+        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  message = $input.item.json.entry.changes[0].value.messages[0][type].id;\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  messagePayload:messagePayload\n};"
       },
       "id": "e2467680-e908-40b0-994a-23cfd258345e",
       "name": "Code1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        900,
-        500
+        740,
+        420
       ]
     },
     {
@@ -3438,8 +3422,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        -500,
-        900
+        740,
+        560
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3599,7 +3583,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return {content: JSON.stringify({\n  type: \"text\",\n  text: $('Edit Fields').item.json.message,\n  payload: $('Edit Fields').item.json.messagePayload\n})\n       }"
+        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet content = {\n  type: \"text\",\n  text: $('Edit Fields').item.json.message\n}\nif (payload) {\n  try {\n        JSON.parse(payload)\n        content.payload = payload\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
       },
       "id": "28135bb0-91f2-4caa-975b-8026819f86e4",
       "name": "Mount Text Content",
@@ -3613,7 +3597,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let type = $('Edit Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nreturn {content: JSON.stringify({\n  type: type,\n  text: $('Edit Fields').item.json.message,\n  payload: $('Edit Fields').item.json.messagePayload,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n})\n       }"
+        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet type = $('Edit Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nlet content = {\n  type: type,\n  text: $('Edit Fields').item.json.message,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n}\nif (payload) {\n  try {\n        let parsed = JSON.parse(payload);\n        content.payload = parsed;\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
       },
       "id": "9a3644af-176f-4f2e-bfe7-cf81503ff160",
       "name": "Mount Media data",
@@ -3623,6 +3607,36 @@
         1660,
         1560
       ]
+    },
+    {
+      "parameters": {
+        "workflowId": "6y29VEQnSOgHKR3I",
+        "options": {}
+      },
+      "id": "7b2a5e73-4e99-4ed5-afc1-0ef46c7cf8cc",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "typebot_transfer_to_human",
+        "options": {}
+      },
+      "id": "abafc2f4-2096-4380-a4c3-5073408dd188",
+      "name": "Webhook transfer to human",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        340
+      ],
+      "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
     }
   ],
   "pinData": {},
@@ -3687,6 +3701,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-07-22T17:14:27.359Z",
-  "versionId": "395245b1-5368-4007-a375-5eeb9a5dcd43"
+  "updatedAt": "2024-07-23T14:19:42.534Z",
+  "versionId": "a368ba57-c4ed-4b8d-90b4-66f21ce4a107"
 }
