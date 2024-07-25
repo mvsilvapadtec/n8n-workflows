@@ -966,7 +966,7 @@
       "parameters": {
         "content": "## Zendesk Flow",
         "height": 1336.5650189625526,
-        "width": 2233.878307893487
+        "width": 2923.19194747404
       },
       "id": "a805c862-de4c-4f4f-a68a-085225da2bd7",
       "name": "Sticky Note3",
@@ -1084,8 +1084,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1140,
-        2000
+        820,
+        2160
       ]
     },
     {
@@ -1194,8 +1194,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2040,
-        1460
+        1820,
+        1360
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -1303,7 +1303,8 @@
         "textBody": "={{ $json.text }}",
         "additionalFields": {
           "previewUrl": false
-        }
+        },
+        "requestOptions": {}
       },
       "id": "5fb71eb2-989a-45f4-a841-fbc720f1b380",
       "name": "WhatsApp Business Cloud",
@@ -1575,7 +1576,7 @@
       "typeVersion": 3,
       "position": [
         1940,
-        1240
+        580
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -1614,7 +1615,7 @@
       "typeVersion": 2,
       "position": [
         1720,
-        1240
+        580
       ]
     },
     {
@@ -1690,8 +1691,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1760,
-        1920
+        2020,
+        1360
       ]
     },
     {
@@ -1733,8 +1734,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2200,
-        2040
+        2860,
+        1680
       ]
     },
     {
@@ -1761,7 +1762,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1320,
+        1220,
         1820
       ],
       "retryOnFail": true,
@@ -1831,7 +1832,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        900,
+        660,
         2000
       ],
       "alwaysOutputData": false,
@@ -1860,8 +1861,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        900,
-        1820
+        700,
+        1800
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -1923,8 +1924,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1140,
-        1800
+        960,
+        1820
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -1955,8 +1956,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1900,
-        1780
+        2260,
+        1260
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -2083,8 +2084,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1560,
-        1240
+        1500,
+        580
       ],
       "retryOnFail": false,
       "alwaysOutputData": true,
@@ -2179,7 +2180,7 @@
             {
               "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
               "name": "message",
-              "value": "=Iniciar atendimento",
+              "value": "=Preciso de atendimento",
               "type": "string"
             },
             {
@@ -2215,8 +2216,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        2140,
-        1240
+        2160,
+        580
       ]
     },
     {
@@ -2239,8 +2240,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2460,
-        2060
+        3100,
+        1720
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -2351,8 +2352,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1400,
-        2020
+        1100,
+        2120
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -2601,8 +2602,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2080,
-        1780
+        2420,
+        1360
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -2628,8 +2629,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2500,
-        1780
+        2860,
+        1360
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2682,8 +2683,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2260,
-        1780
+        2640,
+        1360
       ]
     },
     {
@@ -2702,8 +2703,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        1960,
-        2080
+        2640,
+        1660
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2715,7 +2716,7 @@
     {
       "parameters": {
         "content": "## Typebot Flow",
-        "height": 355.0904357533667,
+        "height": 594.1881557554774,
         "width": 930.2269115266292
       },
       "id": "573e3185-4084-4690-87f8-579cad8caff1",
@@ -3415,7 +3416,8 @@
         "phoneNumberId": "331922393331203",
         "recipientPhoneNumber": "={{ $json.entry.changes[0].value.messages[0].from }}",
         "textBody": "Não consigo processar este tipo de mensagem!",
-        "additionalFields": {}
+        "additionalFields": {},
+        "requestOptions": {}
       },
       "id": "68502414-db6c-43ba-bdad-4c4d97e644aa",
       "name": "Response message type",
@@ -3436,14 +3438,15 @@
       "parameters": {
         "resource": "media",
         "operation": "mediaUrlGet",
-        "mediaGetId": "={{ $('Edit Fields').item.json.message }}"
+        "mediaGetId": "={{ $('Edit Fields').item.json.message }}",
+        "requestOptions": {}
       },
       "id": "1fc052d0-62d0-40ac-be9d-5eae82788adc",
       "name": "Get Media",
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        980,
+        960,
         1500
       ],
       "credentials": {
@@ -3590,8 +3593,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1660,
-        1400
+        1600,
+        1240
       ]
     },
     {
@@ -3604,8 +3607,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1660,
-        1560
+        1620,
+        1460
       ]
     },
     {
@@ -3701,6 +3704,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-07-23T14:19:42.534Z",
-  "versionId": "a368ba57-c4ed-4b8d-90b4-66f21ce4a107"
+  "updatedAt": "2024-07-25T12:38:54.529Z",
+  "versionId": "5f1a4928-6c84-436c-9815-bddf0d8b2f5b"
 }
