@@ -23,7 +23,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -41,7 +41,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -59,7 +59,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -99,7 +99,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -117,7 +117,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -139,7 +139,7 @@
       "main": [
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -157,7 +157,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -208,7 +208,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -308,7 +308,7 @@
         ],
         [
           {
-            "node": "Error Respond to Webhook",
+            "node": "Edit Fields5",
             "type": "main",
             "index": 0
           }
@@ -392,6 +392,17 @@
         ],
         [
           {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
             "node": "Error Respond to Webhook",
             "type": "main",
             "index": 0
@@ -455,8 +466,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        2860,
-        120
+        2980,
+        200
       ]
     },
     {
@@ -608,7 +619,7 @@
       "typeVersion": 1,
       "position": [
         740,
-        -20
+        100
       ]
     },
     {
@@ -1314,6 +1325,26 @@
                 "operation": "exists",
                 "singleValue": true
               }
+            },
+            {
+              "id": "7bf1842c-2931-4c7d-8069-08c5e5c37258",
+              "leftValue": "={{ $json.organization }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2817e3aa-7091-492d-b3a8-59c6e224f8b8",
+              "leftValue": "={{ $json.organization.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
             }
           ],
           "combinator": "and"
@@ -1327,6 +1358,29 @@
       "position": [
         2900,
         1080
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6d815440-1ba9-4da2-9548-4e86c0fa4325",
+              "name": "error",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "04287b29-400e-4a40-9270-5eddfb7adc4e",
+      "name": "Edit Fields5",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2760,
+        200
       ]
     }
   ],
@@ -1386,6 +1440,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-06-27T20:55:27.985Z",
-  "versionId": "941b9459-ea83-481d-9f9d-e68f2cd951dd"
+  "updatedAt": "2024-07-25T16:30:49.565Z",
+  "versionId": "ac4fdda4-8b9a-4fa0-b47b-925c3c692d2b"
 }
