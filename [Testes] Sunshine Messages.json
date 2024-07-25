@@ -53,6 +53,11 @@
             "node": "[ZD] Send Sunshine Message1",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Close Conversation",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -143,16 +148,10 @@
     },
     "[ZD] Send Sunshine Message1": {
       "main": [
-        [
-          {
-            "node": "Close Conversation",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
-    "Switch2": {
+    "If Actions Exist": {
       "main": [
         [
           {
@@ -163,18 +162,47 @@
         ],
         [
           {
-            "node": "Code",
+            "node": "Prepare Message to send",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Code": {
+    "Switch2": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "If Actions Exist",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare Message to send1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message to send": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Send Message w/action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message to send1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Send Message w/action1",
             "type": "main",
             "index": 0
           }
@@ -193,15 +221,15 @@
       "parameters": {
         "content": "## Sunshine Flow",
         "height": 836.6718190628901,
-        "width": 2163.991994381908
+        "width": 2732.9190910851767
       },
       "id": "0fa67196-17de-41ea-ae03-606c053812a0",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3220,
-        2240
+        3200,
+        2200
       ]
     },
     {
@@ -223,8 +251,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4740,
-        2280
+        4780,
+        2320
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -261,7 +289,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        3960,
+        4140,
         2320
       ],
       "retryOnFail": true,
@@ -309,22 +337,12 @@
             },
             {
               "id": "3957114f-ceee-4ef7-963b-99323cc145b8",
-              "leftValue": "={{ $json.message }}",
+              "leftValue": "={{ $json.content }}",
               "rightValue": "",
               "operator": {
-                "type": "string",
+                "type": "object",
                 "operation": "exists",
                 "singleValue": true
-              }
-            },
-            {
-              "id": "8024f453-4976-4fc0-97a1-394d2999d58b",
-              "leftValue": "={{ $json.inputType }}",
-              "rightValue": "text",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
               }
             },
             {
@@ -347,7 +365,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        3760,
+        3900,
         2320
       ]
     },
@@ -371,8 +389,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4360,
-        2840
+        4400,
+        2880
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -442,14 +460,14 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        4560,
-        2460
+        4620,
+        2520
       ]
     },
     {
       "parameters": {
         "operation": "addToDate",
-        "magnitude": "={{ $json.CreatedAt }}",
+        "magnitude": "={{ $json.lastContact }}",
         "timeUnit": "hours",
         "duration": 23,
         "options": {
@@ -461,7 +479,7 @@
       "type": "n8n-nodes-base.dateTime",
       "typeVersion": 2,
       "position": [
-        4360,
+        4560,
         2320
       ]
     },
@@ -491,7 +509,7 @@
             },
             {
               "fieldName": "message",
-              "fieldValue": "={{ $('Edit Sunshine Message').item.json.message }}"
+              "fieldValue": "={{ $('Edit Sunshine Message').item.json.content.text }}"
             }
           ]
         }
@@ -501,7 +519,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        5160,
+        5600,
         2300
       ],
       "retryOnFail": false,
@@ -520,17 +538,18 @@
         "operation": "send",
         "phoneNumberId": "331922393331203",
         "recipientPhoneNumber": "={{ $json.number }}",
-        "textBody": "={{ $('Edit Sunshine Message').item.json.message }}",
+        "textBody": "={{ $('Edit Sunshine Message').item.json.content.text }}",
         "additionalFields": {
           "previewUrl": false
-        }
+        },
+        "requestOptions": {}
       },
       "id": "bf1cf78d-2195-4671-baa4-99c5a2a8373d",
       "name": "WhatsApp Business Cloud1",
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        4920,
+        5360,
         2300
       ],
       "credentials": {
@@ -552,9 +571,9 @@
             },
             {
               "id": "7ec08bdd-38cf-4588-9735-57a30670c0ab",
-              "name": "message",
-              "value": "={{ $json.payload.message.content.text }}",
-              "type": "string"
+              "name": "content",
+              "value": "={{ $json.payload.message.content }}",
+              "type": "object"
             },
             {
               "id": "55aa5de1-ae80-4899-9c41-96f1eeec850c",
@@ -595,7 +614,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        3600,
+        3660,
         2320
       ]
     },
@@ -638,7 +657,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        4140,
+        4360,
         2320
       ]
     },
@@ -682,8 +701,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        4520,
-        2860
+        4400,
+        2700
       ],
       "retryOnFail": true,
       "alwaysOutputData": false,
@@ -699,7 +718,8 @@
       "parameters": {
         "phoneNumberId": "331922393331203",
         "recipientPhoneNumber": "={{ $json.number }}",
-        "template": "hello_world|en_US"
+        "template": "hello_world|en_US",
+        "requestOptions": {}
       },
       "id": "9e126d0f-91c5-4bd3-999f-c7a7aa7401e6",
       "name": "WhatsApp Business Cloud",
@@ -773,8 +793,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        4120,
-        2840
+        4080,
+        2820
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -817,16 +837,35 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "const message = $('Edit Sunshine Message').item.json.message\nconst scActions = $('Edit Sunshine Message').item.json.actions\nconst number = $json.number\nlet buttons = []\nfor (let scAction of scActions) {\n  let button = {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": scAction.payload,\n            \"title\": scAction.text\n          }\n        }\n  buttons.push(button)\n}\n\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    \"action\": {\n      \"buttons\": buttons\n    }\n  }\n}"
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "325ac316-6cf1-467d-b330-3e21420596c3",
+              "leftValue": "={{ $('Edit Sunshine Message').item.json.actions }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
       },
-      "id": "a60439d5-9edd-4b94-95ff-0d2f5040d528",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
+      "id": "85adcb1e-8f9f-493f-a600-0bc90350fcdc",
+      "name": "If Actions Exist",
+      "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        4900,
-        2700
+        5100,
+        2400
       ]
     },
     {
@@ -842,12 +881,11 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $('Edit Sunshine Message').item.json.actions }}",
-                    "rightValue": "",
+                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
+                    "rightValue": "text",
                     "operator": {
-                      "type": "array",
-                      "operation": "notExists",
-                      "singleValue": true
+                      "type": "string",
+                      "operation": "equals"
                     }
                   }
                 ],
@@ -864,12 +902,11 @@
                 "conditions": [
                   {
                     "id": "16733111-c67e-4a01-b5d6-0d658072d136",
-                    "leftValue": "={{ $('Edit Sunshine Message').item.json.actions }}",
-                    "rightValue": "",
+                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
+                    "rightValue": "text",
                     "operator": {
-                      "type": "array",
-                      "operation": "exists",
-                      "singleValue": true
+                      "type": "string",
+                      "operation": "notEquals"
                     }
                   }
                 ],
@@ -885,8 +922,22 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        4740,
-        2460
+        4840,
+        2520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const message = $('Edit Sunshine Message').item.json.content.text\nconst scActions = $('Edit Sunshine Message').item.json.actions\nconst number = $json.number\nlet buttons = []\nfor (let scAction of scActions) {\n  let button = {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": scAction.payload,\n            \"title\": scAction.text\n          }\n        }\n  buttons.push(button)\n}\n\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    \"action\": {\n      \"buttons\": buttons\n    }\n  }\n}"
+      },
+      "id": "a60439d5-9edd-4b94-95ff-0d2f5040d528",
+      "name": "Prepare Message to send",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5360,
+        2540
       ]
     },
     {
@@ -901,12 +952,52 @@
         "options": {}
       },
       "id": "0db90f03-7205-40e9-9d05-2168907f43be",
-      "name": "HTTP Request",
+      "name": "WhatsApp Send Message w/action",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5120,
-        2700
+        5600,
+        2540
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const inputType = $('Edit Sunshine Message').item.json.inputType\nconst content = $('Edit Sunshine Message').item.json.content\nconst number = $json.number\nlet type = \"document\"\nlet obj = {\n  \"link\": content.mediaUrl\n}\n\nif (inputType == \"image\") {\n  type = \"image\"\n} else {\n  if(content.altText) {\n    obj[\"filename\"] = content.altText\n  }\n}\nconst data = {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": type,\n}\ndata[type] = obj\nreturn data;"
+      },
+      "id": "51f2c074-c0cd-40ae-9eb8-e31d8061a564",
+      "name": "Prepare Message to send1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5360,
+        2780
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/331922393331203/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "ad5209b3-5cf4-4cd6-bfcb-8dd470b83586",
+      "name": "WhatsApp Send Message w/action1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5600,
+        2780
       ],
       "credentials": {
         "whatsAppApi": {
@@ -972,6 +1063,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-06-27T21:52:46.990Z",
-  "versionId": "3459b23c-ba0e-487b-9e46-5fd032b63242"
+  "updatedAt": "2024-07-25T13:55:04.965Z",
+  "versionId": "e6a83a27-f104-4d86-a08c-115a11cb1430"
 }
