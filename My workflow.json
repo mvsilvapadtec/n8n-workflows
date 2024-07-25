@@ -1,0 +1,118 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "NocoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-25T19:39:12.087Z",
+  "id": "jmu8rGAQeyV5urzZ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c99b7998-8544-4ab9-bd5e-53929400b52a",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        820,
+        360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "options": {
+          "where": "=(status,eq,'open')~and(UpdatedAt,gt,{{ $now.minus(24, 'hour') }})"
+        }
+      },
+      "id": "9cdb7a35-37cd-4b18-8e40-dda405363c77",
+      "name": "NocoDB",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        360
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-07-25T19:39:12.087Z",
+      "updatedAt": "2024-07-25T19:39:12.087Z",
+      "role": "workflow:owner",
+      "workflowId": "jmu8rGAQeyV5urzZ",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "isOnboarded": true,
+                "userActivated": true,
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN"
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-07-25T19:39:12.087Z",
+  "versionId": "f1492f8f-2450-4257-92c2-927d5231e449"
+}
