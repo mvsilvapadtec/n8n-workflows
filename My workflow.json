@@ -38,7 +38,7 @@
         "projectId": "pqrinh2l5ug82p8",
         "table": "mvw1gvgqu5q9bpw",
         "options": {
-          "where": "=(status,eq,'open')~and(UpdatedAt,gt,{{ $now.minus(24, 'hour') }})"
+          "where": "=(status,eq,open)"
         }
       },
       "id": "9cdb7a35-37cd-4b18-8e40-dda405363c77",
@@ -83,7 +83,7 @@
             "projectId": "BbalulLcG5rqgvFJ",
             "user": {
               "createdAt": "2024-05-31T19:30:31.891Z",
-              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "updatedAt": "2024-07-26T18:49:27.060Z",
               "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
               "email": "mvsilva@padtec.com.br",
               "firstName": "MALCON VIVARELLI",
@@ -97,7 +97,12 @@
                 "isOnboarded": true,
                 "userActivated": true,
                 "userActivatedAt": 1721678428499,
-                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN"
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "npsSurvey": {
+                  "waitingForResponse": true,
+                  "ignoredCount": 1,
+                  "lastShownAt": 1722019764557
+                }
               },
               "role": "global:owner",
               "disabled": false,
@@ -113,6 +118,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-07-25T19:39:12.087Z",
-  "versionId": "f1492f8f-2450-4257-92c2-927d5231e449"
+  "updatedAt": "2024-07-26T18:49:52.529Z",
+  "versionId": "2f449e5b-9ff2-4269-a210-9141245d2269"
 }
