@@ -793,7 +793,7 @@
             "projectId": "BbalulLcG5rqgvFJ",
             "user": {
               "createdAt": "2024-05-31T19:30:31.891Z",
-              "updatedAt": "2024-06-28T13:38:50.556Z",
+              "updatedAt": "2024-07-26T18:49:27.060Z",
               "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
               "email": "mvsilva@padtec.com.br",
               "firstName": "MALCON VIVARELLI",
@@ -807,7 +807,12 @@
                 "isOnboarded": true,
                 "userActivated": true,
                 "userActivatedAt": 1721678428499,
-                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN"
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "npsSurvey": {
+                  "waitingForResponse": true,
+                  "ignoredCount": 1,
+                  "lastShownAt": 1722019764557
+                }
               },
               "role": "global:owner",
               "disabled": false,
