@@ -146,11 +146,6 @@
         ]
       ]
     },
-    "[ZD] Send Sunshine Message1": {
-      "main": [
-        []
-      ]
-    },
     "If Actions Exist": {
       "main": [
         [
@@ -377,7 +372,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"System\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {\n        \"type\": \"text\",\n        \"text\": \"Janela Whatsapp encerrada\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"System\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {\n        \"type\": \"text\",\n        \"text\": \"Janela Whatsapp encerrada!\\n Utilize outro metodô de comunicação (E-Mail ou Telefone)!\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -781,7 +776,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"System\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {\n        \"type\": \"text\",\n        \"text\": \"Conversa online encerrada!\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"System\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {\n        \"type\": \"text\",\n        \"text\": \"Conversa online encerrada!\\n Utilize outro metodô de comunicação (E-Mail ou Telefone)!\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -1068,6 +1063,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-07-25T13:55:04.965Z",
-  "versionId": "e6a83a27-f104-4d86-a08c-115a11cb1430"
+  "updatedAt": "2024-07-29T13:12:29.515Z",
+  "versionId": "a5149c83-c59e-48aa-8534-be647a432a95"
 }
