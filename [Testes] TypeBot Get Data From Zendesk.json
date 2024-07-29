@@ -713,7 +713,7 @@
             {
               "id": "a9e599ad-ab9b-4568-9cdf-135c7c94c5f8",
               "name": "name",
-              "value": "={{ $json.body.params[0].name }}",
+              "value": "={{ $json.body.params.name }}",
               "type": "string"
             },
             {
@@ -1445,6 +1445,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-07-25T16:30:49.565Z",
-  "versionId": "ac4fdda4-8b9a-4fa0-b47b-925c3c692d2b"
+  "updatedAt": "2024-07-29T20:36:39.171Z",
+  "versionId": "8e458cb6-8ced-4280-8593-5224292c4a7c"
 }
