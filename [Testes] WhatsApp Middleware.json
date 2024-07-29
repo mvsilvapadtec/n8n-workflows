@@ -200,17 +200,6 @@
         ]
       ]
     },
-    "Edit whatsapp fields": {
-      "main": [
-        [
-          {
-            "node": "Union Data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If session typebot": {
       "main": [
         [
@@ -324,17 +313,6 @@
         ]
       ]
     },
-    "[ZD] Create Sunshine  User": {
-      "main": [
-        [
-          {
-            "node": "If Check UserSunshine",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "[ZD] Get Sunshine User": {
       "main": [
         [
@@ -373,17 +351,6 @@
         ]
       ]
     },
-    "[ZD] Update Sunshine  User": {
-      "main": [
-        [
-          {
-            "node": "Zendesk Search Real User1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Create Conversation": {
       "main": [
         [
@@ -411,33 +378,6 @@
         [
           {
             "node": "If ConversationExist",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields1": {
-      "main": [
-        [
-          {
-            "node": "Union Data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "If session typebot",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get Contact",
             "type": "main",
             "index": 0
           }
@@ -768,11 +708,122 @@
         ]
       ]
     },
-    "Code1": {
+    "Mount Text Content": {
       "main": [
         [
           {
-            "node": "Edit whatsapp fields",
+            "node": "[ZD] Send Sunshine Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Media data": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook transfer to human": {
+      "main": [
+        [
+          {
+            "node": "Edit typebot fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Attach",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Send Sunshine Attach": {
+      "main": [
+        [
+          {
+            "node": "Mount Media data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Update Sunshine  User": {
+      "main": [
+        [
+          {
+            "node": "Zendesk Search Real User1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Create Sunshine  User": {
+      "main": [
+        [
+          {
+            "node": "If Check UserSunshine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit whatsapp fields": {
+      "main": [
+        [
+          {
+            "node": "Union Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If session typebot",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Union Data",
             "type": "main",
             "index": 0
           }
@@ -801,62 +852,18 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Download File",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP Request": {
+    "Code1": {
       "main": [
         [
           {
-            "node": "[ZD] Send Sunshine Message1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mount Text Content": {
-      "main": [
-        [
-          {
-            "node": "[ZD] Send Sunshine Message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "[ZD] Send Sunshine Message1": {
-      "main": [
-        [
-          {
-            "node": "Mount Media data",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mount Media data": {
-      "main": [
-        [
-          {
-            "node": "[ZD] Send Sunshine Message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook transfer to human": {
-      "main": [
-        [
-          {
-            "node": "Edit typebot fields",
+            "node": "Edit whatsapp fields",
             "type": "main",
             "index": 0
           }
@@ -966,7 +973,7 @@
       "parameters": {
         "content": "## Zendesk Flow",
         "height": 1336.5650189625526,
-        "width": 2923.19194747404
+        "width": 3159.7460747101704
       },
       "id": "a805c862-de4c-4f4f-a68a-085225da2bd7",
       "name": "Sticky Note3",
@@ -1194,8 +1201,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1820,
-        1360
+        1860,
+        1320
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -1436,65 +1443,6 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "3d396ee8-2331-4999-8a4a-132fa9e9f863",
-              "name": "=number",
-              "value": "={{ $json.from }}",
-              "type": "string"
-            },
-            {
-              "id": "6c0e1148-0991-41ab-b244-972fdafa1cbe",
-              "name": "email",
-              "value": "=",
-              "type": "string"
-            },
-            {
-              "id": "c2cae0f8-d232-4a0e-8495-5dc4461d8f11",
-              "name": "=message",
-              "value": "={{ $json.message }}",
-              "type": "string"
-            },
-            {
-              "id": "6e1950b6-c42f-4616-9de3-ace9d1403ea7",
-              "name": "name",
-              "value": "={{ $json.name }}",
-              "type": "string"
-            },
-            {
-              "id": "a9b637fd-47ad-4d4c-b17f-17e624bad3ba",
-              "name": "transferToHuman",
-              "value": false,
-              "type": "boolean"
-            },
-            {
-              "id": "92ed64a2-7930-4392-bc2f-b3aa5ba14f58",
-              "name": "messagePayload",
-              "value": "={{ $json.messagePayload }}",
-              "type": "string"
-            },
-            {
-              "id": "ea1ba22a-f67c-4d32-9c7b-ab1795b7d42e",
-              "name": "messageType",
-              "value": "={{ $json.type }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "bf5df3af-6d44-4c2d-9a13-00949728813a",
-      "name": "Edit whatsapp fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.3,
-      "position": [
-        1120,
-        500
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -1691,8 +1639,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2020,
-        1360
+        2040,
+        1320
       ]
     },
     {
@@ -1734,8 +1682,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2860,
-        1680
+        3060,
+        1340
       ]
     },
     {
@@ -1811,39 +1759,6 @@
         }
       },
       "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users ",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n    \"externalId\": \"{{ $('Edit Fields').item.json.userId }}\",\n    \"signedUpAt\": \"{{ $('Edit Fields').item.json.time }}\",\n    \"profile\": {\n        \"givenName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"email\": \"{{ $('Edit Fields').item.json.email }}\",\n        \"locale\": \"pt-BR\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-BR\",\n        \"number\": \"{{ $('Edit Fields').item.json.number }}\"\n    }\n} ",
-        "options": {
-          "redirect": {
-            "redirect": {}
-          }
-        }
-      },
-      "id": "61df95d9-ade3-4cf2-a260-d166d65f0bfb",
-      "name": "[ZD] Create Sunshine  User",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        660,
-        2000
-      ],
-      "alwaysOutputData": false,
-      "retryOnFail": true,
-      "waitBetweenTries": 2000,
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "eDGGJMJBgG0lvaxW",
-          "name": "ZendeskConversationApiAccount"
-        }
-      }
     },
     {
       "parameters": {
@@ -1935,40 +1850,6 @@
           "name": "ZendeskConversationApiAccount"
         }
       }
-    },
-    {
-      "parameters": {
-        "method": "PATCH",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users/{{ $('Edit Fields').item.json.userId }}",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n    \"profile\": {\n        \"email\": \"{{ $('Edit Fields').item.json.email }}\"\n    }\n}  ",
-        "options": {
-          "redirect": {
-            "redirect": {}
-          }
-        }
-      },
-      "id": "0b3fa2ab-9bfd-4edc-8399-12eca2d410c3",
-      "name": "[ZD] Update Sunshine  User",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2260,
-        1260
-      ],
-      "alwaysOutputData": false,
-      "retryOnFail": true,
-      "waitBetweenTries": 2000,
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "eDGGJMJBgG0lvaxW",
-          "name": "ZendeskConversationApiAccount"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -2157,71 +2038,6 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "d3db5f2b-f3da-4286-b2c5-5182713bf935",
-              "name": "Id",
-              "value": "={{ $json.Id }}",
-              "type": "number"
-            },
-            {
-              "id": "cceda498-833c-4dd6-95ac-9e11fead0425",
-              "name": "isBot",
-              "value": "={{ $json.isBot }}",
-              "type": "boolean"
-            },
-            {
-              "id": "5c3da872-6c3c-4db4-ba75-ba235f6a0f37",
-              "name": "number",
-              "value": "={{ $('If ConversationExist').item.json.number }}",
-              "type": "string"
-            },
-            {
-              "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
-              "name": "message",
-              "value": "=Preciso de atendimento",
-              "type": "string"
-            },
-            {
-              "id": "1a2907f8-80a6-4a61-9a92-0bc25f06f4c1",
-              "name": "name",
-              "value": "={{ $('Edit typebot fields').item.json.name }}",
-              "type": "string"
-            },
-            {
-              "id": "ca68aee8-5099-46f3-92e0-f60c8220e967",
-              "name": "transferToHuman",
-              "value": true,
-              "type": "boolean"
-            },
-            {
-              "id": "3d997090-8b6c-47ab-bc45-1cb872b289ce",
-              "name": "messagePayload",
-              "value": "",
-              "type": "string"
-            },
-            {
-              "id": "16a1e50a-9958-4539-9dad-64a8a2e5c8de",
-              "name": "messageType",
-              "value": "text",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "9a887fa3-fca6-4b6c-87bb-d744c6f1adb7",
-      "name": "Edit Fields1",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.3,
-      "position": [
-        2160,
-        580
-      ]
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/passControl   ",
         "authentication": "genericCredentialType",
@@ -2240,8 +2056,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3100,
-        1720
+        3260,
+        1340
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -2249,84 +2065,6 @@
           "name": "ZendeskConversationApiAccount"
         }
       }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "a3d6dfd0-df47-4d73-8295-826395f930a4",
-              "name": "appId",
-              "value": "663bb50eee907e92c2d2f38f",
-              "type": "string"
-            },
-            {
-              "id": "5fbbd942-3b6f-4a8e-a611-f642c4c913d6",
-              "name": "subdomain",
-              "value": "padtecsupport1715188965",
-              "type": "string"
-            },
-            {
-              "id": "58300dd5-a883-4b34-ac89-2513cab85343",
-              "name": "name",
-              "value": "={{ $('Union Data').item.json.name }}",
-              "type": "string"
-            },
-            {
-              "id": "454d24e1-1efd-408c-a620-0ef70c6056b5",
-              "name": "time",
-              "value": "={{ $now.toUTC() }}",
-              "type": "string"
-            },
-            {
-              "id": "488677cb-e82e-46c9-8739-08d8bf0b7b62",
-              "name": "userId",
-              "value": "={{ $('Union Data').item.json.number }}_{{ $json.Id }}",
-              "type": "string"
-            },
-            {
-              "id": "701c9693-c3e6-4951-bff7-012e32fef491",
-              "name": "message",
-              "value": "={{ $('Union Data').item.json.message }}",
-              "type": "string"
-            },
-            {
-              "id": "c550d5e5-b4ed-4efc-a811-60ce767c44d6",
-              "name": "isBot",
-              "value": "={{ $json.isBot }}",
-              "type": "boolean"
-            },
-            {
-              "id": "30fc1c40-39c7-4fa9-aa5a-62621c03e98c",
-              "name": "transferToHuman",
-              "value": "={{ $('Union Data').item.json.transferToHuman}}",
-              "type": "boolean"
-            },
-            {
-              "id": "c640ff85-2d7d-4039-90cb-987e1f7800f5",
-              "name": "messagePayload",
-              "value": "={{ $('Union Data').item.json.messagePayload }}",
-              "type": "string"
-            },
-            {
-              "id": "aa9c80b2-243a-410d-8250-4718a6a5ee7a",
-              "name": "messageType",
-              "value": "={{ $('Union Data').item.json.messageType }}",
-              "type": "string"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "id": "bdb02d20-5ca5-4233-a24f-a9d6100a57e3",
-      "name": "Edit Fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.3,
-      "position": [
-        1120,
-        680
-      ]
     },
     {
       "parameters": {
@@ -2602,8 +2340,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2420,
-        1360
+        2480,
+        1260
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -2630,7 +2368,7 @@
       "typeVersion": 1,
       "position": [
         2860,
-        1360
+        1260
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2683,8 +2421,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2640,
-        1360
+        2660,
+        1260
       ]
     },
     {
@@ -2703,8 +2441,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2640,
-        1660
+        2860,
+        1420
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -3398,106 +3136,60 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  message = $input.item.json.entry.changes[0].value.messages[0][type].id;\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  messagePayload:messagePayload\n};"
+        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet content = {\n  type: \"text\",\n  text: $('Edit Fields').item.json.message\n}\nif (payload) {\n  try {\n        JSON.parse(payload)\n        content.payload = payload\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
       },
-      "id": "e2467680-e908-40b0-994a-23cfd258345e",
-      "name": "Code1",
+      "id": "28135bb0-91f2-4caa-975b-8026819f86e4",
+      "name": "Mount Text Content",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        740,
-        420
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "331922393331203",
-        "recipientPhoneNumber": "={{ $json.entry.changes[0].value.messages[0].from }}",
-        "textBody": "Não consigo processar este tipo de mensagem!",
-        "additionalFields": {},
-        "requestOptions": {}
-      },
-      "id": "68502414-db6c-43ba-bdad-4c4d97e644aa",
-      "name": "Response message type",
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        740,
-        560
-      ],
-      "credentials": {
-        "whatsAppApi": {
-          "id": "CvLeuIxEieMjL8Of",
-          "name": "WhatsApp Test account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "media",
-        "operation": "mediaUrlGet",
-        "mediaGetId": "={{ $('Edit Fields').item.json.message }}",
-        "requestOptions": {}
-      },
-      "id": "1fc052d0-62d0-40ac-be9d-5eae82788adc",
-      "name": "Get Media",
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        960,
-        1500
-      ],
-      "credentials": {
-        "whatsAppApi": {
-          "id": "CvLeuIxEieMjL8Of",
-          "name": "WhatsApp Test account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "085eb716-5891-44af-a268-8344485512b3",
-              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
-              "rightValue": "text",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            },
-            {
-              "id": "76d24ae8-dbd7-470f-a2a5-a37465693e91",
-              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
-              "rightValue": "interactive",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "or"
-        },
-        "options": {}
-      },
-      "id": "bc208b84-bcfc-4f08-9fe9-52aeebf58917",
-      "name": "If6",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        1300,
+        1600,
         1240
       ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet type = $('Edit Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nlet content = {\n  type: type,\n  text: $('Edit Fields').item.json.message,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n}\nif (payload) {\n  try {\n        let parsed = JSON.parse(payload);\n        content.payload = parsed;\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
+      },
+      "id": "9a3644af-176f-4f2e-bfe7-cf81503ff160",
+      "name": "Mount Media data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        1420
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "6y29VEQnSOgHKR3I",
+        "options": {}
+      },
+      "id": "7b2a5e73-4e99-4ed5-afc1-0ef46c7cf8cc",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "typebot_transfer_to_human",
+        "options": {}
+      },
+      "id": "abafc2f4-2096-4380-a4c3-5073408dd188",
+      "name": "Webhook transfer to human",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        340
+      ],
+      "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
     },
     {
       "parameters": {
@@ -3513,11 +3205,11 @@
         }
       },
       "id": "7c467304-e32f-421d-a6c2-10587ba8f476",
-      "name": "HTTP Request",
+      "name": "Download File",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1200,
+        1220,
         1500
       ],
       "credentials": {
@@ -3568,15 +3260,107 @@
         }
       },
       "id": "f98de0e0-ed48-409d-a68b-54083739204f",
-      "name": "[ZD] Send Sunshine Message1",
+      "name": "[ZD] Send Sunshine Attach",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1400,
+        1440,
         1500
       ],
-      "retryOnFail": true,
+      "retryOnFail": false,
       "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.entry.changes[0].value.messages[0].from }}",
+        "textBody": "Não consigo processar este tipo de mensagem!",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "id": "68502414-db6c-43ba-bdad-4c4d97e644aa",
+      "name": "Response message type",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        740,
+        560
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users/{{ $('Edit Fields').item.json.userId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"profile\": {\n        \"email\": \"{{ $('Edit Fields').item.json.email }}\"\n    }\n}  ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "0b3fa2ab-9bfd-4edc-8399-12eca2d410c3",
+      "name": "[ZD] Update Sunshine  User",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2280,
+        1260
+      ],
+      "alwaysOutputData": false,
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"externalId\": \"{{ $('Edit Fields').item.json.userId }}\",\n    \"signedUpAt\": \"{{ $('Edit Fields').item.json.time }}\",\n    \"profile\": {\n        \"givenName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"email\": \"{{ $('Edit Fields').item.json.email }}\",\n        \"locale\": \"pt-BR\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-BR\",\n        \"number\": \"{{ $('Edit Fields').item.json.number }}\"\n    }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "61df95d9-ade3-4cf2-a260-d166d65f0bfb",
+      "name": "[ZD] Create Sunshine  User",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        2000
+      ],
+      "alwaysOutputData": false,
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
       "credentials": {
         "httpHeaderAuth": {
           "id": "eDGGJMJBgG0lvaxW",
@@ -3586,60 +3370,326 @@
     },
     {
       "parameters": {
-        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet content = {\n  type: \"text\",\n  text: $('Edit Fields').item.json.message\n}\nif (payload) {\n  try {\n        JSON.parse(payload)\n        content.payload = payload\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $('Edit Fields').item.json.number }}",
+        "textBody": "Não consegui carregar esse arquivo!",
+        "additionalFields": {},
+        "requestOptions": {}
       },
-      "id": "28135bb0-91f2-4caa-975b-8026819f86e4",
-      "name": "Mount Text Content",
-      "type": "n8n-nodes-base.code",
+      "id": "ca5aaf23-6f42-4f23-831f-0bde0350f900",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        1620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d396ee8-2331-4999-8a4a-132fa9e9f863",
+              "name": "=number",
+              "value": "={{ $json.from }}",
+              "type": "string"
+            },
+            {
+              "id": "6c0e1148-0991-41ab-b244-972fdafa1cbe",
+              "name": "email",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "c2cae0f8-d232-4a0e-8495-5dc4461d8f11",
+              "name": "=message",
+              "value": "={{ $json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "6e1950b6-c42f-4616-9de3-ace9d1403ea7",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "a9b637fd-47ad-4d4c-b17f-17e624bad3ba",
+              "name": "transferToHuman",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "id": "92ed64a2-7930-4392-bc2f-b3aa5ba14f58",
+              "name": "messagePayload",
+              "value": "={{ $json.messagePayload }}",
+              "type": "string"
+            },
+            {
+              "id": "ea1ba22a-f67c-4d32-9c7b-ab1795b7d42e",
+              "name": "messageType",
+              "value": "={{ $json.type }}",
+              "type": "string"
+            },
+            {
+              "id": "813335d1-87a3-4f3b-89e7-27920b9157d0",
+              "name": "mediaId",
+              "value": "={{ $json.mediaId}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bf5df3af-6d44-4c2d-9a13-00949728813a",
+      "name": "Edit whatsapp fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1120,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a3d6dfd0-df47-4d73-8295-826395f930a4",
+              "name": "appId",
+              "value": "663bb50eee907e92c2d2f38f",
+              "type": "string"
+            },
+            {
+              "id": "5fbbd942-3b6f-4a8e-a611-f642c4c913d6",
+              "name": "subdomain",
+              "value": "padtecsupport1715188965",
+              "type": "string"
+            },
+            {
+              "id": "58300dd5-a883-4b34-ac89-2513cab85343",
+              "name": "name",
+              "value": "={{ $('Union Data').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "454d24e1-1efd-408c-a620-0ef70c6056b5",
+              "name": "time",
+              "value": "={{ $now.toUTC() }}",
+              "type": "string"
+            },
+            {
+              "id": "488677cb-e82e-46c9-8739-08d8bf0b7b62",
+              "name": "userId",
+              "value": "={{ $('Union Data').item.json.number }}_{{ $json.Id }}",
+              "type": "string"
+            },
+            {
+              "id": "701c9693-c3e6-4951-bff7-012e32fef491",
+              "name": "message",
+              "value": "={{ $('Union Data').item.json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "c550d5e5-b4ed-4efc-a811-60ce767c44d6",
+              "name": "isBot",
+              "value": "={{ $json.isBot }}",
+              "type": "boolean"
+            },
+            {
+              "id": "30fc1c40-39c7-4fa9-aa5a-62621c03e98c",
+              "name": "transferToHuman",
+              "value": "={{ $('Union Data').item.json.transferToHuman}}",
+              "type": "boolean"
+            },
+            {
+              "id": "c640ff85-2d7d-4039-90cb-987e1f7800f5",
+              "name": "messagePayload",
+              "value": "={{ $('Union Data').item.json.messagePayload }}",
+              "type": "string"
+            },
+            {
+              "id": "aa9c80b2-243a-410d-8250-4718a6a5ee7a",
+              "name": "messageType",
+              "value": "={{ $('Union Data').item.json.messageType }}",
+              "type": "string"
+            },
+            {
+              "id": "bf8806bb-d03a-4976-a382-3ecd99ee143b",
+              "name": "mediaId",
+              "value": "={{ $('Union Data').item.json.mediaId}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "bdb02d20-5ca5-4233-a24f-a9d6100a57e3",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1120,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d3db5f2b-f3da-4286-b2c5-5182713bf935",
+              "name": "Id",
+              "value": "={{ $json.Id }}",
+              "type": "number"
+            },
+            {
+              "id": "cceda498-833c-4dd6-95ac-9e11fead0425",
+              "name": "isBot",
+              "value": "={{ $json.isBot }}",
+              "type": "boolean"
+            },
+            {
+              "id": "5c3da872-6c3c-4db4-ba75-ba235f6a0f37",
+              "name": "number",
+              "value": "={{ $('If ConversationExist').item.json.number }}",
+              "type": "string"
+            },
+            {
+              "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
+              "name": "message",
+              "value": "=Preciso de atendimento",
+              "type": "string"
+            },
+            {
+              "id": "1a2907f8-80a6-4a61-9a92-0bc25f06f4c1",
+              "name": "name",
+              "value": "={{ $('Edit typebot fields').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "ca68aee8-5099-46f3-92e0-f60c8220e967",
+              "name": "transferToHuman",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "3d997090-8b6c-47ab-bc45-1cb872b289ce",
+              "name": "messagePayload",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "16a1e50a-9958-4539-9dad-64a8a2e5c8de",
+              "name": "messageType",
+              "value": "text",
+              "type": "string"
+            },
+            {
+              "id": "f69b0a80-c9e3-4ce0-a385-19647ef948e7",
+              "name": "mediaId",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9a887fa3-fca6-4b6c-87bb-d744c6f1adb7",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        2160,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "085eb716-5891-44af-a268-8344485512b3",
+              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "76d24ae8-dbd7-470f-a2a5-a37465693e91",
+              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "rightValue": "interactive",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "bc208b84-bcfc-4f08-9fe9-52aeebf58917",
+      "name": "If6",
+      "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1600,
+        1300,
         1240
       ]
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet type = $('Edit Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nlet content = {\n  type: type,\n  text: $('Edit Fields').item.json.message,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n}\nif (payload) {\n  try {\n        let parsed = JSON.parse(payload);\n        content.payload = parsed;\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $('Edit Fields').item.json.mediaId }}",
+        "requestOptions": {}
       },
-      "id": "9a3644af-176f-4f2e-bfe7-cf81503ff160",
-      "name": "Mount Media data",
+      "id": "1fc052d0-62d0-40ac-be9d-5eae82788adc",
+      "name": "Get Media",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        800,
+        1500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet mediaId = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  mediaId = $input.item.json.entry.changes[0].value.messages[0][type].id;\n  if($input.item.json.entry.changes[0].value.messages[0][type].caption) {\n    message = $input.item.json.entry.changes[0].value.messages[0][type].caption;\n  }\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  mediaId:mediaId,\n  messagePayload:messagePayload\n};"
+      },
+      "id": "e2467680-e908-40b0-994a-23cfd258345e",
+      "name": "Code1",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1620,
-        1460
+        740,
+        420
       ]
-    },
-    {
-      "parameters": {
-        "workflowId": "6y29VEQnSOgHKR3I",
-        "options": {}
-      },
-      "id": "7b2a5e73-4e99-4ed5-afc1-0ef46c7cf8cc",
-      "name": "Execute Workflow",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        -160,
-        560
-      ]
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "typebot_transfer_to_human",
-        "options": {}
-      },
-      "id": "abafc2f4-2096-4380-a4c3-5073408dd188",
-      "name": "Webhook transfer to human",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        1960,
-        340
-      ],
-      "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
     }
   ],
   "pinData": {},
@@ -3709,6 +3759,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-07-25T12:38:54.529Z",
-  "versionId": "5f1a4928-6c84-436c-9815-bddf0d8b2f5b"
+  "updatedAt": "2024-07-29T17:37:48.709Z",
+  "versionId": "02e0bc2c-c240-49f9-a4f5-88706f2c3af8"
 }
