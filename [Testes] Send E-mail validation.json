@@ -1,0 +1,393 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-31T18:15:27.913Z",
+  "id": "eSnaVwGKngj4qiPI",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[Testes] Send E-mail validation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "fd4aeebb-c9d7-4a73-a90a-663df45b4f03",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        520,
+        140
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let result = '';\nconst characters = '0123456789';\nconst charactersLength = characters.length;\nlet counter = 0;\nwhile (counter < 6) {\n  result += characters.charAt(Math.floor(Math.random() * charactersLength));\n  counter += 1;\n}\nreturn {\n  code: result,\n  email: $input.item.json.email\n}"
+      },
+      "id": "aba0793e-624b-4742-abf8-649ad257e427",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0dec694c-fd12-414b-ba16-74ccdcc89c28",
+              "name": "email",
+              "value": "mvsilva@padtec.com.br",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3205e82e-0144-4be6-aa12-39377316464a",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        780,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37060911-7e23-40c2-8fdf-ee139741ce3c",
+              "name": "validateCode",
+              "value": "={{ $('Code').item.json.code }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4a3fca55-4486-4079-b256-9eb41797a103",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1820,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "3f2d2fd3-9262-4fb6-a95b-bcfab1680795",
+              "leftValue": "={{ $json.accepted[0] }}",
+              "rightValue": "={{ $('Code').item.json.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7240f0d6-3cfd-47bf-b439-79ec79d377b6",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6f42da30-9409-4e9a-96fd-643f34a045f9",
+              "name": "error",
+              "value": "Error sending email",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "666f025b-edeb-438b-afdd-bead3b0d6a82",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1820,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0e607f89-2cc2-4ea0-8f96-62d36de11d7f",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2040,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-email-validation",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "d96fb87f-441c-4928-b251-7319c1714cca",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        520,
+        440
+      ],
+      "webhookId": "26a85ba6-55d6-498a-a8c1-4fd5ce24c81d"
+    },
+    {
+      "parameters": {
+        "fromEmail": "portal.clientes@padtec.com.br",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Codigo de Acesso",
+        "html": "=<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    \n    <link href=\"https://fonts.cdnfonts.com/css/dm-sans\" rel=\"stylesheet\">\n    <link href=\"https://fonts.cdnfonts.com/css/helvetica-neue-9\" rel=\"stylesheet\">\n\n</head>\n<body style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; background-color: #EAEAEA; color: #ffffff; height: 100%; hyphens: auto; line-height: 1.4; margin: 0; -moz-hyphens: auto; -ms-word-break: break-all; width: 100% !important; -webkit-hyphens: auto; -webkit-text-size-adjust: none; word-break: break-word;\">\n    <style>\n        @media only screen and (max-width: 600px) {\n            .inner-body {\n                width: 100% !important;\n            }\n\n            .footer {\n                width: 100% !important;\n            }\n        }\n\n        @media only screen and (max-width: 500px) {\n            .button {\n                width: 100% !important;\n            }\n        }\n        body {\n            background-color: #FFFFFF;\n            color: #0b0c0d;\n        }\n    </style>\n\n    <table class=\"wrapper\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; background-color: #EAEAEA; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;\">\n        <tr>\n            <td align=\"center\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box;\">\n                <table class=\"content\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;\">\n                    <tr>\n    <td class=\"header\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; color: #000000; padding: 25px 0; text-align: center;\">\n        <div style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; width: 250px; max-width: 250px;\">\n            <a href=\"\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; color: #000000; font-size: 19px; font-weight: bold; text-decoration: none;\">\n                <img src=\"https://portalclientes.padtec.com.br/media/images/Logo_Padtec/logo-padtec-preto.png\" width=\"250\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; border: none; width: 250px; max-width: 250px; -ms-interpolation-mode: bicubic; vertical-align: middle; height: auto;\">\n            </a>\n        </div>\n        <div style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box;\">\n            \n        </div>\n    </td>\n</tr>\n\n                    <!-- Email Body -->\n                    <tr>\n                        <td class=\"body\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; background-color: #FFFFFF; border-bottom: 1px solid #EDEFF2; border-top: 1px solid #EDEFF2; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;\">\n                            <table class=\"inner-body\" align=\"center\" width=\"570\" cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; background-color: #FFFFFF; margin: 0 auto; padding: 0; width: 650px; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 650px;\">\n                                <!-- Body content -->\n                                <tr>\n                                    <td class=\"content-cell\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; padding: 35px;\">\n                                        <h1 style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; color: #2F3133; font-size: 19px; font-weight: bold; margin-top: 0; text-align: left;\">Ola!</h1>\n<p style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\">Seu codigo de acesso:  {{ $json.code }}</p>\n<p style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;\">Atenciosamente,<br>Padtec</p>\n\n\n                                        \n                                    </td>\n                                </tr>\n                            </table>\n                        </td>\n                    </tr>\n\n                    <tr>\n    <td style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box;\">\n        <table class=\"footer\" align=\"center\" width=\"570\" cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; margin: 0 auto; padding: 0; text-align: center; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;\">\n            <tr>\n                <td class=\"content-cell\" align=\"center\" style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; padding: 35px;\">\n                      <p style=\"font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Roboto', '-apple-system', 'Arial', 'sans-serif'; box-sizing: border-box; line-height: 1.5em; margin-top: 0; color: #AEAEAE; font-size: 12px; text-align: center;\">© {{ $now.format('yyyy') }} Padtec. Todos os direitos reservados.</p>\n\n                </td>\n            </tr>\n        </table>\n    </td>\n</tr>\n                </table>\n            </td>\n        </tr>\n    </table>\n</body>\n</html>",
+        "options": {}
+      },
+      "id": "952968c6-4f6b-447f-ac8d-2770625c53cf",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        360
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "9zk4CEaLUllmOjp0",
+          "name": "SMTP account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d4cba147-c1ff-4934-b284-279b3d416665",
+              "name": "=email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bb6e56c3-1ecf-45da-b1c6-83d1ab47ac4c",
+      "name": "Edit Fields3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        740,
+        440
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-07-31T18:15:27.913Z",
+      "updatedAt": "2024-07-31T18:15:27.913Z",
+      "role": "workflow:owner",
+      "workflowId": "eSnaVwGKngj4qiPI",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-07-26T18:49:27.060Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "isOnboarded": true,
+                "userActivated": true,
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "npsSurvey": {
+                  "waitingForResponse": true,
+                  "ignoredCount": 1,
+                  "lastShownAt": 1722019764557
+                }
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-31T19:21:11.594Z",
+  "versionId": "16b0355a-df53-4072-93ef-91201fde6607"
+}
