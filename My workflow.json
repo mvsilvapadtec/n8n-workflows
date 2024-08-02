@@ -5,16 +5,49 @@
       "main": [
         [
           {
-            "node": "NocoDB",
+            "node": "AI Agent",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2024-07-25T19:39:12.087Z",
-  "id": "jmu8rGAQeyV5urzZ",
+  "createdAt": "2024-08-02T18:55:55.305Z",
+  "id": "hvFyir1ruM1ebYfg",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -22,39 +55,76 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "c99b7998-8544-4ab9-bd5e-53929400b52a",
+      "id": "cb7df28c-5cbb-4487-93ca-7553d8915cb8",
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        820,
-        360
+        500,
+        240
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
-        "authentication": "nocoDbApiToken",
-        "operation": "getAll",
-        "projectId": "pqrinh2l5ug82p8",
-        "table": "mvw1gvgqu5q9bpw",
-        "options": {
-          "where": "=(status,eq,open)"
-        }
+        "options": {}
       },
-      "id": "9cdb7a35-37cd-4b18-8e40-dda405363c77",
-      "name": "NocoDB",
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
+      "id": "6a07a349-0bd1-4393-99d4-fda481f2b8d5",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        440
+      ],
+      "webhookId": "5922226a-800b-4be3-9e99-81e7ef6389f7"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "3c55ea55-9d28-4389-975d-85a99c8a9c34",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
       "position": [
         1040,
-        360
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ebca1c76-13dd-46d2-91d9-bbdbdcc7cc35",
+      "name": "Groq Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        900,
+        520
       ],
       "credentials": {
-        "nocoDbApiToken": {
-          "id": "bWKV0Gq303SlKPDq",
-          "name": "NocoDB Token account"
+        "groqApi": {
+          "id": "AFsIeRiSXsZGVbDt",
+          "name": "Groq account"
         }
       }
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "Suponha que você é um analista de telecomunicações e sua função é tirar duvidas e auxiliar o usuario a resolver problemas relacionados equipamentos de telecomunicações. Você sempre é cordial e da resposta precisas e detalhadas. Ao iniciar uma conversa você deve se apresentar seu nome é PadBot e solicitar que o usuario informe sua duvida. Caso você não saiba a reposta ou não entenda a pergunta solicite mais detalhes, mas se percerber a intenção do usuario em falar com agente humano ou não conseguir mais ajudar o usuário responda \"Transferindo para humano\". Seu idioma principal é portugues do brasil (pt-br), mas você é poliglota e se perceber que o usuário está falando em outro idioma responda no mesmo idioma.",
+        "options": {}
+      },
+      "id": "afa5b08f-8641-40b8-a7c4-0204834155ff",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        900,
+        200
+      ]
     }
   ],
   "pinData": {},
@@ -63,10 +133,10 @@
   },
   "shared": [
     {
-      "createdAt": "2024-07-25T19:39:12.087Z",
-      "updatedAt": "2024-07-25T19:39:12.087Z",
+      "createdAt": "2024-08-02T18:55:55.305Z",
+      "updatedAt": "2024-08-02T18:55:55.305Z",
       "role": "workflow:owner",
-      "workflowId": "jmu8rGAQeyV5urzZ",
+      "workflowId": "hvFyir1ruM1ebYfg",
       "projectId": "BbalulLcG5rqgvFJ",
       "project": {
         "createdAt": "2024-06-10T18:18:03.245Z",
@@ -118,6 +188,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-07-26T18:49:52.529Z",
-  "versionId": "2f449e5b-9ff2-4269-a210-9141245d2269"
+  "updatedAt": "2024-08-02T18:55:55.305Z",
+  "versionId": "e17fb318-6cfd-4462-b63d-0679188c8200"
 }
