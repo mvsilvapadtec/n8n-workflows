@@ -258,6 +258,11 @@
             "node": "If need edit zendesk user",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -748,6 +753,11 @@
             "node": "[ZD] Send Sunshine Attach",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -864,6 +874,50 @@
         [
           {
             "node": "Edit whatsapp fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Mount Text Content1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Text Content1": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Send Sunshine Message1",
             "type": "main",
             "index": 0
           }
@@ -1201,7 +1255,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1860,
+        1880,
         1320
       ],
       "retryOnFail": true,
@@ -1639,7 +1693,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2040,
+        2080,
         1320
       ]
     },
@@ -3209,7 +3263,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1220,
+        1100,
         1500
       ],
       "credentials": {
@@ -3264,7 +3318,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1440,
+        1380,
         1500
       ],
       "retryOnFail": false,
@@ -3383,7 +3437,7 @@
       "typeVersion": 1,
       "position": [
         1680,
-        1620
+        1600
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3690,6 +3744,122 @@
         740,
         420
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "8dce6684-69d6-4acb-a27c-28a2dc86f060",
+              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "rightValue": "audio",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "09ca9fda-b058-43e8-8a1e-19867573694c",
+      "name": "If7",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        1680
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "09b4486b-2d37-4f95-af30-2fbfdfb7230a",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        1680,
+        1820
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "KiIhVxWq4cCTrUwb",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": 2
+      },
+      "id": "73e2bf38-d88e-4df1-8ff2-95d87fd9ffdf",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2000,
+        1680
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {{ $json.content }},\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "961b2e71-410d-4c19-bfcd-97306978a3f9",
+      "name": "[ZD] Send Sunshine Message1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2460,
+        1680
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let content = {\n  type: \"text\",\n  text: \"Trasncrição:\\n\"+$input.item.json.text\n}\n\nreturn {content: JSON.stringify(content)}"
+      },
+      "id": "d946c5fc-f7a7-48a7-96b1-39ce5a4920da",
+      "name": "Mount Text Content1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        1680
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {},
@@ -3720,7 +3890,7 @@
             "projectId": "BbalulLcG5rqgvFJ",
             "user": {
               "createdAt": "2024-05-31T19:30:31.891Z",
-              "updatedAt": "2024-07-26T18:49:27.060Z",
+              "updatedAt": "2024-08-08T16:46:15.990Z",
               "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
               "email": "mvsilva@padtec.com.br",
               "firstName": "MALCON VIVARELLI",
@@ -3736,9 +3906,8 @@
                 "userActivatedAt": 1721678428499,
                 "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
                 "npsSurvey": {
-                  "waitingForResponse": true,
-                  "ignoredCount": 1,
-                  "lastShownAt": 1722019764557
+                  "responded": true,
+                  "lastShownAt": 1723135580263
                 }
               },
               "role": "global:owner",
@@ -3759,6 +3928,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-07-29T17:37:48.709Z",
-  "versionId": "02e0bc2c-c240-49f9-a4f5-88706f2c3af8"
+  "updatedAt": "2024-08-08T17:15:21.521Z",
+  "versionId": "c492664d-ae63-4d4f-8711-64f47d4beb75"
 }
