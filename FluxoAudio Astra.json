@@ -1,0 +1,478 @@
+{
+  "active": false,
+  "connections": {
+    "Info Base": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Envia para o Flowise",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pega Base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia para o Flowise": {
+      "main": [
+        [
+          {
+            "node": "Envia para Evolution API o texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envia para o Flowise Audio": {
+      "main": [
+        [
+          {
+            "node": "Envia para Evolution API o Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pega Base64": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "GroqTranscreve",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GroqTranscreve": {
+      "main": [
+        [
+          {
+            "node": "Envia para o Flowise Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Info Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-08T16:35:13.959Z",
+  "id": "PGrNL3iDrfEzf8vR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "FluxoAudio Astra",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "66f1b455-0f91-4380-acb3-3d3c515b3513",
+              "name": "UrlEvo",
+              "value": "={{ $('Webhook').item.json[\"body\"][\"server_url\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "7e5476d8-9c66-4525-9e6c-c01182f0eaf3",
+              "name": "ApiKey",
+              "value": "={{ $('Webhook').item.json[\"body\"][\"apikey\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "cd42d461-5c60-4023-8602-d545009b4d55",
+              "name": "Estancia",
+              "value": "={{ $('Webhook').item.json[\"body\"][\"instance\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "1afba137-5b44-4ad9-9d90-364f7b5eba59",
+              "name": "UrlFlowise",
+              "value": "https://flowise.trecofantastico.com.br/api/v1/prediction/63f100eb-ca25-4cc7-b011-6d107dfef4f8",
+              "type": "string"
+            },
+            {
+              "id": "18339a2f-8a33-489e-9a78-2534d9d194fe",
+              "name": "ApiKeyGroq",
+              "value": "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",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "34e5e91b-a498-4c3b-a7e6-5c03cf2dfd6c",
+      "name": "Info Base",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json[\"body\"][\"data\"][\"messageType\"] }}",
+                    "rightValue": "conversation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "8af4d57e-018e-4f4f-aa0e-313a21a79cea",
+                    "leftValue": "={{ $('Webhook').item.json[\"body\"][\"data\"][\"messageType\"] }}",
+                    "rightValue": "audioMessage",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4dfa2e4a-3692-4263-825c-1238c44b6a55",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        220,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info Base').item.json[\"UrlFlowise\"] }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"question\": \"{{ $('Webhook').item.json[\"body\"][\"data\"][\"message\"][\"conversation\"] }}. Responda em Português do Brasil\",\n   \"overrideConfig\": {\n    \"sessionId\": \"{{ $('Webhook').item.json[\"body\"][\"data\"][\"key\"][\"remoteJid\"] }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "91825019-c5a8-4353-b0e7-76d5816be783",
+      "name": "Envia para o Flowise",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info Base').item.json[\"UrlEvo\"] }}/message/sendText/{{ $('Info Base').item.json[\"Estancia\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Info Base').item.json[\"ApiKey\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{ $('Webhook').item.json[\"body\"][\"data\"][\"key\"][\"remoteJid\"].replace(/[^0-9]/g, ''); }}\",\n    \"options\": {\n        \"delay\": 1200,\n        \"presence\": \"composing\",\n        \"linkPreview\": false\n    },\n    \"textMessage\": {\n        \"text\": \"{{ $('Envia para o Flowise').item.json[\"text\"].replace(/\\n/g,\"<br>\") }}\"\n    }\n}",
+        "options": {}
+      },
+      "id": "41022b77-0937-4e52-b96c-caaf2104d37c",
+      "name": "Envia para Evolution API o texto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info Base').item.json[\"UrlFlowise\"] }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"question\": \"{{ $('GroqTranscreve').item.json[\"text\"] }}. Responda em Português do Brasil\",\n   \"overrideConfig\": {\n    \"sessionId\": \"{{ $('Webhook').item.json[\"body\"][\"data\"][\"key\"][\"remoteJid\"] }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "d5090f97-7cba-4b61-bfcc-a50f33c6bfcb",
+      "name": "Envia para o Flowise Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1060,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Info Base').item.json[\"UrlEvo\"] }}/message/sendText/{{ $('Info Base').item.json[\"Estancia\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Info Base').item.json[\"ApiKey\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{ $('Webhook').item.json[\"body\"][\"data\"][\"key\"][\"remoteJid\"].replace(/[^0-9]/g, ''); }}\",\n    \"options\": {\n        \"delay\": 1200,\n        \"presence\": \"composing\",\n        \"linkPreview\": false\n    },\n    \"textMessage\": {\n        \"text\": \"{{ $('Envia para o Flowise Audio').item.json[\"text\"].replace(/\\n/g,\"<br>\") }}\"\n    }\n}",
+        "options": {}
+      },
+      "id": "67ba1e79-bd93-4446-93b7-7a520404ef84",
+      "name": "Envia para Evolution API o Audio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1260,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "base64",
+        "binaryPropertyName": "mp4",
+        "options": {
+          "fileName": "data.mp4"
+        }
+      },
+      "id": "4a97c673-9ee6-4336-9d27-8aae6ebfa7b2",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fb5f6e40-23b7-46ac-a01b-a538d68b01e7",
+              "name": "base64",
+              "value": "={{ $('Webhook').item.json[\"body\"][\"data\"][\"message\"][\"base64\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "17495cd4-7938-4ec6-9a95-aca25a2aded7",
+      "name": "Pega Base64",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/audio/transcriptions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=bearer {{ $('Info Base').item.json[\"ApiKeyGroq\"] }}"
+            },
+            {
+              "name": "Content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "whisper-large-v3"
+            },
+            {
+              "name": "temperature",
+              "value": "0.7"
+            },
+            {
+              "name": "response_format",
+              "value": "json"
+            },
+            {
+              "name": "language",
+              "value": "pt"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "mp4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "713275a0-8d7a-4f87-8c0b-24f46375d9cf",
+      "name": "GroqTranscreve",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        860,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "groq",
+        "options": {}
+      },
+      "id": "e91c9483-8d7d-4906-84d2-4a92ff3d2e24",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        580
+      ],
+      "webhookId": "218d2d4a-0f53-498f-b802-45dd6f999898"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-08-08T16:35:13.959Z",
+      "updatedAt": "2024-08-08T16:35:13.959Z",
+      "role": "workflow:owner",
+      "workflowId": "PGrNL3iDrfEzf8vR",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-08-08T16:46:15.990Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "isOnboarded": true,
+                "userActivated": true,
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "npsSurvey": {
+                  "responded": true,
+                  "lastShownAt": 1723135580263
+                }
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-08-08T16:35:13.959Z",
+  "versionId": "65be4897-353b-4174-ad33-09c6b3bf2c3e"
+}
