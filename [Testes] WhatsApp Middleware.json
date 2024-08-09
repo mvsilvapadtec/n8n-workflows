@@ -884,14 +884,14 @@
       "main": [
         [
           {
-            "node": "OpenAI",
+            "node": "GroqTranscreve",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "OpenAI": {
+    "GroqTranscreve": {
       "main": [
         [
           {
@@ -906,7 +906,7 @@
       "main": [
         [
           {
-            "node": "Mount Text Content1",
+            "node": "If8",
             "type": "main",
             "index": 0
           }
@@ -918,6 +918,17 @@
         [
           {
             "node": "[ZD] Send Sunshine Message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If8": {
+      "main": [
+        [
+          {
+            "node": "Mount Text Content1",
             "type": "main",
             "index": 0
           }
@@ -3802,20 +3813,6 @@
     },
     {
       "parameters": {
-        "mode": "chooseBranch",
-        "useDataOfInput": 2
-      },
-      "id": "73e2bf38-d88e-4df1-8ff2-95d87fd9ffdf",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        2000,
-        1680
-      ]
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
         "authentication": "genericCredentialType",
@@ -3834,7 +3831,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2460,
+        2680,
         1680
       ],
       "retryOnFail": true,
@@ -3848,6 +3845,74 @@
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/audio/transcriptions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "groqApi",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "whisper-large-v3"
+            },
+            {
+              "name": "temperature",
+              "value": "0.7"
+            },
+            {
+              "name": "response_format",
+              "value": "json"
+            },
+            {
+              "name": "language",
+              "value": "pt"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6288bafc-06d3-4401-b214-5d81fcec07f8",
+      "name": "GroqTranscreve",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        2020
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 1500,
+      "credentials": {
+        "groqApi": {
+          "id": "AFsIeRiSXsZGVbDt",
+          "name": "Groq account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": 2
+      },
+      "id": "73e2bf38-d88e-4df1-8ff2-95d87fd9ffdf",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2000,
+        1680
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "let content = {\n  type: \"text\",\n  text: \"Trasncrição:\\n\"+$input.item.json.text\n}\n\nreturn {content: JSON.stringify(content)}"
       },
@@ -3856,10 +3921,43 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2240,
+        2460,
         1680
       ],
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "5a39d610-a354-4db1-bc03-15ebd956df82",
+              "leftValue": "={{ $input.item.json.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f040492f-99c1-4e27-b79d-b269e549550f",
+      "name": "If8",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2220,
+        1680
+      ]
     }
   ],
   "pinData": {},
@@ -3928,6 +4026,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-08T17:15:21.521Z",
-  "versionId": "c492664d-ae63-4d4f-8711-64f47d4beb75"
+  "updatedAt": "2024-08-09T16:03:37.380Z",
+  "versionId": "4fc24c9a-b8a9-4dc6-b568-75f70b45206d"
 }
