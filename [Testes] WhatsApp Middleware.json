@@ -204,7 +204,7 @@
       "main": [
         [
           {
-            "node": "Send Request to webhook Typebot",
+            "node": "If9",
             "type": "main",
             "index": 0
           }
@@ -934,6 +934,24 @@
           }
         ]
       ]
+    },
+    "If9": {
+      "main": [
+        [
+          {
+            "node": "Send Request to webhook Typebot",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Response message type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-06-05T16:24:28.849Z",
@@ -1266,7 +1284,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1880,
+        2100,
         1320
       ],
       "retryOnFail": true,
@@ -1545,7 +1563,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1540,
+        1520,
         340
       ]
     },
@@ -1589,7 +1607,7 @@
       "typeVersion": 3,
       "position": [
         1940,
-        580
+        720
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -1628,7 +1646,7 @@
       "typeVersion": 2,
       "position": [
         1720,
-        580
+        720
       ]
     },
     {
@@ -1704,7 +1722,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2080,
+        2300,
         1320
       ]
     },
@@ -1747,7 +1765,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        3060,
+        3280,
         1340
       ]
     },
@@ -1930,8 +1948,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1760,
-        340
+        2400,
+        260
       ],
       "retryOnFail": true
     },
@@ -2031,7 +2049,7 @@
       "typeVersion": 3,
       "position": [
         1500,
-        580
+        720
       ],
       "retryOnFail": false,
       "alwaysOutputData": true,
@@ -2097,8 +2115,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        2160,
-        340
+        2340,
+        780
       ]
     },
     {
@@ -2121,7 +2139,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3260,
+        3480,
         1340
       ],
       "credentials": {
@@ -2405,7 +2423,7 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2480,
+        2700,
         1260
       ],
       "alwaysOutputData": true,
@@ -2432,7 +2450,7 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2860,
+        3080,
         1260
       ],
       "credentials": {
@@ -2486,7 +2504,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2660,
+        2880,
         1260
       ]
     },
@@ -2506,7 +2524,7 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2860,
+        3080,
         1420
       ],
       "credentials": {
@@ -2519,8 +2537,8 @@
     {
       "parameters": {
         "content": "## Typebot Flow",
-        "height": 594.1881557554774,
-        "width": 930.2269115266292
+        "height": 755.7815407767345,
+        "width": 1145.6847582216387
       },
       "id": "573e3185-4084-4690-87f8-579cad8caff1",
       "name": "Sticky Note6",
@@ -3208,7 +3226,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1600,
+        1820,
         1240
       ]
     },
@@ -3222,7 +3240,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1680,
+        1900,
         1420
       ]
     },
@@ -3251,8 +3269,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        1960,
-        340
+        2340,
+        580
       ],
       "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
     },
@@ -3386,7 +3404,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2280,
+        2500,
         1260
       ],
       "alwaysOutputData": false,
@@ -3447,7 +3465,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1680,
+        1900,
         1600
       ],
       "credentials": {
@@ -3673,8 +3691,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        2160,
-        580
+        2140,
+        720
       ]
     },
     {
@@ -3831,7 +3849,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2680,
+        2900,
         1680
       ],
       "retryOnFail": true,
@@ -3883,7 +3901,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1680,
+        1900,
         2020
       ],
       "retryOnFail": true,
@@ -3906,7 +3924,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        2000,
+        2220,
         1680
       ],
       "onError": "continueRegularOutput"
@@ -3921,7 +3939,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2460,
+        2680,
         1680
       ],
       "onError": "continueRegularOutput"
@@ -3955,8 +3973,51 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2220,
+        2440,
         1680
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "4575961f-a1b3-49f3-8b99-1ed34c323a6e",
+              "leftValue": "={{ $json.messageType }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "2d82f8db-7c78-4ec5-82f7-930a7bb91f35",
+              "leftValue": "={{ $json.messageType }}",
+              "rightValue": "interactive",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "4e99e1da-eb10-432d-aa26-2d00080b5d37",
+      "name": "If9",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        240
       ]
     }
   ],
@@ -4026,6 +4087,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-09T16:03:37.380Z",
-  "versionId": "4fc24c9a-b8a9-4dc6-b568-75f70b45206d"
+  "updatedAt": "2024-08-14T13:04:31.033Z",
+  "versionId": "9e7bb2aa-9355-4f4c-bb23-815b8cc2de77"
 }
