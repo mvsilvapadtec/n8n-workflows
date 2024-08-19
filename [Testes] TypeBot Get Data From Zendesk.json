@@ -842,7 +842,8 @@
         "name": "={{ $json.name }}",
         "additionalFields": {
           "email": "={{ $json.email }}",
-          "phone": "=+{{ $json.number }}"
+          "phone": "=+{{ $json.number }}",
+          "role": "end-user"
         }
       },
       "id": "fc919fd7-d6d8-4f1e-b1a1-fea19106b4a4",
@@ -1444,6 +1445,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-07-29T20:36:39.171Z",
-  "versionId": "8e458cb6-8ced-4280-8593-5224292c4a7c"
+  "updatedAt": "2024-08-19T16:59:50.831Z",
+  "versionId": "ac532c14-1a1c-4cf6-9902-f2fcb3619d33"
 }
