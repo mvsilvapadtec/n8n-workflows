@@ -164,24 +164,6 @@
         ]
       ]
     },
-    "Switch2": {
-      "main": [
-        [
-          {
-            "node": "If Actions Exist",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Prepare Message to send1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Prepare Message to send": {
       "main": [
         [
@@ -198,6 +180,24 @@
         [
           {
             "node": "WhatsApp Send Message w/action1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "If Actions Exist",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare Message to send1",
             "type": "main",
             "index": 0
           }
@@ -865,66 +865,8 @@
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "16733111-c67e-4a01-b5d6-0d658072d136",
-                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notEquals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "4c7a1d58-e9c4-49c4-ad1c-504275d5442f",
-      "name": "Switch2",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        4840,
-        2520
-      ]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "const message = $('Edit Sunshine Message').item.json.content.text\nconst scActions = $('Edit Sunshine Message').item.json.actions\nconst number = $json.number\nlet buttons = []\nfor (let scAction of scActions) {\n  let button = {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": scAction.payload,\n            \"title\": scAction.text\n          }\n        }\n  buttons.push(button)\n}\n\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    \"action\": {\n      \"buttons\": buttons\n    }\n  }\n}"
+        "jsCode": "let message = $('Edit Sunshine Message').item.json.content.text\nconst scActions = $('Edit Sunshine Message').item.json.actions\n\nconst number = $json.number\nlet buttons = []\nlet ticketId = \"\"\nfor (let scAction of scActions) {\n  let button = {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": scAction.payload,\n            \"title\": scAction.text\n          }\n        }\n  if(scAction.metadata && scAction.metadata.ticket_id) {\n    ticketId = scAction.metadata.ticket_id\n  }\n  buttons.push(button)\n}\nif(message == \"Como foi a sua experiência de chat?\" ) {\n  if(ticketId && ticketId != \"\") {\n    message = \"Como foi sua experiência com o chamado \" + ticketId + \"?\"\n  }\n}\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    \"action\": {\n      \"buttons\": buttons\n    }\n  }\n}"
       },
       "id": "a60439d5-9edd-4b94-95ff-0d2f5040d528",
       "name": "Prepare Message to send",
@@ -1000,6 +942,64 @@
           "name": "WhatsApp Test account"
         }
       }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "16733111-c67e-4a01-b5d6-0d658072d136",
+                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4c7a1d58-e9c4-49c4-ad1c-504275d5442f",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        4840,
+        2520
+      ]
     }
   ],
   "pinData": {},
@@ -1062,6 +1062,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-07-29T13:12:29.515Z",
-  "versionId": "a5149c83-c59e-48aa-8534-be647a432a95"
+  "updatedAt": "2024-08-19T20:34:50.759Z",
+  "versionId": "02f1a16f-14c0-4dc5-be0c-9a8a495aa0f9"
 }
