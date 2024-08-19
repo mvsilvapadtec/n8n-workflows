@@ -311,7 +311,7 @@
       "main": [
         [
           {
-            "node": "[ZD] Transfer to Zendesk",
+            "node": "Code2",
             "type": "main",
             "index": 0
           }
@@ -952,6 +952,17 @@
           }
         ]
       ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Transfer to Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-06-05T16:24:28.849Z",
@@ -1056,7 +1067,7 @@
       "parameters": {
         "content": "## Zendesk Flow",
         "height": 1336.5650189625526,
-        "width": 3159.7460747101704
+        "width": 3542.8140372982675
       },
       "id": "a805c862-de4c-4f4f-a68a-085225da2bd7",
       "name": "Sticky Note3",
@@ -2126,8 +2137,18 @@
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n    \"switchboardIntegration\": \"next\",\n    \"metadata\": {\n        \"dataCapture.ticketField.26566051644045\": \"{{ $('Edit typebot fields').item.json.typeOfService }}\",\n        \"dataCapture.ticketField.26566078957453\": \"{{ $('Edit typebot fields').item.json.description }}\",\n        \"dataCapture.ticketField.26566119129613\": \"ticket_field_canal_atendimento_whatsapp\",\n        {{ $('Edit typebot fields').item.json.selectedOrganization ? '\"dataCapture.systemField.organization_id\": \"'+ $('Edit typebot fields').item.json.selectedOrganization + '\",' : ''}}\n        \"dataCapture.systemField.tags\": \"opened_by_integration_message\",\n        \"first_message_id\": \"{{ $('[ZD] Send Sunshine Message').item.json[\"messages\"][\"0\"][\"id\"] }}\"\n    }\n}",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "switchboardIntegration",
+              "value": "next"
+            },
+            {
+              "name": "metadata",
+              "value": "={{ $json.metadata }}"
+            }
+          ]
+        },
         "options": {
           "redirect": {
             "redirect": {}
@@ -2139,8 +2160,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3480,
-        1340
+        3700,
+        1320
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -3013,7 +3034,7 @@
           "fieldValues": [
             {
               "fieldName": "number",
-              "fieldValue": "={{ $json.number }}"
+              "fieldValue": "={{ $('Edit Fields').item.json.number }}"
             }
           ]
         }
@@ -4019,6 +4040,20 @@
         1740,
         240
       ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nconst data = {\n  \"dataCapture.ticketField.26566051644045\": $('Edit typebot fields').item.json.typeOfService,\n  \"dataCapture.ticketField.26566078957453\": $('Edit typebot fields').item.json.description,\n  \"dataCapture.ticketField.26566119129613\": \"ticket_field_canal_atendimento_whatsapp\",\n  \"dataCapture.systemField.tags\": \"opened_by_integration_message\",\n  \"first_message_id\": $('[ZD] Send Sunshine Message').item.json[\"messages\"][\"0\"][\"id\"]\n}\nif($('Edit typebot fields').item.json.selectedOrganization) {\n  data[\"dataCapture.systemField.organization_id\"] = $('Edit typebot fields').item.json.selectedOrganization\n}\nreturn {metadata: data};"
+      },
+      "id": "de4bd6ac-ca84-4483-8199-d8f9a1056a1d",
+      "name": "Code2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        1340
+      ]
     }
   ],
   "pinData": {},
@@ -4087,6 +4122,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-14T13:04:31.033Z",
-  "versionId": "9e7bb2aa-9355-4f4c-bb23-815b8cc2de77"
+  "updatedAt": "2024-08-19T20:10:41.049Z",
+  "versionId": "79cfa483-f61f-4fa3-b72a-0478d4df795f"
 }
