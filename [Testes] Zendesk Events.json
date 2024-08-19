@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Get Conversation by noco id",
+            "node": "If2",
             "type": "main",
             "index": 0
           }
@@ -114,6 +114,17 @@
         [
           {
             "node": "Close conversation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation by noco id",
             "type": "main",
             "index": 0
           }
@@ -209,7 +220,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1060,
+        1280,
         540
       ],
       "retryOnFail": false,
@@ -245,7 +256,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1460,
+        1680,
         640
       ],
       "retryOnFail": true,
@@ -262,7 +273,7 @@
       "parameters": {
         "content": "## Zendes Flow\n",
         "height": 858.024528085766,
-        "width": 1853.3609424452043
+        "width": 2215.9546486475665
       },
       "id": "28b762cf-78e2-4ec3-84be-3112f288702c",
       "name": "Sticky Note5",
@@ -298,7 +309,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        680,
+        580,
         540
       ],
       "credentials": {
@@ -317,7 +328,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        880,
+        760,
         540
       ]
     },
@@ -339,11 +350,12 @@
             "ticket.organization.name",
             "ticket.tags",
             "ticket.account",
-            "ticket.ticket_field_26566119129613"
+            "ticket.ticket_field_26566119129613",
+            "ticket.assignee.name"
           ]
         },
         "conditions": {
-          "any": [
+          "all": [
             {
               "operation": "changed"
             }
@@ -414,7 +426,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        0,
+        40,
         540
       ]
     },
@@ -535,7 +547,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1240,
+        1460,
         540
       ]
     },
@@ -699,14 +711,15 @@
         "textBody": "=Foi aberto o Ticket {{ $('EditTicketFields').item.json.ticketId }}!",
         "additionalFields": {
           "previewUrl": false
-        }
+        },
+        "requestOptions": {}
       },
       "id": "58fbe2c6-eabe-4745-bc52-13bc87eeaabb",
       "name": "WhatsApp Business Cloud",
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        460,
+        640,
         700
       ],
       "credentials": {
@@ -724,7 +737,8 @@
         "textBody": "=O Ticket {{ $('EditTicketFields').item.json.ticketId }} fechado!",
         "additionalFields": {
           "previewUrl": false
-        }
+        },
+        "requestOptions": {}
       },
       "id": "60f1608f-b270-43f0-bf29-02774e224194",
       "name": "WhatsApp Business Cloud1",
@@ -749,7 +763,8 @@
         "textBody": "=O Ticket {{ $('EditTicketFields').item.json.ticketId }} foi resolvido!",
         "additionalFields": {
           "previewUrl": false
-        }
+        },
+        "requestOptions": {}
       },
       "id": "845b2421-0e5b-4250-a837-32af16d9215d",
       "name": "WhatsApp Business Cloud2",
@@ -765,6 +780,39 @@
           "name": "WhatsApp Test account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "56dab342-82d6-4b87-8a42-37415f6ee271",
+              "leftValue": "={{ $json.conversationId }})",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "64505c99-cbad-4a85-bbbe-70f2cd599aaa",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        980,
+        540
+      ]
     }
   ],
   "pinData": {},
@@ -826,12 +874,12 @@
   ],
   "staticData": {
     "node:Zendesk Trigger": {
-      "webhookId": 28642541998221,
-      "targetId": "01J3FTF25ZM98TKH66PTMVA5RD"
+      "webhookId": 29404034048013,
+      "targetId": "01J5P3MWHWRK2MVPPP7FCJPKDR"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-07-23T12:53:36.514Z",
-  "versionId": "c60cb289-702b-48cf-acd2-6221e099ca2c"
+  "updatedAt": "2024-08-19T20:00:54.769Z",
+  "versionId": "eeb71839-3fc8-4a8e-bea0-94a7f13417c9"
 }
