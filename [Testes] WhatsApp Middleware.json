@@ -3247,7 +3247,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1820,
+        1900,
         1240
       ]
     },
@@ -3670,7 +3670,7 @@
             {
               "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
               "name": "message",
-              "value": "=Preciso de atendimento",
+              "value": "=Preciso de atendimento.\nDescrição: {{ $('Edit typebot fields').item.json.description }} ",
               "type": "string"
             },
             {
@@ -4122,6 +4122,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-19T20:10:41.049Z",
-  "versionId": "79cfa483-f61f-4fa3-b72a-0478d4df795f"
+  "updatedAt": "2024-08-20T20:32:20.924Z",
+  "versionId": "b876263b-7688-442a-9167-29f8bc397c1e"
 }
