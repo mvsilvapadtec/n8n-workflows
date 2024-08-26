@@ -2141,7 +2141,7 @@
           "parameters": [
             {
               "name": "switchboardIntegration",
-              "value": "next"
+              "value": "zd-agentWorkspace"
             },
             {
               "name": "metadata",
@@ -4122,6 +4122,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-20T20:32:20.924Z",
-  "versionId": "b876263b-7688-442a-9167-29f8bc397c1e"
+  "updatedAt": "2024-08-26T19:41:25.308Z",
+  "versionId": "2e280e57-16d1-4496-aec8-dcffddc2cd55"
 }
