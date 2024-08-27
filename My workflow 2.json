@@ -5,7 +5,18 @@
       "main": [
         [
           {
-            "node": "Browserless",
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -33,29 +44,58 @@
     },
     {
       "parameters": {
-        "url": "https://www.pichau.com.br/gabinete-gamer-aigo-darkflash-dqx90-rgb-mid-tower-lateral-de-vidro-com-4-fans-branco-dqx90-fan-wh?gad_source=1&gclid=CjwKCAjwoJa2BhBPEiwA0l0ImM9ujqr0qpcQaaDptRhtX3eKCVkD2Cpv5o-AoRhUqvJM5BFbCvuYARoCwSkQAvD_BwE",
-        "browserOptions": {
-          "blockAds": true,
-          "headless": false,
-          "ignoreHTTPSErrors": true,
-          "stealth": true
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bb4b20ce-840e-4a46-9136-a4353b1d275e",
+              "name": "lastContact",
+              "value": "={{ $now.minus(6, 'minutes') }}",
+              "type": "string"
+            }
+          ]
         },
-        "addition": {}
+        "options": {}
       },
-      "id": "c1706135-5c78-4cfc-838d-a1bb42d037dd",
-      "name": "Browserless",
-      "type": "n8n-nodes-browserless.Browserless",
-      "typeVersion": 1,
+      "id": "cea5c69c-134a-48d7-8c08-2a631ae1b699",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
         1040,
         360
-      ],
-      "credentials": {
-        "browserlessApi": {
-          "id": "PBLL6EMTUDAi2lSH",
-          "name": "Browserless Credentials account"
-        }
-      }
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "4d0e2b85-b9a9-423b-be22-a18756fcc6bf",
+              "leftValue": "={{DateTime.fromISO($json.lastContact).diff(DateTime.fromISO($now), 'minutes').toObject().minutes}}",
+              "rightValue": -5,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "27298298-24c4-4555-a49b-72be50399b66",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        360
+      ]
     }
   ],
   "pinData": {},
@@ -118,6 +158,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-08-21T17:02:22.663Z",
-  "versionId": "478a14f2-195a-4092-8eee-260106bb90c2"
+  "updatedAt": "2024-08-27T18:18:49.899Z",
+  "versionId": "aa104b3a-10fe-4888-b3f9-2f601a5ef481"
 }
