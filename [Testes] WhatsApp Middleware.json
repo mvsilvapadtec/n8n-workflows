@@ -626,24 +626,6 @@
         ]
       ]
     },
-    "SW Conversation": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Create Conversation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get Contact": {
       "main": [
         [
@@ -963,6 +945,24 @@
           }
         ]
       ]
+    },
+    "SW Conversation": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-06-05T16:24:28.849Z",
@@ -998,7 +998,7 @@
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        380,
+        360,
         200
       ],
       "typeVersion": 1
@@ -1979,6 +1979,10 @@
             {
               "fieldName": "isBot",
               "fieldValue": "true"
+            },
+            {
+              "fieldName": "lastContact",
+              "fieldValue": "={{ $now }}"
             }
           ]
         }
@@ -2929,66 +2933,6 @@
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $json.Id }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "number",
-                      "operation": "exists",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
-                    "leftValue": "={{ $json.Id }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "number",
-                      "operation": "notExists",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "caf9b38c-c631-4dcf-b9b7-df988aca7a00",
-      "name": "SW Conversation",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        820,
-        720
-      ]
-    },
-    {
-      "parameters": {
         "authentication": "nocoDbApiToken",
         "operation": "getAll",
         "projectId": "pqrinh2l5ug82p8",
@@ -3151,8 +3095,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1400,
-        1000
+        1500,
+        1020
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -3630,6 +3574,12 @@
               "name": "mediaId",
               "value": "={{ $('Union Data').item.json.mediaId}}",
               "type": "string"
+            },
+            {
+              "id": "62507b21-74e7-4cde-a4b7-118dbe849eb3",
+              "name": "lastContact",
+              "value": "={{ $json.lastContact }}",
+              "type": "string"
             }
           ]
         },
@@ -4054,6 +4004,66 @@
         3520,
         1340
       ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "caf9b38c-c631-4dcf-b9b7-df988aca7a00",
+      "name": "SW Conversation",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        820,
+        720
+      ]
     }
   ],
   "pinData": {},
@@ -4122,6 +4132,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-26T19:41:25.308Z",
-  "versionId": "2e280e57-16d1-4496-aec8-dcffddc2cd55"
+  "updatedAt": "2024-08-27T18:32:55.501Z",
+  "versionId": "fe652d7f-cc08-4052-b538-ec949ef8ae75"
 }
