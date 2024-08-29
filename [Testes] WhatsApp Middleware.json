@@ -1374,7 +1374,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -800,
+        -760,
         1640
       ]
     },
@@ -1392,8 +1392,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -740,
-        1460
+        -760,
+        1380
       ]
     },
     {
@@ -1841,7 +1841,7 @@
       "typeVersion": 3,
       "position": [
         -540,
-        1640
+        1800
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -4132,6 +4132,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-27T18:32:55.501Z",
-  "versionId": "fe652d7f-cc08-4052-b538-ec949ef8ae75"
+  "updatedAt": "2024-08-29T18:03:00.962Z",
+  "versionId": "a31076aa-bde9-4f4d-8540-301460309ca6"
 }
