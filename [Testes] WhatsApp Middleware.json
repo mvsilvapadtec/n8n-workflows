@@ -131,29 +131,7 @@
             "index": 0
           },
           {
-            "node": "Split Out",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split Out": {
-      "main": [
-        [
-          {
-            "node": "Split Out1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split Out1": {
-      "main": [
-        [
-          {
-            "node": "Code",
+            "node": "Mount Message",
             "type": "main",
             "index": 0
           }
@@ -164,7 +142,7 @@
       "main": [
         [
           {
-            "node": "Split Out",
+            "node": "Mount Message",
             "type": "main",
             "index": 0
           }
@@ -278,17 +256,6 @@
         ]
       ]
     },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "WhatsApp Business Cloud",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If need edit zendesk user": {
       "main": [
         [
@@ -360,7 +327,7 @@
       "main": [
         [
           {
-            "node": "SW Conversation",
+            "node": "Get Conversation",
             "type": "main",
             "index": 0
           }
@@ -921,7 +888,7 @@
       "main": [
         [
           {
-            "node": "Send Request to webhook Typebot",
+            "node": "Prepare TypeBot Fields",
             "type": "main",
             "index": 0
           }
@@ -958,6 +925,60 @@
         [
           {
             "node": "Create Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Message": {
+      "main": [
+        [
+          {
+            "node": "Split Out3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out3": {
+      "main": [
+        [
+          {
+            "node": "Prepare Message to send",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save transcript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare TypeBot Fields": {
+      "main": [
+        [
+          {
+            "node": "Save transcript",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If sessionId typebot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message to send": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Send Message w/action",
             "type": "main",
             "index": 0
           }
@@ -1082,15 +1103,15 @@
       "parameters": {
         "content": "## Typebot Flow Custom",
         "height": 751.8889417572652,
-        "width": 928.7384003801376
+        "width": 1892.7415668923031
       },
       "id": "36856954-040a-46d4-b0a4-1e353ecb2b55",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1000,
-        1300
+        1435.5167300255362,
+        -640
       ]
     },
     {
@@ -1363,10 +1384,10 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://bot.mvsdevs.uk/api/v1/typebots/teste2bot/startChat",
+        "url": "https://bot.mvsdevs.uk/api/v1/typebots/atendimento-noc-api-3dwi1s8/startChat",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"message\": \"{{ $json.message }}\",\n  \"isStreamEnabled\": false,\n  \"resultId\": \"\",\n  \"isOnlyRegistering\": false,\n  \"prefilledVariables\": {\n    \"number\": \"{{ $json.number }}\",\n    \"pushName\": \"{{ $json.name }}\"\n  },\n  \"textBubbleContentFormat\": \"richText\"\n}",
+        "jsonBody": "={\n  \"message\": \"{{ $json.message }}\",\n  \"isStreamEnabled\": false,\n  \"resultId\": \"\",\n  \"isOnlyRegistering\": false,\n  \"prefilledVariables\": {\n    \"apiNumber\": \"{{ $json.number }}\",\n    \"apiPushName\": \"{{ $json.name }}\"\n  },\n  \"textBubbleContentFormat\": \"richText\"\n}",
         "options": {}
       },
       "id": "105c2c1b-7aad-4eaf-b998-847adb7a3cda",
@@ -1374,8 +1395,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -760,
-        1640
+        2080,
+        -300
       ]
     },
     {
@@ -1392,63 +1413,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -760,
-        1380
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "331922393331203",
-        "recipientPhoneNumber": "={{ $('Edit Fields').item.json.number }}",
-        "textBody": "={{ $json.text }}",
-        "additionalFields": {
-          "previewUrl": false
-        },
-        "requestOptions": {}
-      },
-      "id": "5fb71eb2-989a-45f4-a841-fbc720f1b380",
-      "name": "WhatsApp Business Cloud",
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        -260,
-        1580
-      ],
-      "credentials": {
-        "whatsAppApi": {
-          "id": "CvLeuIxEieMjL8Of",
-          "name": "WhatsApp Test account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "messages",
-        "include": "=",
-        "options": {}
-      },
-      "id": "886ac114-2faa-4d86-ab89-7e93df5f7faa",
-      "name": "Split Out",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        -540,
-        1380
-      ]
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "messages.content.richText",
-        "options": {}
-      },
-      "id": "60cb9647-021d-4ecd-8c48-0c8d447ff053",
-      "name": "Split Out1",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        -300,
-        1360
+        2040,
+        -560
       ]
     },
     {
@@ -1531,8 +1497,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -960,
-        1460
+        1760,
+        -540
       ]
     },
     {
@@ -1669,20 +1635,6 @@
       "position": [
         1120,
         1240
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "function applyFormatting(element) {\nconsole.log(element)\n  let text = '';\n\n  if (element.text) {\n    text += element.text;\n  }\n\n  if (element.children && element.type !== 'a') {\n    for (const child of element.children) {\n      text += applyFormatting(child);\n    }\n  }\n\n  if (element.type === 'p' && element.type !== 'inline-variable') {\n    text = text.trim() + '\\n';\n  }\n\n  if (element.type === 'inline-variable') {\n    text = text.trim();\n  }\n\nconsole.log(text)\n  if (element.type === 'ol') {\n    text =\n      '\\n' +\n      text\n        .split('\\n')\n        .map((line, index) => (line ? `${index + 1}. ${line}` : ''))\n        .join('\\n');\n  }\n\n  if (element.type === 'li') {\n    text = text\n      .split('\\n')\n      .map((line) => (line ? `  ${line}` : ''))\n      .join('\\n');\n  }\n\n  let formats = '';\n\n  if (element.bold) {\n    formats += '*';\n  }\n\n  if (element.italic) {\n    formats += '_';\n  }\n\n  if (element.underline) {\n    formats += '~';\n  }\n\n  let formattedText = `${formats}${text}${formats.split('').reverse().join('')}`;\n\n  if (element.url) {\n    formattedText = element.children[0]?.text ? `[${formattedText}]\\n(${element.url})` : `${element.url}`;\n  }\n\nconsole.log(formattedText)\n  return formattedText;\n}\n\nlet formattedText = '';\nfor (const element of $json.children) {\n  formattedText += applyFormatting(element);\n}\nformattedText += '\\n';\nreturn { text: formattedText}"
-      },
-      "id": "a5b6cff6-d0f2-46f3-8dfb-5d4a4a40e0db",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -320,
-        1760
       ]
     },
     {
@@ -1840,8 +1792,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        -540,
-        1800
+        2320,
+        -300
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -3403,7 +3355,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        660,
+        700,
         2000
       ],
       "alwaysOutputData": false,
@@ -3580,6 +3532,12 @@
               "name": "lastContact",
               "value": "={{ $json.lastContact }}",
               "type": "string"
+            },
+            {
+              "id": "5d76798f-a8eb-4132-83ed-45382eb2e389",
+              "name": "phoneNumberId",
+              "value": "={{ $('Union Data').item.json.phoneNumberId}}",
+              "type": "string"
             }
           ]
         },
@@ -3650,6 +3608,12 @@
             {
               "id": "f69b0a80-c9e3-4ce0-a385-19647ef948e7",
               "name": "mediaId",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "bd3417c0-7fbf-4b02-986b-ca97257b5589",
+              "name": "phoneNumberId",
               "value": "",
               "type": "string"
             }
@@ -3734,7 +3698,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet mediaId = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  mediaId = $input.item.json.entry.changes[0].value.messages[0][type].id;\n  if($input.item.json.entry.changes[0].value.messages[0][type].caption) {\n    message = $input.item.json.entry.changes[0].value.messages[0][type].caption;\n  }\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  mediaId:mediaId,\n  messagePayload:messagePayload\n};"
+        "jsCode": "\nconst type = $input.item.json.entry.changes[0].value.messages[0].type;\nconst from = $input.item.json.entry.changes[0].value.messages[0].from;\nconst phoneNumberId = $input.item.json.entry.changes[0].value.metadata.phone_number_id;\nconst name = $input.item.json.entry.changes[0].value.contacts[0].profile.name\nlet message = \"\";\nlet mediaId = \"\";\nlet messagePayload = \"\";\nif(type == \"text\") {\n  message =  $input.item.json.entry.changes[0].value.messages[0].text.body\n} else if (type == \"interactive\"){\n  message =  $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.title\n  messagePayload = $input.item.json.entry.changes[0].value.messages[0].interactive.button_reply.id\n} else if($input.item.json.entry.changes[0].value.messages[0][type] && $input.item.json.entry.changes[0].value.messages[0][type].id) {\n  mediaId = $input.item.json.entry.changes[0].value.messages[0][type].id;\n  if($input.item.json.entry.changes[0].value.messages[0][type].caption) {\n    message = $input.item.json.entry.changes[0].value.messages[0][type].caption;\n  }\n}\nreturn {\n  type:type,\n  from:from,\n  name:name,\n  message:message,\n  mediaId:mediaId,\n  messagePayload:messagePayload,\n  phoneNumberId: phoneNumberId\n};"
       },
       "id": "e2467680-e908-40b0-994a-23cfd258345e",
       "name": "Code1",
@@ -4064,6 +4028,166 @@
         820,
         720
       ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function applyFormatting(element) {\n  let text = '';\n\n  if (element.text) {\n    text += element.text;\n  }\n\n  if (element.children && element.type !== 'a') {\n    for (const child of element.children) {\n      text += applyFormatting(child);\n    }\n  }\n\n  if (element.type === 'p' && element.type !== 'inline-variable') {\n    text = text.trim() + '\\n';\n  }\n\n  if (element.type === 'inline-variable') {\n    text = text.trim();\n  }\n\n  if (element.type === 'ol') {\n    text =\n      '\\n' +\n      text\n        .split('\\n')\n        .map((line, index) => (line ? `${index + 1}. ${line}` : ''))\n        .join('\\n');\n  }\n\n  if (element.type === 'li') {\n    text = text\n      .split('\\n')\n      .map((line) => (line ? `  ${line}` : ''))\n      .join('\\n');\n  }\n\n  let formats = '';\n\n  if (element.bold) {\n    formats += '*';\n  }\n\n  if (element.italic) {\n    formats += '_';\n  }\n\n  if (element.underline) {\n    formats += '~';\n  }\n\n  let formattedText = `${formats}${text}${formats.split('').reverse().join('')}`;\n\n  if (element.url) {\n    formattedText = element.children[0]?.text ? `[${element.children[0]?.text}]\\n(${element.url})` : `${element.url}`;\n  }\n\n  return formattedText;\n}\nconst messages = $json.messages\nconst returns = []\nfor (let message of messages) {\n  let formattedText = '';\n  if (message && message.type === 'text') {\n  \n    for (const richText of message.content.richText) {\n      for (const element of richText.children) {\n        formattedText += applyFormatting(element);\n      }\n      formattedText += '\\n';\n    }\n  \n    formattedText = formattedText.replace(/\\*\\*/g, '').replace(/__/, '').replace(/~~/, '').replace(/\\n$/, '');\n  \n    formattedText = formattedText.replace(/\\n$/, '');\n  }\n  returns.push({ text: formattedText, input: null})\n}\nif($json.input && returns[returns.length-1]) {\n  returns[returns.length-1].input = $json.input\n}\nreturn { messages: returns }"
+      },
+      "id": "c54bb4a5-5a74-4379-b6ec-f35a54041026",
+      "name": "Mount Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "4a8376d3-4a09-4168-bb7e-45fcd41a0eca",
+      "name": "Split Out3",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $json.Id }}"
+            },
+            {
+              "fieldName": "transcript",
+              "fieldValue": "={{ $json.newTranscript }}"
+            }
+          ]
+        }
+      },
+      "id": "595acf1f-d4ad-450b-9bd0-cce13b6f1241",
+      "name": "Save transcript",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1700,
+        -200
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v18.0/{{ $('Prepare TypeBot Fields').item.json.phoneNumberId }}/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "13785538-95b7-4e5c-b662-7ec22cf9aa9f",
+      "name": "WhatsApp Send Message w/action",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3000,
+        -580
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2195eedd-4563-4638-a8a3-6ad782dbc3ca",
+              "name": "newTranscript",
+              "value": "={{ $json.transcript + '\\n\\nUser: ' +  $json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "1fc666a9-b35b-4102-81ff-afdb86e36c78",
+      "name": "Prepare TypeBot Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1540,
+        -480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $json.text\nconst input = $json.input\n\nconst number = $json.number\nlet buttons = []\nlet ticketId = \"\"\n// for (let scAction of scActions) {\n//   let button = {\n//           \"type\": \"reply\",\n//           \"reply\": {\n//             \"id\": scAction.payload,\n//             \"title\": scAction.text\n//           }\n//         }\n//   if(scAction.metadata && scAction.metadata.ticket_id) {\n//     ticketId = scAction.metadata.ticket_id\n//   }\n//   buttons.push(button)\n// }\nif(message == \"Como foi a sua experiência de chat?\" ) {\n  if(ticketId && ticketId != \"\") {\n    message = \"Como foi sua experiência com o chamado \" + ticketId + \"?\"\n  }\n}\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    // \"action\": {\n    //   \"buttons\": buttons\n    // }\n  }\n}"
+      },
+      "id": "b3b5725f-e7ae-4234-94b2-e3981de70d00",
+      "name": "Prepare Message to send",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2760,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $('Prepare TypeBot Fields').item.json.Id }}"
+            },
+            {
+              "fieldName": "transcript",
+              "fieldValue": "={{ $('Prepare TypeBot Fields').item.newTranscript + '\\n\\n Bot:' + $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "8b91b510-7898-4f07-a6d4-720da22c869d",
+      "name": "Save transcript1",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        2740,
+        -280
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -4132,6 +4256,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-29T18:03:00.962Z",
-  "versionId": "a31076aa-bde9-4f4d-8540-301460309ca6"
+  "updatedAt": "2024-08-30T18:30:21.710Z",
+  "versionId": "b5e65a56-f9b1-44a3-8e4a-6165170b5051"
 }
