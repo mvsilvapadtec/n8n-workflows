@@ -874,12 +874,12 @@
   ],
   "staticData": {
     "node:Zendesk Trigger": {
-      "webhookId": 29404034048013,
-      "targetId": "01J5P3MWHWRK2MVPPP7FCJPKDR"
+      "webhookId": 29800681605261,
+      "targetId": "01J6J6PNPCJY6V7F35BJYKAP59"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-08-19T20:00:54.769Z",
+  "updatedAt": "2024-08-30T17:53:03.180Z",
   "versionId": "eeb71839-3fc8-4a8e-bea0-94a7f13417c9"
 }
