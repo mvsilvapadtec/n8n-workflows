@@ -1,0 +1,344 @@
+{
+  "active": false,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Transfer to Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ZD] Create Sunshine  User": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Global Fields": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Create Sunshine  User",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook transfer to human": {
+      "main": [
+        [
+          {
+            "node": "Global Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-30T14:08:01.603Z",
+  "id": "itiUwRRPh9aZLB6U",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "NEW Flow Typebot transfer",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "",
+        "height": 673,
+        "width": 1206
+      },
+      "id": "777ceb48-bd21-444e-a235-cf5c16f2ddd6",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nconst data = {\n  \"dataCapture.ticketField.26566051644045\": $('Global Fields').item.json.typeOfService,\n  \"dataCapture.ticketField.26566078957453\": $('Global Fields').item.json.description,\n  \"dataCapture.ticketField.26566119129613\": \"ticket_field_canal_atendimento_whatsapp\",\n  \"dataCapture.systemField.tags\": \"opened_by_integration_message\"\n}\nif($('Global Fields').item.json.selectedOrganization) {\n  data[\"dataCapture.systemField.organization_id\"] = $('Global Fields').item.json.selectedOrganization.id\n}\nreturn {metadata: data};"
+      },
+      "id": "c427cdcf-14ed-48e7-9bad-03aa4395b372",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $('Global Fields').item.json.subDomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/conversations/{{ $('Global Fields').item.json.conversationId }}/passControl   ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "switchboardIntegration",
+              "value": "zd-agentWorkspace"
+            },
+            {
+              "name": "metadata",
+              "value": "={{ $json.metadata }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "f3b06701-ea74-4602-a201-97809961960e",
+      "name": "[ZD] Transfer to Zendesk",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        340
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://{{ $('Global Fields').item.json.subDomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/users/{{ $('Global Fields').item.json.conversationUserId }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"externalId\": \"{{ $('Global Fields').item.json.conversationUserId }}\",\n    \"profile\": {\n        \"givenName\": \"{{ $('Global Fields').item.json.name ?? $('Global Fields').item.json.pushName}}\",\n        \"email\": \"{{ $('Global Fields').item.json.email }}\",\n        \"locale\": \"pt-BR\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-BR\",\n        \"number\": \"{{ $('Global Fields').item.json.number }}\"\n    }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "3f243e71-052c-4039-8cda-b65e8e656179",
+      "name": "[ZD] Create Sunshine  User",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1160,
+        340
+      ],
+      "alwaysOutputData": false,
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8a900e0b-7f9d-4c5a-bd22-76aee01b0b80",
+              "name": "subDomain",
+              "value": "padtecsupport1715188965",
+              "type": "string"
+            },
+            {
+              "id": "ab390c83-2dd4-4b40-a1f6-d792ec9dcf7b",
+              "name": "appId",
+              "value": "663bb50eee907e92c2d2f38f",
+              "type": "string"
+            },
+            {
+              "id": "7dbe837c-209d-4444-bd07-47f48505f9df",
+              "name": "integrationId",
+              "value": "665ddd219164df96d0408740",
+              "type": "string"
+            },
+            {
+              "id": "a9e5b72e-139d-4f7e-94f3-9cd088001bd4",
+              "name": "displayName",
+              "value": "Padtec",
+              "type": "string"
+            },
+            {
+              "id": "cc43dc96-bbe2-4349-a01f-cf0cbb3f4296",
+              "name": "avatarUrl",
+              "value": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
+              "type": "string"
+            },
+            {
+              "id": "e30b8214-09cc-4d6f-80ea-2d128a89895c",
+              "name": "conversationId",
+              "value": "={{ $json.body.conversationId }}",
+              "type": "string"
+            },
+            {
+              "id": "8349786a-32d6-41d9-875e-3e6468a34a5d",
+              "name": "conversationUserId",
+              "value": "={{ $json.body.conversationUserId }}",
+              "type": "string"
+            },
+            {
+              "id": "cb79080f-d85d-496e-969b-5c647cae1760",
+              "name": "typeOfService",
+              "value": "={{ $json.body.typeOfService }}",
+              "type": "string"
+            },
+            {
+              "id": "f827453f-fc8e-4b48-9b5a-eb726e20fbfd",
+              "name": "description",
+              "value": "={{ $json.body.description }}",
+              "type": "string"
+            },
+            {
+              "id": "cb62bbbe-983b-4a3a-a6ea-3123c3656f65",
+              "name": "selectedOrganization",
+              "value": "={{ $json.body.selectedOrganization }}",
+              "type": "object"
+            },
+            {
+              "id": "deb24c56-c74a-4bee-8749-8a233f21a221",
+              "name": "name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "ec625c45-79f7-41a7-a3d0-c173523c8c94",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "7f2f1a71-66ec-4c7b-b6b3-0a1000f3ddb2",
+              "name": "zendeskId",
+              "value": "={{ $json.body.zendeskId }}",
+              "type": "string"
+            },
+            {
+              "id": "6ba49c60-1ae5-4858-9eb1-54eca737fc49",
+              "name": "pushName",
+              "value": "={{ $json.body.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "e32bea74-489b-4bac-b5bb-21110ffaff49",
+              "name": "number",
+              "value": "={{ $json.body.number }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "40d4c6d9-900a-46fe-a1e6-d1cf1b77ad25",
+      "name": "Global Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        960,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new_typebot_transfer_to_human",
+        "options": {}
+      },
+      "id": "d88d1b7a-b957-45d8-b68f-9526201b246d",
+      "name": "Webhook transfer to human",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        720,
+        340
+      ],
+      "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2024-08-30T14:08:01.603Z",
+      "updatedAt": "2024-08-30T14:08:01.603Z",
+      "role": "workflow:owner",
+      "workflowId": "itiUwRRPh9aZLB6U",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-08-08T16:46:15.990Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "isOnboarded": true,
+                "userActivated": true,
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "npsSurvey": {
+                  "responded": true,
+                  "lastShownAt": 1723135580263
+                }
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-08-30T17:52:50.056Z",
+  "versionId": "51c34c6f-6802-4584-92e1-2218df320594"
+}
