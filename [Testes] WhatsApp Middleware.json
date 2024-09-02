@@ -931,33 +931,6 @@
         ]
       ]
     },
-    "Mount Message": {
-      "main": [
-        [
-          {
-            "node": "Split Out3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split Out3": {
-      "main": [
-        [
-          {
-            "node": "Prepare Message to send",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Save transcript1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Prepare TypeBot Fields": {
       "main": [
         [
@@ -974,11 +947,78 @@
         ]
       ]
     },
-    "Prepare Message to send": {
+    "Split Out3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
       "main": [
         [
           {
             "node": "WhatsApp Send Message w/action",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Message": {
+      "main": [
+        [
+          {
+            "node": "Split Out3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Message to send": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Prepare Message to send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Save transcript1",
             "type": "main",
             "index": 0
           }
@@ -1102,7 +1142,7 @@
     {
       "parameters": {
         "content": "## Typebot Flow Custom",
-        "height": 751.8889417572652,
+        "height": 1017.937293846341,
         "width": 1892.7415668923031
       },
       "id": "36856954-040a-46d4-b0a4-1e353ecb2b55",
@@ -1110,8 +1150,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1435.5167300255362,
-        -640
+        1440,
+        -840
       ]
     },
     {
@@ -3441,7 +3481,13 @@
             {
               "id": "813335d1-87a3-4f3b-89e7-27920b9157d0",
               "name": "mediaId",
-              "value": "={{ $json.mediaId}}",
+              "value": "{{ $json.mediaId}}",
+              "type": "string"
+            },
+            {
+              "id": "a1bba8db-5d9c-4bdd-b98e-3e46826049ee",
+              "name": "phoneNumberId",
+              "value": "={{ $json.phoneNumberId}}",
               "type": "string"
             }
           ]
@@ -3951,8 +3997,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1740,
-        240
+        1780,
+        400
       ]
     },
     {
@@ -4031,34 +4077,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "function applyFormatting(element) {\n  let text = '';\n\n  if (element.text) {\n    text += element.text;\n  }\n\n  if (element.children && element.type !== 'a') {\n    for (const child of element.children) {\n      text += applyFormatting(child);\n    }\n  }\n\n  if (element.type === 'p' && element.type !== 'inline-variable') {\n    text = text.trim() + '\\n';\n  }\n\n  if (element.type === 'inline-variable') {\n    text = text.trim();\n  }\n\n  if (element.type === 'ol') {\n    text =\n      '\\n' +\n      text\n        .split('\\n')\n        .map((line, index) => (line ? `${index + 1}. ${line}` : ''))\n        .join('\\n');\n  }\n\n  if (element.type === 'li') {\n    text = text\n      .split('\\n')\n      .map((line) => (line ? `  ${line}` : ''))\n      .join('\\n');\n  }\n\n  let formats = '';\n\n  if (element.bold) {\n    formats += '*';\n  }\n\n  if (element.italic) {\n    formats += '_';\n  }\n\n  if (element.underline) {\n    formats += '~';\n  }\n\n  let formattedText = `${formats}${text}${formats.split('').reverse().join('')}`;\n\n  if (element.url) {\n    formattedText = element.children[0]?.text ? `[${element.children[0]?.text}]\\n(${element.url})` : `${element.url}`;\n  }\n\n  return formattedText;\n}\nconst messages = $json.messages\nconst returns = []\nfor (let message of messages) {\n  let formattedText = '';\n  if (message && message.type === 'text') {\n  \n    for (const richText of message.content.richText) {\n      for (const element of richText.children) {\n        formattedText += applyFormatting(element);\n      }\n      formattedText += '\\n';\n    }\n  \n    formattedText = formattedText.replace(/\\*\\*/g, '').replace(/__/, '').replace(/~~/, '').replace(/\\n$/, '');\n  \n    formattedText = formattedText.replace(/\\n$/, '');\n  }\n  returns.push({ text: formattedText, input: null})\n}\nif($json.input && returns[returns.length-1]) {\n  returns[returns.length-1].input = $json.input\n}\nreturn { messages: returns }"
-      },
-      "id": "c54bb4a5-5a74-4379-b6ec-f35a54041026",
-      "name": "Mount Message",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2320,
-        -580
-      ]
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "messages",
-        "options": {}
-      },
-      "id": "4a8376d3-4a09-4168-bb7e-45fcd41a0eca",
-      "name": "Split Out3",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        2480,
-        -580
-      ]
-    },
-    {
-      "parameters": {
         "authentication": "nocoDbApiToken",
         "operation": "update",
         "projectId": "pqrinh2l5ug82p8",
@@ -4081,7 +4099,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1700,
+        1880,
         -200
       ],
       "credentials": {
@@ -4098,8 +4116,30 @@
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "whatsAppApi",
         "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ $json }}",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "value": "={{ $json.messaging_product }}"
+            },
+            {
+              "name": "recipient_type",
+              "value": "={{ $json.recipient_type }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $json.to }}"
+            },
+            {
+              "name": "type",
+              "value": "={{ $json.type }}"
+            },
+            {
+              "name": "={{ $json.type }}",
+              "value": "={{ $json[$json.type] }}"
+            }
+          ]
+        },
         "options": {}
       },
       "id": "13785538-95b7-4e5c-b662-7ec22cf9aa9f",
@@ -4107,8 +4147,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3000,
-        -580
+        3100,
+        -820
       ],
       "credentials": {
         "whatsAppApi": {
@@ -4143,20 +4183,6 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "let message = $json.text\nconst input = $json.input\n\nconst number = $json.number\nlet buttons = []\nlet ticketId = \"\"\n// for (let scAction of scActions) {\n//   let button = {\n//           \"type\": \"reply\",\n//           \"reply\": {\n//             \"id\": scAction.payload,\n//             \"title\": scAction.text\n//           }\n//         }\n//   if(scAction.metadata && scAction.metadata.ticket_id) {\n//     ticketId = scAction.metadata.ticket_id\n//   }\n//   buttons.push(button)\n// }\nif(message == \"Como foi a sua experiência de chat?\" ) {\n  if(ticketId && ticketId != \"\") {\n    message = \"Como foi sua experiência com o chamado \" + ticketId + \"?\"\n  }\n}\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    // \"action\": {\n    //   \"buttons\": buttons\n    // }\n  }\n}"
-      },
-      "id": "b3b5725f-e7ae-4234-94b2-e3981de70d00",
-      "name": "Prepare Message to send",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        2760,
-        -580
-      ]
-    },
-    {
-      "parameters": {
         "authentication": "nocoDbApiToken",
         "operation": "update",
         "projectId": "pqrinh2l5ug82p8",
@@ -4169,7 +4195,7 @@
             },
             {
               "fieldName": "transcript",
-              "fieldValue": "={{ $('Prepare TypeBot Fields').item.newTranscript + '\\n\\n Bot:' + $json.text }}"
+              "fieldValue": "={{ $('Prepare TypeBot Fields').item.json.newTranscript + '\\n\\n Bot:' + $json.text }}"
             }
           ]
         }
@@ -4179,15 +4205,101 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        2740,
-        -280
+        3180,
+        -200
       ],
       "credentials": {
         "nocoDbApiToken": {
           "id": "bWKV0Gq303SlKPDq",
           "name": "NocoDB Token account"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "4a8376d3-4a09-4168-bb7e-45fcd41a0eca",
+      "name": "Split Out3",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "8ca79264-07c6-41a3-9edf-be763cc5fc06",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2680,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function applyFormatting(element) {\n  let text = '';\n\n  if (element.text) {\n    text += element.text;\n  }\n\n  if (element.children && element.type !== 'a') {\n    for (const child of element.children) {\n      text += applyFormatting(child);\n    }\n  }\n\n  if (element.type === 'p' && element.type !== 'inline-variable') {\n    text = text.trim() + '\\n';\n  }\n\n  if (element.type === 'inline-variable') {\n    text = text.trim();\n  }\n\n  if (element.type === 'ol') {\n    text =\n      '\\n' +\n      text\n        .split('\\n')\n        .map((line, index) => (line ? `${index + 1}. ${line}` : ''))\n        .join('\\n');\n  }\n\n  if (element.type === 'li') {\n    text = text\n      .split('\\n')\n      .map((line) => (line ? `  ${line}` : ''))\n      .join('\\n');\n  }\n\n  let formats = '';\n\n  if (element.bold) {\n    formats += '*';\n  }\n\n  if (element.italic) {\n    formats += '_';\n  }\n\n  if (element.underline) {\n    formats += '~';\n  }\n\n  let formattedText = `${formats}${text}${formats.split('').reverse().join('')}`;\n\n  if (element.url) {\n    formattedText = element.children[0]?.text ? `[${element.children[0]?.text}]\\n(${element.url})` : `${element.url}`;\n  }\n\n  return formattedText;\n}\nconst messages = $json.messages\nconst returns = []\nlet seq = 1\nfor (let message of messages) {\n  let formattedText = '';\n  if (message && message.type === 'text') {\n  \n    for (const richText of message.content.richText) {\n      for (const element of richText.children) {\n        formattedText += applyFormatting(element);\n      }\n      formattedText += '\\n';\n    }\n  \n    formattedText = formattedText.replace(/\\*\\*/g, '').replace(/__/, '').replace(/~~/, '').replace(/\\n$/, '');\n  \n    formattedText = formattedText.replace(/\\n$/, '');\n  }\n  returns.push({ text: formattedText, input: null, seq: seq++})\n}\nif($json.input && returns[returns.length-1]) {\n  returns[returns.length-1].input = $json.input\n}\nreturn {messages: returns}"
+      },
+      "id": "c54bb4a5-5a74-4379-b6ec-f35a54041026",
+      "name": "Mount Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let message = $json.text\nconst scActions = $json.input?.items\nconst number = $('Prepare TypeBot Fields').item.json.number\nlet buttons = []\nlet ticketId = \"\"\nif(scActions && scActions.length > 0) {\n  for (let scAction of scActions) {\n    let button = {\n            \"type\": \"reply\",\n            \"reply\": {\n              \"id\": scAction.content,\n              \"title\": scAction.content\n            }\n          }\n    buttons.push(button)\n  }\n}\nif(message == \"Como foi a sua experiência de chat?\" ) {\n  if(ticketId && ticketId != \"\") {\n    message = \"Como foi sua experiência com o chamado \" + ticketId + \"?\"\n  }\n}\nlet body = {}\nif(buttons && buttons.length > 0) {\n  return {\n    messaging_product: \"whatsapp\",\n    recipient_type: \"individual\",\n    to : number, // WhatsApp ID of your recipient\n    type: \"interactive\",\n    interactive: {\n      type: \"button\",\n      body: {\n        text: message\n      },\n      action: {\n        buttons: buttons\n      }\n    }\n  }\n} else {\n  return {\n    messaging_product: \"whatsapp\",\n    recipient_type: \"individual\",\n    to : number, // WhatsApp ID of your recipient\n    type: \"text\",\n    text: {\n      preview_url: false,\n      body: message\n    }\n  }\n}"
+      },
+      "id": "b3b5725f-e7ae-4234-94b2-e3981de70d00",
+      "name": "Prepare Message to send",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3360,
+        -580
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.seq * 1 }}"
+      },
+      "id": "bd02d6cc-f3c8-4c2b-89fa-e5b401798b14",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3160,
+        -580
+      ],
+      "webhookId": "21a11ed0-cea5-4ffa-a99a-3d1e90052893"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const Id = $('Prepare TypeBot Fields').item.json.Id \nlet message = $json.text\nconst scActions = $json.input?.items\nreturn {\n  Id: Id,\n  \n};"
+      },
+      "id": "ef69d31b-67bc-4a50-a317-12eb1d5c3efc",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        -200
+      ]
     }
   ],
   "pinData": {},
@@ -4256,6 +4368,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-08-30T18:30:21.710Z",
-  "versionId": "b5e65a56-f9b1-44a3-8e4a-6165170b5051"
+  "updatedAt": "2024-09-02T20:17:59.400Z",
+  "versionId": "4fa30274-5fc7-44e3-abf3-2e11d7358957"
 }
