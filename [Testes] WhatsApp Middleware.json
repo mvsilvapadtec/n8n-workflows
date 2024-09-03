@@ -1,28 +1,6 @@
 {
   "active": true,
   "connections": {
-    "Respond": {
-      "main": [
-        [
-          {
-            "node": "If Check Entry",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Verify": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook Validate",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "MultiplieEntrys": {
       "main": [
         [
@@ -211,18 +189,12 @@
       "main": [
         [
           {
-            "node": "Save HumamConversation",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Save HumamConversation": {
-      "main": [
-        [
+          },
           {
-            "node": "Edit Fields1",
+            "node": "Save HumamConversation",
             "type": "main",
             "index": 0
           }
@@ -938,11 +910,6 @@
             "node": "Save transcript",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "If sessionId typebot",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -952,29 +919,6 @@
         [
           {
             "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [
-          {
-            "node": "WhatsApp Send Message w/action",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -996,7 +940,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "WhatsApp Send Message w/action",
             "type": "main",
             "index": 0
           }
@@ -1014,11 +958,78 @@
         ]
       ]
     },
-    "Code": {
+    "Get Conversation ": {
       "main": [
         [
           {
             "node": "Save transcript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save transcript": {
+      "main": [
+        [
+          {
+            "node": "If sessionId typebot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Send Message w/action": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save transcript1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond": {
+      "main": [
+        [
+          {
+            "node": "If Check Entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Validate",
             "type": "main",
             "index": 0
           }
@@ -1081,38 +1092,6 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "typebot_wpp_offical_webhook",
-        "options": {}
-      },
-      "id": "55720626-acba-431b-9fe7-50aae0a4190a",
-      "name": "Respond",
-      "type": "n8n-nodes-base.webhook",
-      "position": [
-        460,
-        260
-      ],
-      "webhookId": "b22e8423-694b-49b1-93a0-58823a538cf3",
-      "typeVersion": 1.1
-    },
-    {
-      "parameters": {
-        "path": "typebot_wpp_offical_webhook",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "id": "ef681beb-3dd9-40e5-99d8-2ac586885bc1",
-      "name": "Verify",
-      "type": "n8n-nodes-base.webhook",
-      "position": [
-        440,
-        -160
-      ],
-      "webhookId": "d71a1f38-98c1-4e14-b4c0-a1e85e44615a",
-      "typeVersion": 1.1
-    },
-    {
-      "parameters": {
         "jsCode": "const body = $('Respond').item.json.body;\nconst entrys = [];\nfor (let _entry of body.entry) {\n  const changes = [];\n  \n  for (let change of _entry.changes) {\n    let entry = {\n      id: _entry.id,\n      changes: [\n        change\n      ],\n    };\n    entrys.push({\n      object: body.object,\n      entry: [\n        entry\n      ]\n    });\n  }\n\n  \n}\nreturn entrys;"
       },
       "id": "9630b060-4b00-4b1c-8315-9726074547d2",
@@ -1143,14 +1122,14 @@
       "parameters": {
         "content": "## Typebot Flow Custom",
         "height": 1017.937293846341,
-        "width": 1892.7415668923031
+        "width": 2524.1986711969566
       },
       "id": "36856954-040a-46d4-b0a4-1e353ecb2b55",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1440,
+        1400,
         -840
       ]
     },
@@ -1427,7 +1406,7 @@
         "url": "https://bot.mvsdevs.uk/api/v1/typebots/atendimento-noc-api-3dwi1s8/startChat",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"message\": \"{{ $json.message }}\",\n  \"isStreamEnabled\": false,\n  \"resultId\": \"\",\n  \"isOnlyRegistering\": false,\n  \"prefilledVariables\": {\n    \"apiNumber\": \"{{ $json.number }}\",\n    \"apiPushName\": \"{{ $json.name }}\"\n  },\n  \"textBubbleContentFormat\": \"richText\"\n}",
+        "jsonBody": "={\n  \"message\": \"{{ $('Prepare TypeBot Fields').item.json.message }}\",\n  \"isStreamEnabled\": false,\n  \"resultId\": \"\",\n  \"isOnlyRegistering\": false,\n  \"prefilledVariables\": {\n    \"apiNumber\": \"{{ $('Prepare TypeBot Fields').item.json.number }}\",\n    \"apiPushName\": \"{{ $('Prepare TypeBot Fields').item.json.name }}\"\n  },\n  \"textBubbleContentFormat\": \"richText\"\n}",
         "options": {}
       },
       "id": "105c2c1b-7aad-4eaf-b998-847adb7a3cda",
@@ -1435,17 +1414,17 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2080,
-        -300
+        2160,
+        -760
       ]
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://bot.mvsdevs.uk/api/v1/sessions/{{ $json.typeBotSessionId }}/continueChat",
+        "url": "=https://bot.mvsdevs.uk/api/v1/sessions/{{ $('Prepare TypeBot Fields').item.json.typeBotSessionId }}/continueChat",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"message\": \"{{ $json.message }}\",\n  \"textBubbleContentFormat\": \"richText\"\n}",
+        "jsonBody": "={\n  \"message\": \"{{ $('Prepare TypeBot Fields').item.json.message }}\",\n  \"textBubbleContentFormat\": \"richText\"\n}",
         "options": {}
       },
       "id": "2ef96827-86ba-4234-943f-7d82f32f658d",
@@ -1453,8 +1432,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2040,
-        -560
+        2060,
+        -440
       ]
     },
     {
@@ -1499,7 +1478,7 @@
           "conditions": [
             {
               "id": "782e43c6-8a11-4c0e-800b-23e6eeac4cf2",
-              "leftValue": "={{ $json.number }}",
+              "leftValue": "={{ $('Prepare TypeBot Fields').item.json.number }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -1509,7 +1488,7 @@
             },
             {
               "id": "cd1467c5-dfc3-4dee-800a-a99c523148a9",
-              "leftValue": "={{ $json.message}}",
+              "leftValue": "={{ $('Prepare TypeBot Fields').item.json.message}}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -1519,7 +1498,7 @@
             },
             {
               "id": "b757de97-77bc-46eb-b95a-7a0b6124e938",
-              "leftValue": "={{ $json.typeBotSessionId}}",
+              "leftValue": "={{ $('Prepare TypeBot Fields').item.json.typeBotSessionId}}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -1537,8 +1516,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1760,
-        -540
+        1920,
+        -760
       ]
     },
     {
@@ -1580,8 +1559,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1520,
-        340
+        1560,
+        -60
       ]
     },
     {
@@ -1594,44 +1573,6 @@
         480,
         720
       ]
-    },
-    {
-      "parameters": {
-        "authentication": "nocoDbApiToken",
-        "operation": "update",
-        "projectId": "pqrinh2l5ug82p8",
-        "table": "mvw1gvgqu5q9bpw",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldName": "Id",
-              "fieldValue": "={{ $json.Id }}"
-            },
-            {
-              "fieldName": "isBot",
-              "fieldValue": "={{ false }}"
-            },
-            {
-              "fieldName": "email",
-              "fieldValue": "={{ $('Edit typebot fields').item.json.email }}"
-            }
-          ]
-        }
-      },
-      "id": "92c86cc3-2577-4657-937a-daed7dfdc287",
-      "name": "Save HumamConversation",
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
-      "position": [
-        1940,
-        720
-      ],
-      "credentials": {
-        "nocoDbApiToken": {
-          "id": "bWKV0Gq303SlKPDq",
-          "name": "NocoDB Token account"
-        }
-      }
     },
     {
       "parameters": {
@@ -1832,8 +1773,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        2320,
-        -300
+        2420,
+        -760
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -1951,8 +1892,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2400,
-        260
+        2360,
+        300
       ],
       "retryOnFail": true
     },
@@ -3584,6 +3525,12 @@
               "name": "phoneNumberId",
               "value": "={{ $('Union Data').item.json.phoneNumberId}}",
               "type": "string"
+            },
+            {
+              "id": "70ac6742-a85a-4b79-9979-40929b6086d6",
+              "name": "transcript",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
             }
           ]
         },
@@ -3612,7 +3559,7 @@
             {
               "id": "cceda498-833c-4dd6-95ac-9e11fead0425",
               "name": "isBot",
-              "value": "={{ $json.isBot }}",
+              "value": "={{ false }}",
               "type": "boolean"
             },
             {
@@ -3624,7 +3571,7 @@
             {
               "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
               "name": "message",
-              "value": "=Preciso de atendimento.\nDescrição: {{ $('Edit typebot fields').item.json.description }} ",
+              "value": "=Preciso de atendimento.\nDescrição: {{ $('Edit typebot fields').item.json.description }} \n\n{{ $json.transcript }}",
               "type": "string"
             },
             {
@@ -3662,6 +3609,12 @@
               "name": "phoneNumberId",
               "value": "",
               "type": "string"
+            },
+            {
+              "id": "e2b13f8d-3e55-4762-b91d-571fcadfe227",
+              "name": "transcript",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
             }
           ]
         },
@@ -3672,7 +3625,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        2140,
+        2000,
         720
       ]
     },
@@ -3997,8 +3950,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1780,
-        400
+        1840,
+        -60
       ]
     },
     {
@@ -4099,8 +4052,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1880,
-        -200
+        1740,
+        -760
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -4112,7 +4065,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://graph.facebook.com/v18.0/{{ $('Prepare TypeBot Fields').item.json.phoneNumberId }}/messages",
+        "url": "=https://graph.facebook.com/v19.0/{{ $('Prepare TypeBot Fields').item.json.phoneNumberId }}/messages",
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "whatsAppApi",
         "sendBody": true,
@@ -4147,8 +4100,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3100,
-        -820
+        3360,
+        -440
       ],
       "credentials": {
         "whatsAppApi": {
@@ -4177,8 +4130,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1540,
-        -480
+        1500,
+        -760
       ]
     },
     {
@@ -4191,11 +4144,11 @@
           "fieldValues": [
             {
               "fieldName": "Id",
-              "fieldValue": "={{ $('Prepare TypeBot Fields').item.json.Id }}"
+              "fieldValue": "={{ $json.Id }}"
             },
             {
               "fieldName": "transcript",
-              "fieldValue": "={{ $('Prepare TypeBot Fields').item.json.newTranscript + '\\n\\n Bot:' + $json.text }}"
+              "fieldValue": "={{ $json.transcript + '\\n\\nPadtec: ' + $('Wait1').item.json.text }}"
             }
           ]
         }
@@ -4205,8 +4158,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        3180,
-        -200
+        3700,
+        -160
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -4227,22 +4180,7 @@
       "typeVersion": 1,
       "position": [
         2500,
-        -580
-      ]
-    },
-    {
-      "parameters": {
-        "options": {
-          "reset": false
-        }
-      },
-      "id": "8ca79264-07c6-41a3-9edf-be763cc5fc06",
-      "name": "Loop Over Items",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        2680,
-        -580
+        -440
       ]
     },
     {
@@ -4255,8 +4193,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2320,
-        -580
+        2280,
+        -440
       ]
     },
     {
@@ -4269,37 +4207,141 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3360,
-        -580
+        3160,
+        -440
       ]
     },
     {
       "parameters": {
-        "amount": "={{ $json.seq * 1 }}"
+        "amount": 1
       },
       "id": "bd02d6cc-f3c8-4c2b-89fa-e5b401798b14",
       "name": "Wait1",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        3160,
-        -580
+        2980,
+        -440
       ],
       "webhookId": "21a11ed0-cea5-4ffa-a99a-3d1e90052893"
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "const Id = $('Prepare TypeBot Fields').item.json.Id \nlet message = $json.text\nconst scActions = $json.input?.items\nreturn {\n  Id: Id,\n  \n};"
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "limit": 1,
+        "options": {
+          "sort": {
+            "property": [
+              {
+                "field": "UpdatedAt"
+              }
+            ]
+          },
+          "where": "=(Id,eq,{{ $('Prepare TypeBot Fields').item.json.Id }})"
+        }
       },
-      "id": "ef69d31b-67bc-4a50-a317-12eb1d5c3efc",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "2ec57554-a020-425a-b73d-282e950071f7",
+      "name": "Get Conversation ",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
       "position": [
-        2820,
-        -200
+        3540,
+        -440
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a033a1e1-f446-4d2f-a15d-6ef908a07f4d",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2740,
+        -440
       ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "typebot_wpp_offical_webhook",
+        "options": {}
+      },
+      "id": "55720626-acba-431b-9fe7-50aae0a4190a",
+      "name": "Respond",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        460,
+        260
+      ],
+      "webhookId": "b22e8423-694b-49b1-93a0-58823a538cf3",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Id",
+              "fieldValue": "={{ $json.Id }}"
+            },
+            {
+              "fieldName": "isBot",
+              "fieldValue": "={{ false }}"
+            },
+            {
+              "fieldName": "email",
+              "fieldValue": "={{ $('Edit typebot fields').item.json.email }}"
+            }
+          ]
+        }
+      },
+      "id": "b811bba6-1c6e-4d5d-b1ac-3a875b8a35fc",
+      "name": "Save HumamConversation",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        1900,
+        560
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "typebot_wpp_offical_webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "ef681beb-3dd9-40e5-99d8-2ac586885bc1",
+      "name": "Verify",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        440,
+        -160
+      ],
+      "webhookId": "d71a1f38-98c1-4e14-b4c0-a1e85e44615a",
+      "typeVersion": 1.1
     }
   ],
   "pinData": {},
@@ -4368,6 +4410,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-09-02T20:17:59.400Z",
-  "versionId": "4fa30274-5fc7-44e3-abf3-2e11d7358957"
+  "updatedAt": "2024-09-03T16:39:59.004Z",
+  "versionId": "3a24d9ee-c29d-4e32-94aa-920a235c4090"
 }
