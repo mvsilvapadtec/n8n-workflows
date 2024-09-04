@@ -3571,7 +3571,7 @@
             {
               "id": "37017737-6c61-4625-9dbf-4b7eb71dd4b8",
               "name": "message",
-              "value": "=Preciso de atendimento.\nDescrição: {{ $('Edit typebot fields').item.json.description }} \n\n{{ $json.transcript }}",
+              "value": "=Preciso de atendimento.\n{{ $json.transcript }}",
               "type": "string"
             },
             {
@@ -4410,6 +4410,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-09-03T16:39:59.004Z",
-  "versionId": "3a24d9ee-c29d-4e32-94aa-920a235c4090"
+  "updatedAt": "2024-09-04T14:59:59.370Z",
+  "versionId": "fe5263d9-9e03-45f5-b8b3-d41da95abd63"
 }
