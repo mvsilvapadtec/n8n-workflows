@@ -5,49 +5,27 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "When chat message received": {
+    "Webhook": {
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Filter",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Window Buffer Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Groq Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2024-08-02T18:55:55.305Z",
-  "id": "hvFyir1ruM1ebYfg",
+  "createdAt": "2024-09-05T02:54:57.859Z",
+  "id": "Le1DYjEyccgE9Pwl",
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -55,76 +33,97 @@
   "nodes": [
     {
       "parameters": {},
-      "id": "cb7df28c-5cbb-4487-93ca-7553d8915cb8",
+      "id": "154fb9cd-3368-404d-8247-fa3eab17a1df",
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        500,
-        240
+        680,
+        140
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "3f5d33c9-f409-41c9-91c4-7947743c4e2d",
+              "leftValue": "asd",
+              "rightValue": "asd",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
         "options": {}
       },
-      "id": "6a07a349-0bd1-4393-99d4-fda481f2b8d5",
-      "name": "When chat message received",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.1,
+      "id": "ac6cdbbc-25e5-4a7c-a971-8b080bc89899",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
       "position": [
-        680,
-        440
-      ],
-      "webhookId": "5922226a-800b-4be3-9e99-81e7ef6389f7"
-    },
-    {
-      "parameters": {
-        "contextWindowLength": 10
-      },
-      "id": "3c55ea55-9d28-4389-975d-85a99c8a9c34",
-      "name": "Window Buffer Memory",
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.2,
-      "position": [
-        1040,
-        500
+        700,
+        400
       ]
     },
     {
       "parameters": {
+        "url": "asasdasdasd",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "asd",
+              "value": "asd"
+            },
+            {
+              "name": "={{ $json.teste }}",
+              "value": "asd"
+            },
+            {}
+          ]
+        },
         "options": {}
       },
-      "id": "ebca1c76-13dd-46d2-91d9-bbdbdcc7cc35",
-      "name": "Groq Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
-      "typeVersion": 1,
+      "id": "247aff64-222d-4f31-ac8c-2dc824107941",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
       "position": [
-        900,
-        520
+        1020,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "path": "asdasdasdasdasd",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "id": "8f05018e-632e-46a1-83f6-2506cba35e69",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        340,
+        340
       ],
+      "webhookId": "b77f6b0d-615e-4dcd-8b31-698462cad213",
       "credentials": {
-        "groqApi": {
-          "id": "AFsIeRiSXsZGVbDt",
-          "name": "Groq account"
+        "httpHeaderAuth": {
+          "id": "eDGGJMJBgG0lvaxW",
+          "name": "ZendeskConversationApiAccount"
         }
       }
-    },
-    {
-      "parameters": {
-        "agent": "conversationalAgent",
-        "promptType": "define",
-        "text": "Suponha que você é um analista de telecomunicações e sua função é tirar duvidas e auxiliar o usuario a resolver problemas relacionados equipamentos de telecomunicações. Você sempre é cordial e da resposta precisas e detalhadas. Ao iniciar uma conversa você deve se apresentar seu nome é PadBot e solicitar que o usuario informe sua duvida. Caso você não saiba a reposta ou não entenda a pergunta solicite mais detalhes, mas se percerber a intenção do usuario em falar com agente humano ou não conseguir mais ajudar o usuário responda \"Transferindo para humano\". Seu idioma principal é portugues do brasil (pt-br), mas você é poliglota e se perceber que o usuário está falando em outro idioma responda no mesmo idioma.",
-        "options": {}
-      },
-      "id": "afa5b08f-8641-40b8-a7c4-0204834155ff",
-      "name": "AI Agent",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.6,
-      "position": [
-        900,
-        200
-      ]
     }
   ],
   "pinData": {},
@@ -133,10 +132,10 @@
   },
   "shared": [
     {
-      "createdAt": "2024-08-02T18:55:55.305Z",
-      "updatedAt": "2024-08-02T18:55:55.305Z",
+      "createdAt": "2024-09-05T02:54:57.859Z",
+      "updatedAt": "2024-09-05T02:54:57.859Z",
       "role": "workflow:owner",
-      "workflowId": "hvFyir1ruM1ebYfg",
+      "workflowId": "Le1DYjEyccgE9Pwl",
       "projectId": "BbalulLcG5rqgvFJ",
       "project": {
         "createdAt": "2024-06-10T18:18:03.245Z",
@@ -186,7 +185,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-08-02T18:55:55.305Z",
-  "versionId": "e17fb318-6cfd-4462-b63d-0679188c8200"
+  "triggerCount": 1,
+  "updatedAt": "2024-09-05T02:55:01.051Z",
+  "versionId": "cdd17bec-5468-4d1e-bace-ba1a4b005d5c"
 }
