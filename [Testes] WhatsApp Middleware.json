@@ -250,7 +250,7 @@
       "main": [
         [
           {
-            "node": "Code2",
+            "node": "Mount Metadata",
             "type": "main",
             "index": 0
           }
@@ -734,22 +734,6 @@
         ]
       ]
     },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "If session typebot",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get Contact",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields1": {
       "main": [
         [
@@ -874,22 +858,11 @@
         ]
       ]
     },
-    "Code2": {
-      "main": [
-        [
-          {
-            "node": "[ZD] Transfer to Zendesk",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "SW Conversation": {
       "main": [
         [
           {
-            "node": "Edit Fields",
+            "node": "Global Fields",
             "type": "main",
             "index": 0
           }
@@ -1030,6 +1003,33 @@
         [
           {
             "node": "Respond to Webhook Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Global Fields": {
+      "main": [
+        [
+          {
+            "node": "If session typebot",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mount Metadata": {
+      "main": [
+        [
+          {
+            "node": "[ZD] Transfer to Zendesk",
             "type": "main",
             "index": 0
           }
@@ -1318,12 +1318,26 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {{ $json.content }},\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "author",
+              "value": "={{ $('Global Fields').item.json.zdAuthor }}"
+            },
+            {
+              "name": "metadata",
+              "value": "={{ $('Global Fields').item.json.zdMetadata }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $json.content }}"
+            }
+          ]
+        },
         "options": {
           "redirect": {
             "redirect": {}
@@ -1629,7 +1643,7 @@
           "conditions": [
             {
               "id": "393e7950-c76a-4e61-8755-3070d99144a7",
-              "leftValue": "={{ $('Edit Fields').item.json.email }}",
+              "leftValue": "={{ $('Global Fields').item.json.email }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -1639,7 +1653,7 @@
             },
             {
               "id": "b6e14c94-f5e6-4f40-a84c-ae1822f8fff3",
-              "leftValue": "={{ $('Edit Fields').item.json.email }}",
+              "leftValue": "={{ $('Global Fields').item.json.email }}",
               "rightValue": "@",
               "operator": {
                 "type": "string",
@@ -1648,7 +1662,7 @@
             },
             {
               "id": "e89e22b6-7d10-43b8-ac46-3d2e7d65c5b3",
-              "leftValue": "={{ $('Edit Fields').item.json.userId }}",
+              "leftValue": "={{ $('Global Fields').item.json.userId }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -1681,7 +1695,7 @@
           "conditions": [
             {
               "id": "2aece4a0-a110-4b3b-9675-4d4f78f53f38",
-              "leftValue": "={{ $('Edit Fields').item.json.transferToHuman }}",
+              "leftValue": "={{ $('Global Fields').item.json.transferToHuman }}",
               "rightValue": "Iniciar atendimento",
               "operator": {
                 "type": "boolean",
@@ -1691,7 +1705,7 @@
             },
             {
               "id": "9e36ba25-5826-4c49-9e00-8c6040c114b2",
-              "leftValue": "={{ $('Edit Fields').item.json.isBot }}",
+              "leftValue": "={{ $('Global Fields').item.json.isBot }}",
               "rightValue": "",
               "operator": {
                 "type": "boolean",
@@ -1723,7 +1737,7 @@
           "fieldValues": [
             {
               "fieldName": "Id",
-              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+              "fieldValue": "={{ $('Global Fields').item.json.Id }}"
             },
             {
               "fieldName": "conversationId",
@@ -1759,7 +1773,7 @@
           "fieldValues": [
             {
               "fieldName": "Id",
-              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+              "fieldValue": "={{ $('Global Fields').item.json.Id }}"
             },
             {
               "fieldName": "typeBotSessionId",
@@ -1789,7 +1803,7 @@
     },
     {
       "parameters": {
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users/{{ $('Edit Fields').item.json.userId }}",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/users/{{ $('Global Fields').item.json.userId }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "options": {
@@ -1819,7 +1833,7 @@
     },
     {
       "parameters": {
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Edit Fields').item.json.conversationId }}",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/conversations/{{ $('Global Fields').item.json.conversationId }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "options": {
@@ -1849,12 +1863,12 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/conversations",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"type\": \"personal\",\n  \"participants\": [\n    {\n      \"userId\": \"{{ $json.user.id}}\",\n      \"subscribeSDKClient\": false\n    }\n  ],\n  \"displayName\": \"{{ $json.user.profile.givenName }}\",\n  \"description\": \"Start\",\n  \"metadata\": {\n    \"lang\": \"pt-BR\",\n    \"noco_id\": \"{{ $('Edit Fields').item.json.Id }}\"\n  }\n}  ",
+        "jsonBody": "={\n  \"type\": \"personal\",\n  \"participants\": [\n    {\n      \"userId\": \"{{ $json.user.id}}\",\n      \"subscribeSDKClient\": false\n    }\n  ],\n  \"displayName\": \"{{ $json.user.profile.givenName }}\",\n  \"description\": \"Start\",\n  \"metadata\": {\n    \"lang\": \"pt-BR\",\n    \"noco_id\": \"{{ $('Global Fields').item.json.Id }}\"\n  }\n}  ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -2070,7 +2084,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/passControl   ",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/passControl   ",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
@@ -2098,7 +2112,7 @@
       "typeVersion": 4.2,
       "position": [
         3700,
-        1320
+        1340
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -2117,7 +2131,7 @@
           "fieldValues": [
             {
               "fieldName": "Id",
-              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+              "fieldValue": "={{ $('Global Fields').item.json.Id }}"
             },
             {
               "fieldName": "conversationUserId",
@@ -2373,7 +2387,7 @@
         "operation": "search",
         "limit": 1,
         "filters": {
-          "query": "=\"{{ $('Edit Fields').item.json.email }}\""
+          "query": "=\"{{ $('Global Fields').item.json.email }}\""
         }
       },
       "id": "2cb5ba82-7182-439c-8a1d-c4e4737bdf25",
@@ -2400,7 +2414,7 @@
         "operation": "update",
         "id": "={{ $json.id }}",
         "updateFields": {
-          "external_id": "={{ $('Edit Fields').item.json.userId }}"
+          "external_id": "={{ $('Global Fields').item.json.userId }}"
         }
       },
       "id": "a71c0079-9606-47db-91ee-15d30f6c9c4d",
@@ -2470,11 +2484,11 @@
       "parameters": {
         "authentication": "oAuth2",
         "resource": "user",
-        "name": "={{ $('Edit Fields').item.json.name }}",
+        "name": "={{ $('Global Fields').item.json.name }}",
         "additionalFields": {
-          "email": "={{ $('Edit Fields').item.json.email }}",
-          "external_id": "={{ $('Edit Fields').item.json.userId }}",
-          "phone": "={{ $('Edit Fields').item.json.number }}"
+          "email": "={{ $('Global Fields').item.json.email }}",
+          "external_id": "={{ $('Global Fields').item.json.userId }}",
+          "phone": "={{ $('Global Fields').item.json.number }}"
         }
       },
       "id": "61488570-0f3a-44af-a532-3172f82ae1fd",
@@ -2911,7 +2925,7 @@
           "fieldValues": [
             {
               "fieldName": "number",
-              "fieldValue": "={{ $('Edit Fields').item.json.number }}"
+              "fieldValue": "={{ $('Global Fields').item.json.number }}"
             }
           ]
         }
@@ -2975,7 +2989,7 @@
           "fieldValues": [
             {
               "fieldName": "Id",
-              "fieldValue": "={{ $('Edit Fields').item.json.Id }}"
+              "fieldValue": "={{ $('Global Fields').item.json.Id }}"
             },
             {
               "fieldName": "contact",
@@ -3117,7 +3131,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet content = {\n  type: \"text\",\n  text: $('Edit Fields').item.json.message\n}\nif (payload) {\n  try {\n        JSON.parse(payload)\n        content.payload = payload\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
+        "jsCode": "let payload = $('Global Fields').item.json.messagePayload\nlet content = {\n  type: \"text\",\n  text: $('Global Fields').item.json.message\n}\nif (payload) {\n  try {\n        JSON.parse(payload)\n        content.payload = payload\n    } catch (e) {\n    \n    }\n}\nreturn {content: content}"
       },
       "id": "28135bb0-91f2-4caa-975b-8026819f86e4",
       "name": "Mount Text Content",
@@ -3131,7 +3145,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let payload = $('Edit Fields').item.json.messagePayload\nlet type = $('Edit Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nlet content = {\n  type: type,\n  text: $('Edit Fields').item.json.message,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n}\nif (payload) {\n  try {\n        let parsed = JSON.parse(payload);\n        content.payload = parsed;\n    } catch (e) {\n    \n    }\n}\nreturn {content: JSON.stringify(content)}"
+        "jsCode": "let payload = $('Global Fields').item.json.messagePayload\nlet type = $('Global Fields').item.json.messageType == \"image\" ? \"image\" : \"file\";\nlet content = {\n  type: type,\n  text: $('Global Fields').item.json.message,\n  mediaUrl: $input.item.json.attachment.mediaUrl\n}\nif (payload) {\n  try {\n        let parsed = JSON.parse(payload);\n        content.payload = parsed;\n    } catch (e) {\n    \n    }\n}\nreturn {content: content}"
       },
       "id": "9a3644af-176f-4f2e-bfe7-cf81503ff160",
       "name": "Mount Media data",
@@ -3203,7 +3217,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/attachments/",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/attachments/",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendQuery": true,
@@ -3285,12 +3299,12 @@
     {
       "parameters": {
         "method": "PATCH",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users/{{ $('Edit Fields').item.json.userId }}",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/users/{{ $('Global Fields').item.json.userId }}",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"profile\": {\n        \"email\": \"{{ $('Edit Fields').item.json.email }}\"\n    }\n}  ",
+        "jsonBody": "={\n    \"profile\": {\n        \"email\": \"{{ $('Global Fields').item.json.email }}\"\n    }\n}  ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -3319,12 +3333,12 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/users ",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/users ",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"externalId\": \"{{ $('Edit Fields').item.json.userId }}\",\n    \"signedUpAt\": \"{{ $('Edit Fields').item.json.time }}\",\n    \"profile\": {\n        \"givenName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"email\": \"{{ $('Edit Fields').item.json.email }}\",\n        \"locale\": \"pt-BR\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-BR\",\n        \"number\": \"{{ $('Edit Fields').item.json.number }}\"\n    }\n} ",
+        "jsonBody": "={\n    \"externalId\": \"{{ $('Global Fields').item.json.userId }}\",\n    \"signedUpAt\": \"{{ $('Global Fields').item.json.time }}\",\n    \"profile\": {\n        \"givenName\": \"{{ $('Global Fields').item.json.name }}\",\n        \"email\": \"{{ $('Global Fields').item.json.email }}\",\n        \"locale\": \"pt-BR\"\n    },\n    \"metadata\": {\n        \"lang\": \"pt-BR\",\n        \"number\": \"{{ $('Global Fields').item.json.number }}\"\n    }\n} ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -3353,7 +3367,7 @@
       "parameters": {
         "operation": "send",
         "phoneNumberId": "331922393331203",
-        "recipientPhoneNumber": "={{ $('Edit Fields').item.json.number }}",
+        "recipientPhoneNumber": "={{ $('Global Fields').item.json.number }}",
         "textBody": "Não consegui carregar esse arquivo!",
         "additionalFields": {},
         "requestOptions": {}
@@ -3442,108 +3456,6 @@
       "position": [
         1120,
         500
-      ]
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "a3d6dfd0-df47-4d73-8295-826395f930a4",
-              "name": "appId",
-              "value": "663bb50eee907e92c2d2f38f",
-              "type": "string"
-            },
-            {
-              "id": "5fbbd942-3b6f-4a8e-a611-f642c4c913d6",
-              "name": "subdomain",
-              "value": "padtecsupport1715188965",
-              "type": "string"
-            },
-            {
-              "id": "58300dd5-a883-4b34-ac89-2513cab85343",
-              "name": "name",
-              "value": "={{ $('Union Data').item.json.name }}",
-              "type": "string"
-            },
-            {
-              "id": "454d24e1-1efd-408c-a620-0ef70c6056b5",
-              "name": "time",
-              "value": "={{ $now.toUTC() }}",
-              "type": "string"
-            },
-            {
-              "id": "488677cb-e82e-46c9-8739-08d8bf0b7b62",
-              "name": "userId",
-              "value": "={{ $('Union Data').item.json.number }}_{{ $json.Id }}",
-              "type": "string"
-            },
-            {
-              "id": "701c9693-c3e6-4951-bff7-012e32fef491",
-              "name": "message",
-              "value": "={{ $('Union Data').item.json.message }}",
-              "type": "string"
-            },
-            {
-              "id": "c550d5e5-b4ed-4efc-a811-60ce767c44d6",
-              "name": "isBot",
-              "value": "={{ $json.isBot }}",
-              "type": "boolean"
-            },
-            {
-              "id": "30fc1c40-39c7-4fa9-aa5a-62621c03e98c",
-              "name": "transferToHuman",
-              "value": "={{ $('Union Data').item.json.transferToHuman}}",
-              "type": "boolean"
-            },
-            {
-              "id": "c640ff85-2d7d-4039-90cb-987e1f7800f5",
-              "name": "messagePayload",
-              "value": "={{ $('Union Data').item.json.messagePayload }}",
-              "type": "string"
-            },
-            {
-              "id": "aa9c80b2-243a-410d-8250-4718a6a5ee7a",
-              "name": "messageType",
-              "value": "={{ $('Union Data').item.json.messageType }}",
-              "type": "string"
-            },
-            {
-              "id": "bf8806bb-d03a-4976-a382-3ecd99ee143b",
-              "name": "mediaId",
-              "value": "={{ $('Union Data').item.json.mediaId}}",
-              "type": "string"
-            },
-            {
-              "id": "62507b21-74e7-4cde-a4b7-118dbe849eb3",
-              "name": "lastContact",
-              "value": "={{ $json.lastContact }}",
-              "type": "string"
-            },
-            {
-              "id": "5d76798f-a8eb-4132-83ed-45382eb2e389",
-              "name": "phoneNumberId",
-              "value": "={{ $('Union Data').item.json.phoneNumberId}}",
-              "type": "string"
-            },
-            {
-              "id": "70ac6742-a85a-4b79-9979-40929b6086d6",
-              "name": "transcript",
-              "value": "={{ $json.transcript }}",
-              "type": "string"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "id": "bdb02d20-5ca5-4233-a24f-a9d6100a57e3",
-      "name": "Edit Fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.3,
-      "position": [
-        1120,
-        680
       ]
     },
     {
@@ -3640,7 +3552,7 @@
           "conditions": [
             {
               "id": "085eb716-5891-44af-a268-8344485512b3",
-              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "leftValue": "={{ $('Global Fields').item.json.messageType }}",
               "rightValue": "text",
               "operator": {
                 "type": "string",
@@ -3650,7 +3562,7 @@
             },
             {
               "id": "76d24ae8-dbd7-470f-a2a5-a37465693e91",
-              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "leftValue": "={{ $('Global Fields').item.json.messageType }}",
               "rightValue": "interactive",
               "operator": {
                 "type": "string",
@@ -3676,7 +3588,7 @@
       "parameters": {
         "resource": "media",
         "operation": "mediaUrlGet",
-        "mediaGetId": "={{ $('Edit Fields').item.json.mediaId }}",
+        "mediaGetId": "={{ $('Global Fields').item.json.mediaId }}",
         "requestOptions": {}
       },
       "id": "1fc052d0-62d0-40ac-be9d-5eae82788adc",
@@ -3719,7 +3631,7 @@
           "conditions": [
             {
               "id": "8dce6684-69d6-4acb-a27c-28a2dc86f060",
-              "leftValue": "={{ $('Edit Fields').item.json.messageType }}",
+              "leftValue": "={{ $('Global Fields').item.json.messageType }}",
               "rightValue": "audio",
               "operator": {
                 "type": "string",
@@ -3766,12 +3678,12 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://{{ $('Edit Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Edit Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
+        "url": "=https://{{ $('Global Fields').item.json.subdomain }}.zendesk.com/sc/v2/apps/{{ $('Global Fields').item.json.appId }}/conversations/{{ $('Union Conversation Sunshine').item.json.conversation.id }}/messages ",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Edit Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {{ $json.content }},\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
+        "jsonBody": "={\n    \"author\": {\n        \"type\": \"business\",\n        \"displayName\": \"{{ $('Global Fields').item.json.name }}\",\n        \"avatarUrl\": \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n    },\n    \"content\": {{ $json.content }},\n    \"metadata\": {\n        \"lang\": \"pt-br\"\n    }\n} ",
         "options": {
           "redirect": {
             "redirect": {}
@@ -3952,20 +3864,6 @@
       "position": [
         1840,
         -60
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "\nconst data = {\n  \"dataCapture.ticketField.26566051644045\": $('Edit typebot fields').item.json.typeOfService,\n  \"dataCapture.ticketField.26566078957453\": $('Edit typebot fields').item.json.description,\n  \"dataCapture.ticketField.26566119129613\": \"ticket_field_canal_atendimento_whatsapp\",\n  \"dataCapture.systemField.tags\": \"opened_by_integration_message\",\n  \"first_message_id\": $('[ZD] Send Sunshine Message').item.json[\"messages\"][\"0\"][\"id\"]\n}\nif($('Edit typebot fields').item.json.selectedOrganization) {\n  data[\"dataCapture.systemField.organization_id\"] = $('Edit typebot fields').item.json.selectedOrganization\n}\nreturn {metadata: data};"
-      },
-      "id": "de4bd6ac-ca84-4483-8199-d8f9a1056a1d",
-      "name": "Code2",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        3520,
-        1340
       ]
     },
     {
@@ -4342,6 +4240,158 @@
       ],
       "webhookId": "d71a1f38-98c1-4e14-b4c0-a1e85e44615a",
       "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a3d6dfd0-df47-4d73-8295-826395f930a4",
+              "name": "appId",
+              "value": "663bb50eee907e92c2d2f38f",
+              "type": "string"
+            },
+            {
+              "id": "5fbbd942-3b6f-4a8e-a611-f642c4c913d6",
+              "name": "subdomain",
+              "value": "padtecsupport1715188965",
+              "type": "string"
+            },
+            {
+              "id": "58300dd5-a883-4b34-ac89-2513cab85343",
+              "name": "name",
+              "value": "={{ $('Union Data').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "454d24e1-1efd-408c-a620-0ef70c6056b5",
+              "name": "time",
+              "value": "={{ $now.toUTC() }}",
+              "type": "string"
+            },
+            {
+              "id": "488677cb-e82e-46c9-8739-08d8bf0b7b62",
+              "name": "userId",
+              "value": "={{ $('Union Data').item.json.number }}_{{ $json.Id }}",
+              "type": "string"
+            },
+            {
+              "id": "701c9693-c3e6-4951-bff7-012e32fef491",
+              "name": "message",
+              "value": "={{ $('Union Data').item.json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "c550d5e5-b4ed-4efc-a811-60ce767c44d6",
+              "name": "isBot",
+              "value": "={{ $json.isBot }}",
+              "type": "boolean"
+            },
+            {
+              "id": "30fc1c40-39c7-4fa9-aa5a-62621c03e98c",
+              "name": "transferToHuman",
+              "value": "={{ $('Union Data').item.json.transferToHuman}}",
+              "type": "boolean"
+            },
+            {
+              "id": "c640ff85-2d7d-4039-90cb-987e1f7800f5",
+              "name": "messagePayload",
+              "value": "={{ $('Union Data').item.json.messagePayload }}",
+              "type": "string"
+            },
+            {
+              "id": "aa9c80b2-243a-410d-8250-4718a6a5ee7a",
+              "name": "messageType",
+              "value": "={{ $('Union Data').item.json.messageType }}",
+              "type": "string"
+            },
+            {
+              "id": "bf8806bb-d03a-4976-a382-3ecd99ee143b",
+              "name": "mediaId",
+              "value": "={{ $('Union Data').item.json.mediaId}}",
+              "type": "string"
+            },
+            {
+              "id": "62507b21-74e7-4cde-a4b7-118dbe849eb3",
+              "name": "lastContact",
+              "value": "={{ $json.lastContact }}",
+              "type": "string"
+            },
+            {
+              "id": "5d76798f-a8eb-4132-83ed-45382eb2e389",
+              "name": "phoneNumberId",
+              "value": "={{ $('Union Data').item.json.phoneNumberId}}",
+              "type": "string"
+            },
+            {
+              "id": "70ac6742-a85a-4b79-9979-40929b6086d6",
+              "name": "transcript",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
+            },
+            {
+              "id": "6f2f3b06-366e-49ef-acd8-eef522f46f38",
+              "name": "avatarUrl",
+              "value": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
+              "type": "string"
+            },
+            {
+              "id": "6877f8a3-f2d3-4478-a909-4db816bb10d7",
+              "name": "zdAuthor",
+              "value": "={\n        type: \"business\",\n        displayName: \"{{ $('Union Data').item.json.name }}\",\n        avatarUrl: \"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg\"\n}",
+              "type": "object"
+            },
+            {
+              "id": "c99a9968-3c28-4e73-b942-225799b517a8",
+              "name": "typeOfServiceField",
+              "value": "dataCapture.ticketField.26566051644045",
+              "type": "string"
+            },
+            {
+              "id": "6ef3ea29-c8a8-4934-ac2e-948e375cbc32",
+              "name": "typeOfChannelField",
+              "value": "dataCapture.ticketField.26566119129613",
+              "type": "string"
+            },
+            {
+              "id": "4eeedb43-8568-47a5-9f16-8ecb29ae62ad",
+              "name": "descriptionField",
+              "value": "dataCapture.ticketField.26566078957453",
+              "type": "string"
+            },
+            {
+              "id": "a7a8f0b7-1178-4e3b-a30e-9805031a0111",
+              "name": "zdMetadata",
+              "value": "={lang: \"pt-BR\"}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "bdb02d20-5ca5-4233-a24f-a9d6100a57e3",
+      "name": "Global Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1120,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nconst data = {\n  \"dataCapture.systemField.tags\": \"opened_by_integration_message\",\n  \"first_message_id\": $('[ZD] Send Sunshine Message').item.json[\"messages\"][\"0\"][\"id\"]\n}\n\n data[$('Global Fields').item.json.descriptionField] = $('Edit typebot fields').item.json.description;\n data[$('Global Fields').item.json.typeOfServiceField] = $('Edit typebot fields').item.json.typeOfService;\n data[$('Global Fields').item.json.typeOfChannelField] = \"ticket_field_canal_atendimento_whatsapp\";\nif($('Edit typebot fields').item.json.selectedOrganization) {\n  data[\"dataCapture.systemField.organization_id\"] = $('Edit typebot fields').item.json.selectedOrganization\n}\nreturn {metadata: data};"
+      },
+      "id": "de4bd6ac-ca84-4483-8199-d8f9a1056a1d",
+      "name": "Mount Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        1340
+      ]
     }
   ],
   "pinData": {},
@@ -4410,6 +4460,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-09-04T14:59:59.370Z",
-  "versionId": "fe5263d9-9e03-45f5-b8b3-d41da95abd63"
+  "updatedAt": "2024-09-11T13:41:55.837Z",
+  "versionId": "0e935499-900b-4e4e-983b-42c580912563"
 }
