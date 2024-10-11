@@ -45,17 +45,6 @@
         ]
       ]
     },
-    "Zendesk Trigger": {
-      "main": [
-        [
-          {
-            "node": "If Created by Integration",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If Created by Integration": {
       "main": [
         [
@@ -125,6 +114,17 @@
         [
           {
             "node": "Get Conversation by noco id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zendesk Trigger1": {
+      "main": [
+        [
+          {
+            "node": "If Created by Integration",
             "type": "main",
             "index": 0
           }
@@ -331,52 +331,6 @@
         760,
         540
       ]
-    },
-    {
-      "parameters": {
-        "authentication": "oAuth2",
-        "options": {
-          "fields": [
-            "ticket.title",
-            "ticket.description",
-            "ticket.id",
-            "ticket.external_id",
-            "ticket.via",
-            "ticket.status",
-            "ticket.ticket_type",
-            "ticket.requester.external_id",
-            "ticket.requester.requester_field",
-            "ticket.requester.details",
-            "ticket.organization.name",
-            "ticket.tags",
-            "ticket.account",
-            "ticket.ticket_field_26566119129613",
-            "ticket.assignee.name"
-          ]
-        },
-        "conditions": {
-          "all": [
-            {
-              "operation": "changed"
-            }
-          ]
-        }
-      },
-      "id": "d429941b-6f5e-49d9-9023-c7623e6aba38",
-      "name": "Zendesk Trigger",
-      "type": "n8n-nodes-base.zendeskTrigger",
-      "typeVersion": 1,
-      "position": [
-        -180,
-        540
-      ],
-      "webhookId": "4a2cefa5-4686-4911-9e83-b4525e1ab6de",
-      "credentials": {
-        "zendeskOAuth2Api": {
-          "id": "vDOJ2hG7rJ3UOSTs",
-          "name": "SandBox Zendesk account"
-        }
-      }
     },
     {
       "parameters": {
@@ -813,6 +767,51 @@
         980,
         540
       ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "options": {
+          "fields": [
+            "ticket.title",
+            "ticket.description",
+            "ticket.id",
+            "ticket.external_id",
+            "ticket.via",
+            "ticket.status",
+            "ticket.ticket_type",
+            "ticket.requester.external_id",
+            "ticket.requester.requester_field",
+            "ticket.requester.details",
+            "ticket.organization.name",
+            "ticket.tags",
+            "ticket.ticket_field_26566119129613",
+            "ticket.assignee.name"
+          ]
+        },
+        "conditions": {
+          "all": [
+            {
+              "operation": "changed"
+            }
+          ]
+        }
+      },
+      "id": "0d94fb12-1d44-48ce-a8e2-1a3fd1d76c51",
+      "name": "Zendesk Trigger1",
+      "type": "n8n-nodes-base.zendeskTrigger",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        560
+      ],
+      "webhookId": "4a2cefa5-4686-4911-9e83-b4525e1ab6de",
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -874,12 +873,16 @@
   ],
   "staticData": {
     "node:Zendesk Trigger": {
-      "webhookId": 30701029157517,
+      "webhookId": 30992650469005,
       "targetId": "01J6VX1X6ZH6NMQ76N60CZN20M"
+    },
+    "node:Zendesk Trigger1": {
+      "webhookId": 30993630670349,
+      "targetId": "01J9YF75HJ2R17P2PDJHCBCZT9"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-09-03T12:16:49.901Z",
-  "versionId": "eeb71839-3fc8-4a8e-bea0-94a7f13417c9"
+  "updatedAt": "2024-10-11T18:59:50.930Z",
+  "versionId": "108e304a-ec37-431d-ab6b-a1e1586db1de"
 }
