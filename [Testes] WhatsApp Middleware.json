@@ -858,24 +858,6 @@
         ]
       ]
     },
-    "SW Conversation": {
-      "main": [
-        [
-          {
-            "node": "Global Fields",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Create Conversation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Prepare TypeBot Fields": {
       "main": [
         [
@@ -1030,6 +1012,24 @@
         [
           {
             "node": "[ZD] Transfer to Zendesk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SW Conversation": {
+      "main": [
+        [
+          {
+            "node": "Global Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Conversation",
             "type": "main",
             "index": 0
           }
@@ -2984,7 +2984,7 @@
         "authentication": "nocoDbApiToken",
         "operation": "update",
         "projectId": "pqrinh2l5ug82p8",
-        "table": "mvw1gvgqu5q9bpw",
+        "table": "mna8e3sizkhy47l",
         "fieldsUi": {
           "fieldValues": [
             {
@@ -3018,6 +3018,7 @@
           "name": "NocoDB Token account"
         }
       },
+      "disabled": true,
       "onError": "continueRegularOutput"
     },
     {
@@ -3868,66 +3869,6 @@
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $json.Id }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "number",
-                      "operation": "exists",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
-                    "leftValue": "={{ $json.Id }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "number",
-                      "operation": "notExists",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "caf9b38c-c631-4dcf-b9b7-df988aca7a00",
-      "name": "SW Conversation",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        820,
-        720
-      ]
-    },
-    {
-      "parameters": {
         "authentication": "nocoDbApiToken",
         "operation": "update",
         "projectId": "pqrinh2l5ug82p8",
@@ -4392,6 +4333,68 @@
         3520,
         1340
       ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "caf9b38c-c631-4dcf-b9b7-df988aca7a00",
+      "name": "SW Conversation",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        820,
+        720
+      ]
     }
   ],
   "pinData": {},
@@ -4460,6 +4463,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-09-11T13:41:55.837Z",
-  "versionId": "0e935499-900b-4e4e-983b-42c580912563"
+  "updatedAt": "2024-10-11T19:22:27.166Z",
+  "versionId": "25a3109d-7d8c-44de-937c-a7239d8d39f1"
 }
