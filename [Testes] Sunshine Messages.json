@@ -31,6 +31,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -203,6 +210,17 @@
           }
         ]
       ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation ByConversationId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-06-20T20:17:15.998Z",
@@ -317,7 +335,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -341,7 +360,7 @@
               }
             },
             {
-              "id": "e47135f0-5736-41a3-bd1d-e65b27e5b233",
+              "id": "341e1067-3a4a-40d9-8e3e-be780bd73f06",
               "leftValue": "={{ $json.agentId }}",
               "rightValue": "",
               "operator": {
@@ -360,8 +379,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        3900,
-        2320
+        3860,
+        2240
       ]
     },
     {
@@ -598,6 +617,12 @@
               "id": "8a900e0b-7f9d-4c5a-bd22-76aee01b0b80",
               "name": "subDomain",
               "value": "padtecsupport1715188965",
+              "type": "string"
+            },
+            {
+              "id": "af2d470a-93b9-4416-b501-c4c0c58a5702",
+              "name": "sourceType",
+              "value": "={{ $json.payload.message.source.type }}",
               "type": "string"
             }
           ]
@@ -866,7 +891,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "let message = $('Edit Sunshine Message').item.json.content.text\nconst scActions = $('Edit Sunshine Message').item.json.actions\n\nconst number = $json.number\nlet buttons = []\nlet ticketId = \"\"\nfor (let scAction of scActions) {\n  let button = {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": scAction.payload,\n            \"title\": scAction.text\n          }\n        }\n  if(scAction.metadata && scAction.metadata.ticket_id) {\n    ticketId = scAction.metadata.ticket_id\n  }\n  buttons.push(button)\n}\nif(message == \"Como foi a sua experiência de chat?\" ) {\n  if(ticketId && ticketId != \"\") {\n    message = \"Como foi sua experiência com o chamado \" + ticketId + \"?\"\n  }\n}\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    \"action\": {\n      \"buttons\": buttons\n    }\n  }\n}"
+        "jsCode": "let message = $('Edit Sunshine Message').item.json.content.text\nlet uri = $('Edit Sunshine Message').item.json.content.uri\nconst scActions = $('Edit Sunshine Message').item.json.actions\n\nconst number = $json.number\nlet buttons = []\nlet ticketId = \"\"\nfor (let scAction of scActions) {\n  let button = {\n          \"type\": \"reply\",\n          \"reply\": {\n            \"id\": scAction.payload,\n            \"title\": scAction.text\n          }\n        }\n  if(scAction.metadata && scAction.metadata.ticket_id) {\n    ticketId = scAction.metadata.ticket_id\n  }\n  buttons.push(button)\n}\nif(message == \"Como foi a sua experiência de chat?\" ) {\n  if(ticketId && ticketId != \"\") {\n    message = \"Como foi sua experiência com o chamado \" + ticketId + \"?\"\n  }\n}\nif(uri) {\n  message = message + '\\n' + uri\n}\nreturn {\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\" : number, // WhatsApp ID of your recipient\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"button\",\n    \"body\": {\n      \"text\": message\n    },\n    \"action\": {\n      \"buttons\": buttons\n    }\n  }\n}"
       },
       "id": "a60439d5-9edd-4b94-95ff-0d2f5040d528",
       "name": "Prepare Message to send",
@@ -1000,6 +1025,40 @@
         4840,
         2520
       ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fc712bf3-d79d-4458-b261-50f42113deab",
+              "leftValue": "={{ $json.sourceType }}",
+              "rightValue": "zd:surveys",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3fcfcde2-90f6-4399-a675-6139b2f710f4",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3900,
+        2440
+      ]
     }
   ],
   "pinData": {},
@@ -1062,6 +1121,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-09-03T11:05:50.147Z",
-  "versionId": "02f1a16f-14c0-4dc5-be0c-9a8a495aa0f9"
+  "updatedAt": "2024-10-14T19:09:43.590Z",
+  "versionId": "42192393-94cf-4c74-bd4e-d7761cf5ab79"
 }
