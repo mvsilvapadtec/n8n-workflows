@@ -116,17 +116,6 @@
         ]
       ]
     },
-    "[TB] Continue Chat": {
-      "main": [
-        [
-          {
-            "node": "Mount Message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Split Out2": {
       "main": [
         [
@@ -150,24 +139,6 @@
         [
           {
             "node": "[TB] Start Chat",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If session typebot": {
-      "main": [
-        [
-          {
-            "node": "If9",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "If Check Exist Conversations",
             "type": "main",
             "index": 0
           }
@@ -300,17 +271,6 @@
         [
           {
             "node": "Get Conversation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Conversation": {
-      "main": [
-        [
-          {
-            "node": "SW Conversation",
             "type": "main",
             "index": 0
           }
@@ -858,17 +818,6 @@
         ]
       ]
     },
-    "Prepare TypeBot Fields": {
-      "main": [
-        [
-          {
-            "node": "Save transcript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Split Out3": {
       "main": [
         [
@@ -991,22 +940,6 @@
         ]
       ]
     },
-    "Global Fields": {
-      "main": [
-        [
-          {
-            "node": "If session typebot",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Get Contact",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Mount Metadata": {
       "main": [
         [
@@ -1030,6 +963,91 @@
         [
           {
             "node": "Create Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TB] Continue Chat": {
+      "main": [
+        [
+          {
+            "node": "Mount Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save SessionTypeBot1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If session typebot": {
+      "main": [
+        [
+          {
+            "node": "If9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If Check Exist Conversations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare TypeBot Fields": {
+      "main": [
+        [
+          {
+            "node": "Save transcript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Global Fields": {
+      "main": [
+        [
+          {
+            "node": "If session typebot",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Conversation": {
+      "main": [
+        [
+          {
+            "node": "SW Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save SessionTypeBot1": {
+      "main": [
+        [
+          {
+            "node": "[TB] Start Chat",
             "type": "main",
             "index": 0
           }
@@ -1434,24 +1452,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "=https://bot.mvsdevs.uk/api/v1/sessions/{{ $('Prepare TypeBot Fields').item.json.typeBotSessionId }}/continueChat",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"message\": \"{{ $('Prepare TypeBot Fields').item.json.message }}\",\n  \"textBubbleContentFormat\": \"richText\"\n}",
-        "options": {}
-      },
-      "id": "2ef96827-86ba-4234-943f-7d82f32f658d",
-      "name": "[TB] Continue Chat",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2060,
-        -440
-      ]
-    },
-    {
-      "parameters": {
         "fieldToSplitOut": "entry",
         "include": "=",
         "options": {}
@@ -1532,49 +1532,6 @@
       "position": [
         1920,
         -760
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "4931e2c7-11e1-4756-818f-18e642ff793a",
-              "leftValue": "={{ $json.isBot }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "963fd324-90bd-4253-bf6f-fa6199077e3f",
-              "leftValue": "={{ $('Union Data').item.json.message }}",
-              "rightValue": "",
-              "operator": {
-                "type": "string",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "b9f4eb68-e0af-4bf7-83ca-8a2c9f63fce2",
-      "name": "If session typebot",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        1560,
-        -60
       ]
     },
     {
@@ -1961,43 +1918,6 @@
           "sort": {
             "property": [
               {
-                "field": "UpdatedAt",
-                "direction": "desc"
-              }
-            ]
-          },
-          "where": "=(number,eq,{{ $('Union Data').item.json.number }})~and(status,like,open)  "
-        }
-      },
-      "id": "b9e65daf-08f3-4568-a6b7-99420d939aa0",
-      "name": "Get Conversation",
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
-      "position": [
-        640,
-        720
-      ],
-      "retryOnFail": true,
-      "alwaysOutputData": true,
-      "waitBetweenTries": 2000,
-      "credentials": {
-        "nocoDbApiToken": {
-          "id": "bWKV0Gq303SlKPDq",
-          "name": "NocoDB Token account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "nocoDbApiToken",
-        "operation": "getAll",
-        "projectId": "pqrinh2l5ug82p8",
-        "table": "mvw1gvgqu5q9bpw",
-        "limit": 1,
-        "options": {
-          "sort": {
-            "property": [
-              {
                 "field": "UpdatedAt"
               }
             ]
@@ -2047,7 +1967,7 @@
             {
               "id": "6616c549-19c5-4461-9f6f-89de0d210f96",
               "name": "transcript",
-              "value": "={{ $json.body.historic }}",
+              "value": "={{ $json.body.transcript }}",
               "type": "string"
             },
             {
@@ -3951,30 +3871,6 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "2195eedd-4563-4638-a8a3-6ad782dbc3ca",
-              "name": "newTranscript",
-              "value": "={{ $json.transcript + '\\n\\nUser: ' +  $json.message }}",
-              "type": "string"
-            }
-          ]
-        },
-        "includeOtherFields": true,
-        "options": {}
-      },
-      "id": "1fc666a9-b35b-4102-81ff-afdb86e36c78",
-      "name": "Prepare TypeBot Fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1500,
-        -760
-      ]
-    },
-    {
-      "parameters": {
         "authentication": "nocoDbApiToken",
         "operation": "update",
         "projectId": "pqrinh2l5ug82p8",
@@ -4184,6 +4080,169 @@
     },
     {
       "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "\nconst data = {\n  \"dataCapture.systemField.tags\": \"opened_by_integration_message\",\n  \"first_message_id\": $('[ZD] Send Sunshine Message').item.json[\"messages\"][\"0\"][\"id\"]\n}\n\n data[$('Global Fields').item.json.descriptionField] = $('Edit typebot fields').item.json.description;\n data[$('Global Fields').item.json.typeOfServiceField] = $('Edit typebot fields').item.json.typeOfService;\n data[$('Global Fields').item.json.typeOfChannelField] = \"ticket_field_canal_atendimento_whatsapp\";\nif($('Edit typebot fields').item.json.selectedOrganization) {\n  data[\"dataCapture.systemField.organization_id\"] = $('Edit typebot fields').item.json.selectedOrganization\n}\nreturn {metadata: data};"
+      },
+      "id": "de4bd6ac-ca84-4483-8199-d8f9a1056a1d",
+      "name": "Mount Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
+                    "leftValue": "={{ $json.Id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "number",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "caf9b38c-c631-4dcf-b9b7-df988aca7a00",
+      "name": "SW Conversation",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        820,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://bot.mvsdevs.uk/api/v1/sessions/{{ $('Prepare TypeBot Fields').item.json.typeBotSessionId }}/continueChat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": \"{{ $('Prepare TypeBot Fields').item.json.message }}\",\n  \"textBubbleContentFormat\": \"richText\"\n}",
+        "options": {}
+      },
+      "id": "2ef96827-86ba-4234-943f-7d82f32f658d",
+      "name": "[TB] Continue Chat",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1880,
+        -440
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "4931e2c7-11e1-4756-818f-18e642ff793a",
+              "leftValue": "={{ $json.isBot }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "963fd324-90bd-4253-bf6f-fa6199077e3f",
+              "leftValue": "={{ $('Union Data').item.json.message }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b9f4eb68-e0af-4bf7-83ca-8a2c9f63fce2",
+      "name": "If session typebot",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1560,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2195eedd-4563-4638-a8a3-6ad782dbc3ca",
+              "name": "newTranscript",
+              "value": "={{ $json.transcript + '\\n\\nUser: ' +  $json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "1fc666a9-b35b-4102-81ff-afdb86e36c78",
+      "name": "Prepare TypeBot Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1500,
+        -760
+      ]
+    },
+    {
+      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -4322,79 +4381,78 @@
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "\nconst data = {\n  \"dataCapture.systemField.tags\": \"opened_by_integration_message\",\n  \"first_message_id\": $('[ZD] Send Sunshine Message').item.json[\"messages\"][\"0\"][\"id\"]\n}\n\n data[$('Global Fields').item.json.descriptionField] = $('Edit typebot fields').item.json.description;\n data[$('Global Fields').item.json.typeOfServiceField] = $('Edit typebot fields').item.json.typeOfService;\n data[$('Global Fields').item.json.typeOfChannelField] = \"ticket_field_canal_atendimento_whatsapp\";\nif($('Edit typebot fields').item.json.selectedOrganization) {\n  data[\"dataCapture.systemField.organization_id\"] = $('Edit typebot fields').item.json.selectedOrganization\n}\nreturn {metadata: data};"
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "limit": 1,
+        "options": {
+          "sort": {
+            "property": [
+              {
+                "field": "UpdatedAt",
+                "direction": "desc"
+              }
+            ]
+          },
+          "where": "=(number,eq,{{ $('Union Data').item.json.number }})~and(status,like,open)  "
+        }
       },
-      "id": "de4bd6ac-ca84-4483-8199-d8f9a1056a1d",
-      "name": "Mount Metadata",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "b9e65daf-08f3-4568-a6b7-99420d939aa0",
+      "name": "Get Conversation",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
       "position": [
-        3520,
-        1340
-      ]
+        640,
+        720
+      ],
+      "retryOnFail": true,
+      "alwaysOutputData": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      }
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
+        "authentication": "nocoDbApiToken",
+        "operation": "update",
+        "projectId": "pqrinh2l5ug82p8",
+        "table": "mvw1gvgqu5q9bpw",
+        "fieldsUi": {
+          "fieldValues": [
             {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 1
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $json.Id }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "number",
-                      "operation": "exists",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
+              "fieldName": "Id",
+              "fieldValue": "={{ $('Global Fields').item.json.Id }}"
             },
             {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 1
-                },
-                "conditions": [
-                  {
-                    "id": "b280f6bf-54e2-4394-82fb-5bde31af19f7",
-                    "leftValue": "={{ $json.Id }}",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "number",
-                      "operation": "notExists",
-                      "singleValue": true
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
+              "fieldName": "typeBotSessionId",
+              "fieldValue": "="
             }
           ]
-        },
-        "options": {}
+        }
       },
-      "id": "caf9b38c-c631-4dcf-b9b7-df988aca7a00",
-      "name": "SW Conversation",
-      "type": "n8n-nodes-base.switch",
+      "id": "551af5e5-02f2-4946-97e1-e470d7c4c305",
+      "name": "Save SessionTypeBot1",
+      "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        820,
-        720
-      ]
+        2060,
+        -260
+      ],
+      "executeOnce": false,
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "bWKV0Gq303SlKPDq",
+          "name": "NocoDB Token account"
+        }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {},
@@ -4463,6 +4521,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-10-11T19:22:27.166Z",
-  "versionId": "25a3109d-7d8c-44de-937c-a7239d8d39f1"
+  "updatedAt": "2024-10-15T18:57:25.650Z",
+  "versionId": "1c3cad8c-519b-400f-b952-875c5d5278df"
 }
