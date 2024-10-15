@@ -72,6 +72,39 @@
         ]
       ]
     },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation by noco id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zendesk Trigger": {
+      "main": [
+        [
+          {
+            "node": "If Created by Integration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If Created by Integration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch": {
       "main": [
         [
@@ -109,22 +142,11 @@
         ]
       ]
     },
-    "If2": {
+    "Webhook": {
       "main": [
         [
           {
-            "node": "Get Conversation by noco id",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Zendesk Trigger1": {
-      "main": [
-        [
-          {
-            "node": "If Created by Integration",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -146,31 +168,31 @@
             {
               "id": "07fded3a-e258-419e-b987-9e1d2bf20974",
               "name": "ticketId",
-              "value": "={{ $json['ticket.id'] }}",
+              "value": "={{ $json.ticket.id ?? $json['ticket.id'] }}",
               "type": "string"
             },
             {
               "id": "e4dc1929-2183-4831-a9cb-c53739d8fa28",
               "name": "userExternalId",
-              "value": "={{ $json['ticket.requester.external_id'] }}",
+              "value": "={{ $json.ticket.requester.external_id ?? $json['ticket.requester.external_id'] }}",
               "type": "string"
             },
             {
               "id": "8c5ef870-630b-4db3-a58d-6f6c3ddc9186",
               "name": "tags",
-              "value": "={{ $json['ticket.tags'] }}",
+              "value": "={{ $json.ticket.tags ?? $json['ticket.tags'] }}",
               "type": "string"
             },
             {
               "id": "2c7a2c4f-ea97-4cbf-8091-b705740fffe5",
               "name": "number",
-              "value": "={{ $json['ticket.requester.external_id'].split('_')[0] }}",
+              "value": "={{ ($json.ticket.requester.external_id ?? $json['ticket.requester.external_id']).split('_')[0] }}",
               "type": "string"
             },
             {
               "id": "d46c6dc3-7ea8-4b95-b022-7ac1135aed2b",
               "name": "nocoId",
-              "value": "={{ $json['ticket.requester.external_id'].split('_')[1] }}",
+              "value": "={{ ($json.ticket.requester.external_id ?? $json['ticket.requester.external_id']).split('_')[1] }}",
               "type": "string"
             },
             {
@@ -182,7 +204,7 @@
             {
               "id": "5867581e-42aa-4b1f-8d8c-86976156394d",
               "name": "ticketStatus",
-              "value": "={{ $json['ticket.status'] }}",
+              "value": "={{ $json.ticket.status ?? $json['ticket.status'] }}",
               "type": "string"
             },
             {
@@ -200,7 +222,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        240,
+        540,
         540
       ]
     },
@@ -220,7 +242,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1280,
+        1500,
         540
       ],
       "retryOnFail": false,
@@ -256,7 +278,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1680,
+        1900,
         640
       ],
       "retryOnFail": true,
@@ -272,7 +294,7 @@
     {
       "parameters": {
         "content": "## Zendes Flow\n",
-        "height": 858.024528085766,
+        "height": 1152.8736537384152,
         "width": 2215.9546486475665
       },
       "id": "28b762cf-78e2-4ec3-84be-3112f288702c",
@@ -280,8 +302,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -240,
-        460
+        -260,
+        360
       ]
     },
     {
@@ -309,7 +331,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        580,
+        800,
         540
       ],
       "credentials": {
@@ -328,7 +350,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        760,
+        980,
         540
       ]
     },
@@ -338,12 +360,13 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
               "id": "04edb547-1433-4eda-86dc-2a4ff2e3e828",
-              "leftValue": "={{ $json['ticket.id'] }}",
+              "leftValue": "={{ $json.ticket.id }}",
               "rightValue": "",
               "operator": {
                 "type": "string",
@@ -353,7 +376,7 @@
             },
             {
               "id": "e211aa76-8191-484d-b80e-47bb74ed8219",
-              "leftValue": "={{ $json['ticket.via'] }}",
+              "leftValue": "={{ $json.ticket.via }}",
               "rightValue": "Mensagens",
               "operator": {
                 "type": "string",
@@ -363,7 +386,7 @@
             },
             {
               "id": "82d57256-c04e-42be-aa7a-77feecd8a9d0",
-              "leftValue": "={{ $json['ticket.tags'] }}",
+              "leftValue": "={{ $json.ticket.tags }}",
               "rightValue": "opened_by_integration_message",
               "operator": {
                 "type": "string",
@@ -380,56 +403,9 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        40,
-        540
+        260,
+        480
       ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
-          "conditions": [
-            {
-              "id": "d2087604-e4e6-4538-b62d-27a6d1ea26b1",
-              "leftValue": "={{ $json.ticketStatus }}",
-              "rightValue": "Novo",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            },
-            {
-              "id": "01548061-bb62-4352-862f-8a3e6992e55f",
-              "leftValue": "={{ $json.ticketStatus }}",
-              "rightValue": "Fechado",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "or"
-        },
-        "options": {
-          "ignoreCase": true,
-          "looseTypeValidation": true
-        }
-      },
-      "id": "af09e53b-f154-484d-9854-e05a4a107270",
-      "name": "If",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        460,
-        420
-      ],
-      "disabled": true
     },
     {
       "parameters": {
@@ -459,7 +435,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        460,
+        680,
         960
       ],
       "retryOnFail": true,
@@ -501,118 +477,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1460,
+        1680,
         540
-      ]
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
-                    "rightValue": "Novo",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Novo"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "3ed6ab52-38c6-4117-8d5b-a891dfca7c9a",
-                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
-                    "rightValue": "Fechado",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Fechado"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "e1cd3cee-082e-4206-bb55-e85900f399cd",
-                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
-                    "rightValue": "Resolvido",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "Resolvido"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": false,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "9cbc5488-97e7-4eae-ac0a-47304f91d621",
-                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
-                    "rightValue": "/Fechado|Resolvido/i",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notRegex"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "ignoreCase": true
-        }
-      },
-      "id": "7cf31be2-f371-44cd-a9ba-2da53e832baa",
-      "name": "Switch",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        -160,
-        880
       ]
     },
     {
@@ -643,7 +509,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        460,
+        680,
         1180
       ],
       "retryOnFail": true,
@@ -673,7 +539,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        640,
+        860,
         700
       ],
       "credentials": {
@@ -699,7 +565,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        640,
+        860,
         880
       ],
       "credentials": {
@@ -725,7 +591,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        640,
+        860,
         1080
       ],
       "credentials": {
@@ -764,7 +630,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        980,
+        1200,
         540
       ]
     },
@@ -779,37 +645,205 @@
             "ticket.external_id",
             "ticket.via",
             "ticket.status",
+            "ticket.priority",
             "ticket.ticket_type",
+            "ticket.account",
+            "ticket.assignee.name",
+            "ticket.assignee.email",
+            "ticket.requester.name",
+            "ticket.requester.email",
             "ticket.requester.external_id",
-            "ticket.requester.requester_field",
-            "ticket.requester.details",
+            "ticket.requester.phone",
             "ticket.organization.name",
-            "ticket.tags",
-            "ticket.ticket_field_26566119129613",
-            "ticket.assignee.name"
+            "ticket.organization.external_id",
+            "ticket.organization.details",
+            "satisfaction.current_rating",
+            "satisfaction.current_comment",
+            "ticket.tags"
           ]
         },
         "conditions": {
-          "all": [
+          "any": [
             {
               "operation": "changed"
             }
           ]
         }
       },
-      "id": "0d94fb12-1d44-48ce-a8e2-1a3fd1d76c51",
-      "name": "Zendesk Trigger1",
+      "id": "6f34f87c-2bd6-4faa-8dfa-281b58929e5a",
+      "name": "Zendesk Trigger",
       "type": "n8n-nodes-base.zendeskTrigger",
       "typeVersion": 1,
       "position": [
-        -180,
-        560
+        -220,
+        420
       ],
-      "webhookId": "4a2cefa5-4686-4911-9e83-b4525e1ab6de",
+      "webhookId": "0b8cda0d-1469-405c-9714-11216cdc9726",
       "credentials": {
         "zendeskOAuth2Api": {
           "id": "vDOJ2hG7rJ3UOSTs",
           "name": "SandBox Zendesk account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de32ee9-a566-4868-a101-66b1bee8b2f8",
+              "name": "ticket",
+              "value": "={{ $json.body.ticket }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8369de96-879f-43e1-b778-056643653ad1",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "Novo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Novo"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "3ed6ab52-38c6-4117-8d5b-a891dfca7c9a",
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "Fechado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Fechado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "e1cd3cee-082e-4206-bb55-e85900f399cd",
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "Resolvido",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Resolvido"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "9cbc5488-97e7-4eae-ac0a-47304f91d621",
+                    "leftValue": "={{ $('EditTicketFields').item.json.ticketStatus }}",
+                    "rightValue": "/Fechado|Resolvido/i",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notRegex"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "id": "7cf31be2-f371-44cd-a9ba-2da53e832baa",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        60,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zendesk-events",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "id": "79543e02-79b0-4e7f-974b-72c4a33e4e76",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        580
+      ],
+      "webhookId": "0d12102a-f3a1-48eb-bdc2-bf22e9c09bc3",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Ar6nrsvLC8XjxT2E",
+          "name": "ZendeskWebhookAuth"
         }
       }
     }
@@ -873,16 +907,16 @@
   ],
   "staticData": {
     "node:Zendesk Trigger": {
-      "webhookId": 30992650469005,
+      "webhookId": 31076483689997,
       "targetId": "01J6VX1X6ZH6NMQ76N60CZN20M"
     },
     "node:Zendesk Trigger1": {
-      "webhookId": 30993630670349,
+      "webhookId": 31075823730445,
       "targetId": "01J9YF75HJ2R17P2PDJHCBCZT9"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-10-11T18:59:50.930Z",
-  "versionId": "108e304a-ec37-431d-ab6b-a1e1586db1de"
+  "updatedAt": "2024-10-15T17:11:36.014Z",
+  "versionId": "515a781f-100d-4b94-b547-53f4bc5fdc88"
 }
