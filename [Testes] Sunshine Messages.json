@@ -157,7 +157,7 @@
       "main": [
         [
           {
-            "node": "WhatsApp Business Cloud1",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -193,6 +193,17 @@
         ]
       ]
     },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Conversation ByConversationId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Switch2": {
       "main": [
         [
@@ -211,11 +222,11 @@
         ]
       ]
     },
-    "If": {
+    "Code": {
       "main": [
         [
           {
-            "node": "Get Conversation ByConversationId",
+            "node": "WhatsApp Business Cloud1",
             "type": "main",
             "index": 0
           }
@@ -234,7 +245,7 @@
       "parameters": {
         "content": "## Sunshine Flow",
         "height": 836.6718190628901,
-        "width": 2732.9190910851767
+        "width": 2959.922974379907
       },
       "id": "0fa67196-17de-41ea-ae03-606c053812a0",
       "name": "Sticky Note3",
@@ -422,7 +433,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -533,7 +545,7 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        5600,
+        5820,
         2300
       ],
       "retryOnFail": false,
@@ -552,7 +564,7 @@
         "operation": "send",
         "phoneNumberId": "331922393331203",
         "recipientPhoneNumber": "={{ $json.number }}",
-        "textBody": "={{ $('Edit Sunshine Message').item.json.content.text }}",
+        "textBody": "={{ $json.text }}",
         "additionalFields": {
           "previewUrl": false
         },
@@ -563,7 +575,7 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5360,
+        5580,
         2300
       ],
       "credentials": {
@@ -861,7 +873,8 @@
           "options": {
             "caseSensitive": true,
             "leftValue": "",
-            "typeValidation": "strict"
+            "typeValidation": "strict",
+            "version": 1
           },
           "conditions": [
             {
@@ -873,9 +886,18 @@
                 "operation": "notExists",
                 "singleValue": true
               }
+            },
+            {
+              "id": "f332fefd-64a2-4779-bb97-d1a16ed1b396",
+              "leftValue": "={{ $('Edit Sunshine Message').item.json.sourceType  }}",
+              "rightValue": "zd:surveys",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
@@ -898,7 +920,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5360,
+        5580,
         2540
       ]
     },
@@ -918,7 +940,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        5600,
+        5820,
         2540
       ],
       "credentials": {
@@ -970,64 +992,6 @@
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "id": "16733111-c67e-4a01-b5d6-0d658072d136",
-                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "notEquals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "4c7a1d58-e9c4-49c4-ad1c-504275d5442f",
-      "name": "Switch2",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        4840,
-        2520
-      ]
-    },
-    {
-      "parameters": {
         "conditions": {
           "options": {
             "caseSensitive": true,
@@ -1058,6 +1022,80 @@
       "position": [
         3900,
         2440
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "16733111-c67e-4a01-b5d6-0d658072d136",
+                    "leftValue": "={{ $('Edit Sunshine Message').item.json.inputType }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4c7a1d58-e9c4-49c4-ad1c-504275d5442f",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        4840,
+        2520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const uri = $('Edit Sunshine Message').item.json.content.actions[0].uri\nconst textSurvey = $('Edit Sunshine Message').item.json.content.actions[0].text\nlet text = $('Edit Sunshine Message').item.json.content.text \n\nconst number = $json.number \nif(uri && textSurvey) {\n  text = textSurvey + '\\n\\n' + uri\n}\nreturn {text: text, number: number};"
+      },
+      "id": "5ce315e2-e047-4cd8-b93d-2d4379f4f473",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5360,
+        2300
       ]
     }
   ],
@@ -1121,6 +1159,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-10-14T19:09:43.590Z",
-  "versionId": "42192393-94cf-4c74-bd4e-d7761cf5ab79"
+  "updatedAt": "2024-10-15T17:20:36.275Z",
+  "versionId": "e657a872-9ca7-4cd8-b3e0-bb3406266386"
 }
