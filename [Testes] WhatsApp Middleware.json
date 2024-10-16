@@ -434,97 +434,6 @@
         ]
       ]
     },
-    "Split Changes WPP": {
-      "main": [
-        [
-          {
-            "node": "Split Statuses",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If Changes Status in WPP Message": {
-      "main": [
-        [
-          {
-            "node": "Split Changes WPP",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split Statuses": {
-      "main": [
-        [
-          {
-            "node": "If Status Error",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If Status Error": {
-      "main": [
-        [
-          {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Get Message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Switch1": {
-      "main": [
-        [
-          {
-            "node": "Set Read Message",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Set Delivered Message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Message": {
-      "main": [
-        [
-          {
-            "node": "If3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "If3": {
-      "main": [
-        [
-          {
-            "node": "Switch1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get Contact": {
       "main": [
         [
@@ -811,7 +720,7 @@
         ],
         [
           {
-            "node": "Response message type",
+            "node": "Response message type1",
             "type": "main",
             "index": 0
           }
@@ -1073,23 +982,24 @@
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        360,
-        -260
+        920,
+        -1900
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
         "content": "## Wpp flow\n",
-        "height": 953.2042914772362,
-        "width": 1023.8526476817698
+        "height": 595.5773332984877,
+        "width": 2212.8461709773487,
+        "color": 5
       },
       "id": "fd448cad-73df-42bc-bf5e-1d65b468b7ec",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        360,
-        200
+        -1720,
+        -1320
       ],
       "typeVersion": 1
     },
@@ -1103,8 +1013,8 @@
       "name": "Respond to Webhook Validate",
       "type": "n8n-nodes-base.respondToWebhook",
       "position": [
-        660,
-        -160
+        1220,
+        -1800
       ],
       "typeVersion": 1
     },
@@ -1117,38 +1027,40 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        920,
-        260
+        -1140,
+        -1200
       ]
     },
     {
       "parameters": {
         "content": "## Zendesk Flow",
         "height": 1336.5650189625526,
-        "width": 3542.8140372982675
+        "width": 3542.8140372982675,
+        "color": 2
       },
       "id": "a805c862-de4c-4f4f-a68a-085225da2bd7",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        380,
-        1180
+        2480,
+        -160
       ]
     },
     {
       "parameters": {
         "content": "## Typebot Flow Custom",
-        "height": 1017.937293846341,
-        "width": 2524.1986711969566
+        "height": 1006.775572406952,
+        "width": 3305.5191719542263,
+        "color": 4
       },
       "id": "36856954-040a-46d4-b0a4-1e353ecb2b55",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1400,
-        -840
+        2480,
+        -1271.6631925001445
       ]
     },
     {
@@ -1200,8 +1112,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        480,
-        1300
+        2560,
+        -80
       ]
     },
     {
@@ -1243,8 +1155,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        820,
-        2160
+        2920,
+        840
       ]
     },
     {
@@ -1296,8 +1208,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        680,
-        260
+        -1420,
+        -1200
       ]
     },
     {
@@ -1329,8 +1241,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        900,
-        1240
+        3000,
+        -80
       ]
     },
     {
@@ -1367,8 +1279,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2100,
-        1320
+        4200,
+        0
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -1428,8 +1340,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1260,
-        260
+        -680,
+        -1200
       ]
     },
     {
@@ -1446,8 +1358,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2160,
-        -760
+        3660,
+        -880
       ]
     },
     {
@@ -1461,24 +1373,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        1100,
-        260
-      ]
-    },
-    {
-      "parameters": {
-        "content": "## Others messages treatment",
-        "height": 572.4853443499766,
-        "width": 1205.9492359426526,
-        "color": 3
-      },
-      "id": "b15e6268-9042-4a6f-8b9e-0c7953bc1816",
-      "name": "Sticky Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -1780,
-        100
+        -920,
+        -1200
       ]
     },
     {
@@ -1530,8 +1426,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1920,
-        -760
+        3420,
+        -880
       ]
     },
     {
@@ -1541,8 +1437,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        480,
-        720
+        760,
+        -780
       ]
     },
     {
@@ -1574,8 +1470,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1720,
-        720
+        -280,
+        -520
       ]
     },
     {
@@ -1585,8 +1481,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        1120,
-        1240
+        3220,
+        -80
       ]
     },
     {
@@ -1637,8 +1533,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2300,
-        1320
+        4400,
+        0
       ]
     },
     {
@@ -1680,8 +1576,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        3280,
-        1340
+        5380,
+        20
       ]
     },
     {
@@ -1708,8 +1604,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1220,
-        1820
+        3320,
+        500
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1744,8 +1640,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        2420,
-        -760
+        3920,
+        -880
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -1774,8 +1670,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        700,
-        1800
+        2800,
+        480
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -1804,8 +1700,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        720,
-        1240
+        2820,
+        -80
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -1837,8 +1733,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        960,
-        1820
+        3060,
+        500
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -1863,8 +1759,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2360,
-        300
+        -1040,
+        -260
       ],
       "retryOnFail": true
     },
@@ -1896,8 +1792,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1020,
-        840
+        1580,
+        -480
       ],
       "retryOnFail": true,
       "credentials": {
@@ -1930,8 +1826,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1500,
-        720
+        -540,
+        -520
       ],
       "retryOnFail": false,
       "alwaysOutputData": true,
@@ -1997,8 +1893,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        2340,
-        780
+        -780,
+        -520
       ]
     },
     {
@@ -2031,8 +1927,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3700,
-        1340
+        5800,
+        20
       ],
       "credentials": {
         "httpHeaderAuth": {
@@ -2065,8 +1961,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1100,
-        2120
+        3200,
+        800
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -2093,8 +1989,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        -347,
-        2240
+        -1127,
+        700
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2119,8 +2015,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        193,
-        2240
+        -587,
+        700
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2145,8 +2041,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        33,
-        2240
+        -747,
+        700
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2184,8 +2080,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -647,
-        2300
+        -1427,
+        760
       ]
     },
     {
@@ -2203,8 +2099,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        -867,
-        2320
+        -1647,
+        780
       ],
       "retryOnFail": true,
       "maxTries": 3,
@@ -2227,8 +2123,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -307,
-        2500
+        -1087,
+        960
       ],
       "webhookId": "74075f8d-3af3-4cc3-80fa-091c247f7a46"
     },
@@ -2241,8 +2137,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -127,
-        2320
+        -907,
+        780
       ]
     },
     {
@@ -2264,8 +2160,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        -667,
-        2480
+        -1447,
+        940
       ]
     },
     {
@@ -2296,8 +2192,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        13,
-        2500
+        -767,
+        960
       ]
     },
     {
@@ -2315,8 +2211,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        2700,
-        1260
+        4800,
+        -60
       ],
       "alwaysOutputData": true,
       "credentials": {
@@ -2342,8 +2238,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        3080,
-        1260
+        5180,
+        -60
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2356,15 +2252,16 @@
       "parameters": {
         "content": "## Merge User If need\n",
         "height": 517.1190697180979,
-        "width": 1212.542709280839
+        "width": 1212.542709280839,
+        "color": 3
       },
       "id": "5cb2d0f8-9c68-43fc-bce3-64ae1bb87e9a",
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -920,
-        2200
+        -1700,
+        660
       ]
     },
     {
@@ -2396,8 +2293,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2880,
-        1260
+        4980,
+        -60
       ]
     },
     {
@@ -2416,8 +2313,8 @@
       "type": "n8n-nodes-base.zendesk",
       "typeVersion": 1,
       "position": [
-        3080,
-        1420
+        5180,
+        100
       ],
       "credentials": {
         "zendeskOAuth2Api": {
@@ -2429,373 +2326,17 @@
     {
       "parameters": {
         "content": "## Typebot Flow",
-        "height": 755.7815407767345,
-        "width": 1145.6847582216387
+        "height": 732.5590110248677,
+        "width": 1424.35511524404,
+        "color": 6
       },
       "id": "573e3185-4084-4690-87f8-579cad8caff1",
       "name": "Sticky Note6",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1420,
-        220
-      ]
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "=entry.changes",
-        "options": {}
-      },
-      "id": "7b068b6a-1bb1-4dce-9d4e-b67d86c02f08",
-      "name": "Split Changes WPP",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        -1660,
-        200
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "70bdf561-f4b8-4aeb-8b42-03b8dde22e04",
-              "leftValue": "={{ $json.entry.changes }}",
-              "rightValue": "",
-              "operator": {
-                "type": "array",
-                "operation": "exists",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "4fe6b33b-02db-4b03-8ddd-220a90ca2785",
-              "leftValue": "={{ $json.entry.changes }}",
-              "rightValue": "",
-              "operator": {
-                "type": "array",
-                "operation": "notEmpty",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "34498bc8-33a9-438f-8865-8dcd42262089",
-              "leftValue": "={{ $json.entry.changes[0].value.statuses[0] }}",
-              "rightValue": "",
-              "operator": {
-                "type": "object",
-                "operation": "exists",
-                "singleValue": true
-              }
-            },
-            {
-              "id": "86a247f7-792d-486e-a83e-397f9010d6e1",
-              "leftValue": "={{ $json.entry.changes[0].field }}",
-              "rightValue": "messages",
-              "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "8db8871a-96b2-4969-bf67-53c709ba74c3",
-      "name": "If Changes Status in WPP Message",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1720,
-        480
-      ]
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "=value.statuses",
-        "options": {}
-      },
-      "id": "15a43f5a-b5c2-4752-b682-13629b76c4cc",
-      "name": "Split Statuses",
-      "type": "n8n-nodes-base.splitOut",
-      "typeVersion": 1,
-      "position": [
-        -1520,
-        200
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "e5760b36-4119-4fc3-9ca7-80acf1a438d4",
-              "leftValue": "={{ $json.errors }}",
-              "rightValue": "",
-              "operator": {
-                "type": "array",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "915d0de4-c137-4c7a-bde5-b6ae4bf4ba88",
-      "name": "If Status Error",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1380,
-        200
-      ]
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $json.errors[0].title }}",
-                    "rightValue": "Re-engagement message",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "44ce3804-5410-4daf-aeee-ae827d7cbc4e",
-      "name": "Switch",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        -1180,
-        100
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "nocoDbApiToken",
-        "operation": "update",
-        "projectId": "pqrinh2l5ug82p8",
-        "table": "me05vewswdk5l8g",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldName": "messageId",
-              "fieldValue": "={{ $('If Status Error').item.json.id }}"
-            },
-            {
-              "fieldName": "read",
-              "fieldValue": "true"
-            }
-          ]
-        }
-      },
-      "id": "a6cc6891-3814-4316-8a03-b005c5e61849",
-      "name": "Set Read Message",
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
-      "position": [
-        -820,
-        140
-      ],
-      "retryOnFail": false,
-      "waitBetweenTries": 2000,
-      "alwaysOutputData": true,
-      "credentials": {
-        "nocoDbApiToken": {
-          "id": "bWKV0Gq303SlKPDq",
-          "name": "NocoDB Token account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "authentication": "nocoDbApiToken",
-        "operation": "update",
-        "projectId": "pqrinh2l5ug82p8",
-        "table": "me05vewswdk5l8g",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldName": "messageId",
-              "fieldValue": "={{ $('If Status Error').item.json.id }}"
-            },
-            {
-              "fieldName": "delivered",
-              "fieldValue": "=true"
-            }
-          ]
-        }
-      },
-      "id": "0211dfe6-9cd0-4b11-b098-dc651b1eb1fe",
-      "name": "Set Delivered Message",
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
-      "position": [
-        -820,
-        420
-      ],
-      "retryOnFail": false,
-      "waitBetweenTries": 2000,
-      "alwaysOutputData": true,
-      "credentials": {
-        "nocoDbApiToken": {
-          "id": "bWKV0Gq303SlKPDq",
-          "name": "NocoDB Token account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "leftValue": "={{ $('If Status Error').item.json.status }}",
-                    "rightValue": "read",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "loose"
-                },
-                "conditions": [
-                  {
-                    "id": "c527fb83-4fa5-41a5-a358-a9340a68fab5",
-                    "leftValue": "={{$('If Status Error').item.json.status }}",
-                    "rightValue": "delivered",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals",
-                      "name": "filter.operator.equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {
-          "looseTypeValidation": true
-        }
-      },
-      "id": "88def40e-5fd6-4c4e-96a4-6e49aa15a7cc",
-      "name": "Switch1",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3,
-      "position": [
-        -980,
-        280
-      ]
-    },
-    {
-      "parameters": {
-        "authentication": "nocoDbApiToken",
-        "projectId": "pqrinh2l5ug82p8",
-        "table": "me05vewswdk5l8g",
-        "id": "{{ $json.id }}"
-      },
-      "id": "88b3272c-96ed-40d0-87a1-12f1c8922cb3",
-      "name": "Get Message",
-      "type": "n8n-nodes-base.nocoDb",
-      "typeVersion": 3,
-      "position": [
-        -1180,
-        280
-      ],
-      "retryOnFail": false,
-      "waitBetweenTries": 2000,
-      "alwaysOutputData": true,
-      "credentials": {
-        "nocoDbApiToken": {
-          "id": "bWKV0Gq303SlKPDq",
-          "name": "NocoDB Token account"
-        }
-      },
-      "onError": "continueRegularOutput"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "21583f31-d195-49de-bd01-cc52713982e6",
-              "leftValue": "={{ $json.id }}",
-              "rightValue": "",
-              "operator": {
-                "type": "number",
-                "operation": "exists",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "dd792457-124e-497b-a39e-728d95c94d07",
-      "name": "If3",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -1160,
-        480
+        -1080,
+        -660
       ]
     },
     {
@@ -2822,8 +2363,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1240,
-        820
+        1580,
+        -680
       ],
       "retryOnFail": true,
       "alwaysOutputData": true,
@@ -2855,8 +2396,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        580,
-        1000
+        2100,
+        -580
       ],
       "retryOnFail": true,
       "credentials": {
@@ -2895,8 +2436,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        820,
-        1020
+        1860,
+        -580
       ]
     },
     {
@@ -2927,8 +2468,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1220,
-        1000
+        2140,
+        -260
       ],
       "retryOnFail": true,
       "waitBetweenTries": 2000,
@@ -2963,8 +2504,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1500,
-        1020
+        760,
+        -540
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -3046,8 +2587,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        460,
-        480
+        -360,
+        -1280
       ]
     },
     {
@@ -3059,8 +2600,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1900,
-        1240
+        4000,
+        -80
       ]
     },
     {
@@ -3073,8 +2614,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1900,
-        1420
+        4000,
+        100
       ]
     },
     {
@@ -3087,8 +2628,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -160,
-        560
+        -400,
+        -1100
       ]
     },
     {
@@ -3102,8 +2643,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        2340,
-        580
+        -1020,
+        -520
       ],
       "webhookId": "0a6e848e-6d10-4160-8747-39ab1f0f2250"
     },
@@ -3125,8 +2666,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1100,
-        1500
+        3200,
+        180
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3180,8 +2721,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1380,
-        1500
+        3480,
+        180
       ],
       "retryOnFail": false,
       "waitBetweenTries": 3000,
@@ -3207,8 +2748,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        740,
-        560
+        -100,
+        -1100
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3237,8 +2778,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2500,
-        1260
+        4600,
+        -60
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -3271,8 +2812,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        700,
-        2000
+        2800,
+        680
       ],
       "alwaysOutputData": false,
       "retryOnFail": true,
@@ -3298,8 +2839,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1900,
-        1600
+        4000,
+        280
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3375,8 +2916,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        1120,
-        500
+        120,
+        -1280
       ]
     },
     {
@@ -3458,8 +2999,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        2000,
-        720
+        20,
+        -580
       ]
     },
     {
@@ -3501,8 +3042,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1300,
-        1240
+        3400,
+        -80
       ]
     },
     {
@@ -3517,8 +3058,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        800,
-        1500
+        2900,
+        180
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3537,8 +3078,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        740,
-        420
+        -100,
+        -1280
       ]
     },
     {
@@ -3570,8 +3111,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1380,
-        1680
+        3480,
+        360
       ]
     },
     {
@@ -3585,8 +3126,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.4,
       "position": [
-        1680,
-        1820
+        3780,
+        500
       ],
       "credentials": {
         "openAiApi": {
@@ -3616,8 +3157,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2900,
-        1680
+        5000,
+        360
       ],
       "retryOnFail": true,
       "waitBetweenTries": 3000,
@@ -3668,8 +3209,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1900,
-        2020
+        4000,
+        700
       ],
       "retryOnFail": true,
       "waitBetweenTries": 1500,
@@ -3691,8 +3232,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        2220,
-        1680
+        4320,
+        360
       ],
       "onError": "continueRegularOutput"
     },
@@ -3706,8 +3247,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2680,
-        1680
+        4780,
+        360
       ],
       "onError": "continueRegularOutput"
     },
@@ -3740,8 +3281,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        2440,
-        1680
+        4540,
+        360
       ]
     },
     {
@@ -3783,8 +3324,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1840,
-        -60
+        2560,
+        -1180
       ]
     },
     {
@@ -3811,8 +3352,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1740,
-        -760
+        3240,
+        -880
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -3859,8 +3400,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3360,
-        -440
+        5240,
+        -500
       ],
       "credentials": {
         "whatsAppApi": {
@@ -3893,8 +3434,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        3700,
-        -160
+        5600,
+        -500
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -3914,8 +3455,8 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2500,
-        -440
+        4320,
+        -520
       ]
     },
     {
@@ -3928,8 +3469,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2280,
-        -440
+        4100,
+        -520
       ]
     },
     {
@@ -3942,8 +3483,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3160,
-        -440
+        5040,
+        -500
       ]
     },
     {
@@ -3955,8 +3496,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        2980,
-        -440
+        4860,
+        -500
       ],
       "webhookId": "21a11ed0-cea5-4ffa-a99a-3d1e90052893"
     },
@@ -3983,8 +3524,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        3540,
-        -440
+        5420,
+        -500
       ],
       "retryOnFail": false,
       "alwaysOutputData": true,
@@ -4004,8 +3545,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        2740,
-        -440
+        4600,
+        -520
       ]
     },
     {
@@ -4018,8 +3559,8 @@
       "name": "Respond",
       "type": "n8n-nodes-base.webhook",
       "position": [
-        460,
-        260
+        -1660,
+        -1200
       ],
       "webhookId": "b22e8423-694b-49b1-93a0-58823a538cf3",
       "typeVersion": 1.1
@@ -4052,8 +3593,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        1900,
-        560
+        20,
+        -380
       ],
       "credentials": {
         "nocoDbApiToken": {
@@ -4072,8 +3613,8 @@
       "name": "Verify",
       "type": "n8n-nodes-base.webhook",
       "position": [
-        440,
-        -160
+        1000,
+        -1800
       ],
       "webhookId": "d71a1f38-98c1-4e14-b4c0-a1e85e44615a",
       "typeVersion": 1.1
@@ -4088,8 +3629,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3520,
-        1340
+        5620,
+        20
       ]
     },
     {
@@ -4150,8 +3691,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
       "position": [
-        820,
-        720
+        1160,
+        -780
       ]
     },
     {
@@ -4168,8 +3709,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1880,
-        -440
+        3700,
+        -520
       ],
       "onError": "continueErrorOutput"
     },
@@ -4213,8 +3754,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        1560,
-        -60
+        2100,
+        -780
       ]
     },
     {
@@ -4237,8 +3778,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1500,
-        -760
+        3000,
+        -880
       ]
     },
     {
@@ -4375,8 +3916,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.3,
       "position": [
-        1120,
-        680
+        1380,
+        -780
       ]
     },
     {
@@ -4403,8 +3944,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        640,
-        720
+        960,
+        -780
       ],
       "retryOnFail": true,
       "alwaysOutputData": true,
@@ -4440,8 +3981,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        2060,
-        -260
+        3340,
+        -1140
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -4453,6 +3994,44 @@
         }
       },
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "331922393331203",
+        "recipientPhoneNumber": "={{ $json.entry.changes[0].value.messages[0].from }}",
+        "textBody": "Não consigo processar este tipo de mensagem!",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "id": "b6297013-b2d1-469d-afe2-2e1d51866d4b",
+      "name": "Response message type1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        -700
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "CvLeuIxEieMjL8Of",
+          "name": "WhatsApp Test account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "height": 977.4330472657102,
+        "width": 1633.3517851120062
+      },
+      "id": "a377e4a1-6283-4e1f-9fcd-5e77a3d00d22",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        700,
+        -940
+      ]
     }
   ],
   "pinData": {},
@@ -4521,6 +4100,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-10-15T18:57:25.650Z",
-  "versionId": "1c3cad8c-519b-400f-b952-875c5d5278df"
+  "updatedAt": "2024-10-16T13:07:47.805Z",
+  "versionId": "1fd5e04f-801a-43b2-9b7f-c02b6f6852dd"
 }
