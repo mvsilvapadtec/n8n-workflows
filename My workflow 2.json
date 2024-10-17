@@ -1,7 +1,18 @@
 {
   "active": false,
   "connections": {
-    "When clicking ‘Test workflow’": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n Form Trigger": {
       "main": [
         [
           {
@@ -12,11 +23,11 @@
         ]
       ]
     },
-    "Edit Fields": {
+    "HubSpot": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
           }
@@ -24,77 +35,114 @@
       ]
     }
   },
-  "createdAt": "2024-08-21T17:02:22.663Z",
-  "id": "yO7CE8eQ6N4hfogg",
+  "createdAt": "2024-10-17T11:46:58.676Z",
+  "id": "0748L29rG8jnwCQ4",
   "meta": {
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow 2",
   "nodes": [
     {
-      "parameters": {},
-      "id": "7235a49c-90bb-4d07-a56b-c7860df746bb",
-      "name": "When clicking ‘Test workflow’",
-      "type": "n8n-nodes-base.manualTrigger",
+      "parameters": {
+        "path": "formulario",
+        "formTitle": "Teste",
+        "formDescription": "Desc",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Onde",
+              "placeholder": "Lugar"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c0b3cee2-459c-4a6f-aefe-357df7f7f8a7",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.1,
       "position": [
-        820,
-        360
+        -40,
+        260
       ],
-      "typeVersion": 1
+      "webhookId": "d13ae16c-9add-4d4a-9540-f660793c2ead"
+    },
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "resource": "deal",
+        "operation": "search",
+        "limit": 1,
+        "filterGroupsUi": {
+          "filterGroupsValues": [
+            {
+              "filtersUi": {
+                "filterValues": [
+                  {
+                    "propertyName": "hs_object_id",
+                    "value": "21054457680"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "properties": [
+            "dealname",
+            "services_produto"
+          ]
+        }
+      },
+      "id": "afeea616-4390-4643-999d-20e70578fd30",
+      "name": "HubSpot",
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.1,
+      "position": [
+        440,
+        260
+      ],
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "wLXevnLOUj137fM2",
+          "name": "HubSpot App Token account"
+        }
+      }
     },
     {
       "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "bb4b20ce-840e-4a46-9136-a4353b1d275e",
-              "name": "lastContact",
-              "value": "={{ $now.minus(6, 'minutes') }}",
+              "id": "169c553a-fb96-44c3-9929-5e0299d5a328",
+              "name": "id",
+              "value": "21054457680",
               "type": "string"
             }
           ]
         },
         "options": {}
       },
-      "id": "cea5c69c-134a-48d7-8c08-2a631ae1b699",
+      "id": "20d5c582-89e3-4702-a892-2103d855717b",
       "name": "Edit Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1040,
-        360
+        200,
+        260
       ]
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "4d0e2b85-b9a9-423b-be22-a18756fcc6bf",
-              "leftValue": "={{DateTime.fromISO($json.lastContact).diff(DateTime.fromISO($now), 'minutes').toObject().minutes}}",
-              "rightValue": -5,
-              "operator": {
-                "type": "number",
-                "operation": "lt"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
         "options": {}
       },
-      "id": "27298298-24c4-4555-a49b-72be50399b66",
-      "name": "If",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
+      "id": "3d05bb2a-2335-423e-9d27-480b2954f43f",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        1260,
-        360
+        660,
+        260
       ]
     }
   ],
@@ -104,10 +152,10 @@
   },
   "shared": [
     {
-      "createdAt": "2024-08-21T17:02:22.663Z",
-      "updatedAt": "2024-08-21T17:02:22.663Z",
+      "createdAt": "2024-10-17T11:46:58.676Z",
+      "updatedAt": "2024-10-17T11:46:58.676Z",
       "role": "workflow:owner",
-      "workflowId": "yO7CE8eQ6N4hfogg",
+      "workflowId": "0748L29rG8jnwCQ4",
       "projectId": "BbalulLcG5rqgvFJ",
       "project": {
         "createdAt": "2024-06-10T18:18:03.245Z",
@@ -157,7 +205,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-08-27T18:18:49.899Z",
-  "versionId": "aa104b3a-10fe-4888-b3f9-2f601a5ef481"
+  "triggerCount": 2,
+  "updatedAt": "2024-10-17T12:35:41.458Z",
+  "versionId": "1ba3adff-1826-42d1-807e-71fa654508ef"
 }
