@@ -3981,8 +3981,8 @@
       "type": "n8n-nodes-base.nocoDb",
       "typeVersion": 3,
       "position": [
-        3340,
-        -1140
+        3440,
+        -660
       ],
       "executeOnce": false,
       "retryOnFail": true,
@@ -4100,6 +4100,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2024-10-16T13:07:47.805Z",
-  "versionId": "1fd5e04f-801a-43b2-9b7f-c02b6f6852dd"
+  "updatedAt": "2024-10-22T18:50:21.633Z",
+  "versionId": "663805e8-7ab9-42e4-9d6d-ea6f0e80a3a8"
 }
