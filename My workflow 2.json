@@ -65,7 +65,7 @@
         -40,
         260
       ],
-      "webhookId": "7d6b6478-1f13-4199-ada8-788b0490fe77"
+      "webhookId": "9012ac51-e793-4a2c-9ba4-7fd49a2f8cb9"
     },
     {
       "parameters": {
@@ -206,6 +206,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2024-11-04T17:52:12.307Z",
-  "versionId": "e15a417a-6935-488b-8264-5988ee01b812"
+  "updatedAt": "2024-11-21T12:22:18.905Z",
+  "versionId": "5262b7ee-7b49-41bb-85dd-4a7fbcb09fe8"
 }
