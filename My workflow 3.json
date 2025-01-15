@@ -1,0 +1,104 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-01-15T12:30:23.979Z",
+  "id": "19gOaHMHdZE6J3Eu",
+  "meta": null,
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "options": {
+          "fields": [
+            "ticket.id"
+          ]
+        },
+        "conditions": {
+          "any": [
+            {
+              "value": "new"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.zendeskTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d2697753-d116-4f35-a67e-345a917d6370",
+      "name": "Zendesk Trigger",
+      "webhookId": "0b88aed3-26d1-462a-8427-a3f2ba720f31",
+      "credentials": {
+        "zendeskOAuth2Api": {
+          "id": "vDOJ2hG7rJ3UOSTs",
+          "name": "SandBox Zendesk account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-01-15T12:30:23.979Z",
+      "updatedAt": "2025-01-15T12:30:23.979Z",
+      "role": "workflow:owner",
+      "workflowId": "19gOaHMHdZE6J3Eu",
+      "projectId": "BbalulLcG5rqgvFJ",
+      "project": {
+        "createdAt": "2024-06-10T18:18:03.245Z",
+        "updatedAt": "2024-06-10T18:18:03.245Z",
+        "id": "BbalulLcG5rqgvFJ",
+        "name": "MALCON VIVARELLI SILVA <mvsilva@padtec.com.br>",
+        "type": "personal",
+        "projectRelations": [
+          {
+            "createdAt": "2024-06-10T18:18:03.245Z",
+            "updatedAt": "2024-06-10T18:18:03.245Z",
+            "role": "project:personalOwner",
+            "userId": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+            "projectId": "BbalulLcG5rqgvFJ",
+            "user": {
+              "createdAt": "2024-05-31T19:30:31.891Z",
+              "updatedAt": "2024-08-08T16:46:15.990Z",
+              "id": "a9909e32-26ff-472d-956b-0d491ff8ae04",
+              "email": "mvsilva@padtec.com.br",
+              "firstName": "MALCON VIVARELLI",
+              "lastName": "SILVA",
+              "personalizationAnswers": {
+                "version": "v4",
+                "personalization_survey_submitted_at": "2024-05-31T19:31:18.544Z",
+                "personalization_survey_n8n_version": "1.42.1"
+              },
+              "settings": {
+                "isOnboarded": true,
+                "userActivated": true,
+                "userActivatedAt": 1721678428499,
+                "firstSuccessfulWorkflowId": "uJYj0C8HAGSVdduN",
+                "npsSurvey": {
+                  "responded": true,
+                  "lastShownAt": 1723135580263
+                }
+              },
+              "role": "global:owner",
+              "disabled": false,
+              "mfaEnabled": false,
+              "isPending": false,
+              "isOwner": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-15T12:30:23.979Z",
+  "versionId": "0448b4ca-9889-45f9-89c2-2359051bafa4"
+}
